@@ -8,8 +8,6 @@ The GitHub Workflow for automation with Actions is based on the [LaTeX-builder](
 
 ## Usage
 
-For information on the usage of the LaTeX template see [here](USAGE.md).
-
 ### **GitHub Action Workflow**
 
 - **Building**: Automatically compiles all `*.tex` files located in the repository root.

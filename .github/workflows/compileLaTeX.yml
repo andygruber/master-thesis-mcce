@@ -44,7 +44,7 @@ jobs:
             # Generate the base name for the PDFs
             # base_name="${GITHUB_REPOSITORY##*/}"
             # set base_name to custom value if required
-            base_name='your_lastname, Insert final title here'
+            base_name='MA_2210781009_Gruber'
 
             # Add tag to file name in case of release
             if [ "$GITHUB_EVENT_NAME" == "release" ]; then
