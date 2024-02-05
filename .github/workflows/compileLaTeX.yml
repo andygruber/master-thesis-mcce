@@ -7,6 +7,8 @@ on:
     branches: [ "main", "release/*", "develop", "develop/*" ]
   release:
     types: [published]
+  # also for testing, run it manually
+  workflow_dispatch:
 
 jobs:
   build_latex:
