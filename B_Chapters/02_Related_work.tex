@@ -1,0 +1,29 @@
+\chapter{Related work}
+\label{ch:related_work}
+
+As software development continues to evolve, it has seen the rise of virtual machines, containers, and various tools for automation.
+This chapter aims to provide a consolidated review of the existing literature.
+
+Studies by \citet{kolyasnikovExperimentalEvaluationVirtual2019} and \citet{felterUpdatedPerformanceComparison2015} report on the notable performance advantages of containers over VMs, especially concerning startup time and resource usage.
+On a similar note, \citet{ionescuAlternativesRunningLinux2019} details the intricacies of both hypervisors and containers, and their performance implications.
+
+Docker's efficiency, especially in the realm of microservices, is highlighted by \citet{potdarPerformanceEvaluationDocker2020}, which acknowledges its benefits for cloud deployments in terms of scalability and resource optimization.
+
+\citet{merkelDockerLightweightLinux2014} discusses the lightweight nature of containers and their suitability across various software development phases.
+The reproducibility challenges, especially in research domains, are addressed by \citet{hungGUIdockUsingDocker2016}, showcasing the potential of containers like Docker in ensuring consistent results.
+Meanwhile, \citet{citoUsingDockerContainers2016} and \citet{chamberlainUsingDockerSupport2014} focus on Docker's role in aiding reproducible research.
+
+\citet{gohringPracticalGuideContainerize2022} offers valuable insights into containerizing C applications.
+\citet{koskinenContainersSoftwareDevelopment2019} presents a systematic mapping study that reveals a trend toward modularizing software systems using containers, with Docker emerging as the front-runner.
+
+The criticality of continuous integration in modern agile setups is brought forth by \citet{agarwalContinuousIntegratedSoftware2018}, who advocates for automated testing and deployment to maintain software quality.
+Dealing with large-scale C++ projects, \citet{gygiCppBuildLargeScaleAutomatic2021} presents the importance of automation in managing dependencies and ensuring reproducibility.
+Additionally, \citet{randalIdealRealRevisiting2021} sheds light on the potential role of containers in simplifying software development complexities.
+
+Integration of dockerized build environments, especially with tools like Visual Studio Code, is the central theme of the works of \citet{danilovDockerizedBuildEnvironments2021,danilovVSCodeDockerized2022}.
+They discuss the benefits of such integration in providing a consistent development environment and addressing challenges faced by developers.
+For another hands-on approach, \citet{luDevelopmentDockerContainers2018} offers guidance on C++ development using Docker within Visual Studio Code.
+
+\section{Summary}
+
+While the literature offers extensive insights into the merits of containerization, automation in software development, and the advantages of using development containers, a significant research gap remains regarding the effective integration of containers within long-standing or very big legacy software development projects and the ensuing benefits.
