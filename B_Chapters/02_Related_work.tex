@@ -1,8 +1,61 @@
 \chapter{Related work}
 \label{ch:related_work}
 
-As software development continues to evolve, it has seen the rise of virtual machines, containers, and various tools for automation.
-This chapter aims to provide a consolidated review of the existing literature.
+% search strings
+% devcontainer(s)
+% docker c++
+% docker build c++
+% docker build performance
+% docker software development performance
+% docker legacy software
+
+
+
+This chapter presents the current literature on the subject.
+Relevant literature was first reviewed and researched, then categorized, and finally summarized.
+The following table illustrates the literature used based on the categories.
+The summarized content of the cited literature can be found later in the chapter.
+
+% As software development continues to evolve, it has seen the rise of virtual machines, containers, and various tools for automation.
+% This chapter aims to provide a consolidated review of the existing literature.
+
+% \begin{table}
+%     \centering
+%     \caption{Literature categories}
+%     \label{tab:literature_categories}
+%     \begin{tabular}{|l|l|}
+%         \hline
+%         \textbf{Category} & \textbf{Literature} \\ \hline
+%         Containers & \citet{merkelDockerLightweightLinux2014, kolyasnikovExperimentalEvaluationVirtual2019, felterUpdatedPerformanceComparison2015, ionescuAlternativesRunningLinux2019, potdarPerformanceEvaluationDocker2020, hungGUIdockUsingDocker2016, citoUsingDockerContainers2016, chamberlainUsingDockerSupport2014, gohringPracticalGuideContainerize2022, koskinenContainersSoftwareDevelopment2019} \\ \hline
+%         Automation & \citet{agarwalContinuousIntegratedSoftware2018, gygiCppBuildLargeScaleAutomatic2021, randalIdealRealRevisiting2021} \\ \hline
+%         Development containers & \citet{danilovDockerizedBuildEnvironments2021, danilovVSCodeDockerized2022, luDevelopmentDockerContainers2018} \\ \hline
+%     \end{tabular}
+% \end{table}
+
+\section{Performance comparison of containers and VMs}
+
+In their study, \citet{felterUpdatedPerformanceComparison2015} present a thorough evaluation of the performance of virtual machines (VMs) and Linux containers, with a particular focus on Docker.
+They highlight the importance of isolation and resource control in cloud computing environments and discuss the historical reliance on VMs for these purposes.
+The paper provides a detailed comparison between VMs and containers, emphasizing that containers, which use mature technologies such as namespaces and control groups (cgroups), offer a more lightweight alternative.
+Containers allow applications to be isolated with minimal performance overhead thanks to their ability to share the host operating system kernel.
+This capability allows containers to perform closer to native execution levels than VMs, which must virtualize hardware resources.
+The authors conduct a series of benchmarks to evaluate CPU, memory, storage, and network performance in different environments: native Linux, Docker containers, and KVM-based virtual machines.
+The results show that Docker containers deliver equal or better performance than VMs in nearly every scenario tested.
+For example, the study shows that containers achieve near-native performance in CPU and memory benchmarks due to minimal overhead in context switching and memory management.
+Similarly, for networking and storage benchmarks, containers show superior throughput and lower latency compared to VMs, which are hampered by the additional virtualization layers.
+The paper also evaluates the performance of real-world applications such as Redis and MySQL, which are representative of common cloud workloads.
+These evaluations show that containers can handle high concurrency and I/O requirements more efficiently than VMs.
+The study concludes that containers not only provide the necessary isolation and resource control for cloud environments, but do so with significantly less performance penalty, making them a compelling choice for modern cloud architectures.
+The authors suggest that the adoption of container-based virtualization could lead to improved resource utilization and reduced operational costs in cloud computing.
+
+\begin{figure}[ht]
+	\centering
+	\includegraphics[width=0.65\linewidth]{figures/Felter et al. - 2015 - performance comparison Linpack.png}
+	\caption{Linpack performance comparison \citep{felterUpdatedPerformanceComparison2015}}
+	\label{fig:Linpack_performance_comparison}
+\end{figure}
+
+In their paper, Felter et al. (2015) present a comprehensive evaluation of the performance of virtual machines (VMs) and Linux containers using Docker, emphasizing the significance of isolation and resource control in cloud computing environments. The authors highlight the historical reliance on VMs for these purposes, noting the associated performance costs due to additional abstraction layers. Containers, leveraging mature technologies like namespaces, offer an efficient alternative with minimal performance overhead, particularly when scaling out applications. The evaluation section details a series of benchmarks across CPU, memory, network, and storage resources, as well as real-world applications like Redis and MySQL, revealing that containers often match or exceed VM performance, especially in I/O-intensive scenarios. The study underscores the potential of containers to provide robust isolation and resource management with improved efficiency, making them a viable option for modern cloud infrastructures.
 
 Studies by \citet{kolyasnikovExperimentalEvaluationVirtual2019} and \citet{felterUpdatedPerformanceComparison2015} report on the notable performance advantages of containers over VMs, especially concerning startup time and resource usage.
 On a similar note, \citet{ionescuAlternativesRunningLinux2019} details the intricacies of both hypervisors and containers, and their performance implications.
