@@ -3,24 +3,39 @@
 
 \section{Basic setup and configuration}
 
-\section{Iteration 1: Container Integration}
+\subsection{Container Integration}
 
-\section{Iteration 2: Creating reproducible results}
+\subsection{Creating reproducible results}
 
-\section{Iteration 3: IDE integration}
+\subsection{IDE integration}
 
 \section{Performance/Resource measurements}
-\subsection{Setup Dev-Environment}
+\subsection{Iteration 0: Prerequisites}
+% For Windows a Download of a the compiler (Visual Studio 2022 Enterprise) with a certain configuration is required
+%  Additionally some other tools are required for the DevEnv, need to cache them somehow to make sure Internet Speed is no issue.
+
+% Linux will need to cache the required Debian packages for the build environment.
+
+% Docker image creating will be done and the image stored locally, so it can be pulled from the intranet with same speed than all other components
+
+% Is one hardware setup enough? Or should we use multiple setups to test the performance on different hardware configurations?
+
+% How to measure and document time required? Use scripts with start and end time?
+% Enter everything in a CSV file and then use a script to generate the graphs?
+
+% 2-seitiger T Test mit 21 Wiederholungen, Definition der Signifikanzen
+
+\subsection{Iteration 1: Setup Dev-Environment}
 \subsubsection{Clean}
 \subsubsection{Warm}
-\subsection{Repository clone/check-out}
+\subsection{Iteration 2: Repository clone/check-out}
 \subsubsection{Clean}
 \subsubsection{Warm}
-\subsection{Build}
+\subsection{Iteration 3: Build}
 \subsubsection{Cold}
 \subsubsection{Warm}
 \subsubsection{Compiler Cached}
-\subsection{Run tests}
+\subsection{Iteration 4: Run tests}
 
 
 \section{Summary}
