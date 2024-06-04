@@ -32,21 +32,21 @@ The summarized content of the cited literature can be found later in the chapter
 %     \end{tabular}
 % \end{table}
 
-\section{Performance comparison of containers and VMs}
+\section{Comparative Studies on VMs and Containers}
 
-In their study, \citet{felterUpdatedPerformanceComparison2015} present a thorough evaluation of the performance of virtual machines (VMs) and Linux containers, with a particular focus on Docker.
-They highlight the importance of isolation and resource control in cloud computing environments and discuss the historical reliance on VMs for these purposes.
-The paper provides a detailed comparison between VMs and containers, emphasizing that containers, which use mature technologies such as namespaces and control groups (cgroups), offer a more lightweight alternative.
+In their study, \citet{felterUpdatedPerformanceComparison2015} presented a thorough evaluation of the performance of virtual machines (VMs) and Linux containers, with a particular focus on Docker.
+They highlighted the importance of isolation and resource control in cloud computing environments and discussed the historical reliance on VMs for these purposes.
+The paper provided a detailed comparison between VMs and containers, emphasizing that containers, which use mature technologies such as namespaces and control groups (cgroups), offer a more lightweight alternative.
 Containers allow applications to be isolated with minimal performance overhead thanks to their ability to share the host operating system kernel.
 This capability allows containers to perform closer to native execution levels than VMs, which must virtualize hardware resources.
-The authors conduct a series of benchmarks to evaluate CPU, memory, storage, and network performance in different environments: native Linux, Docker containers, and KVM-based virtual machines.
-The results show that Docker containers deliver equal or better performance than VMs in nearly every scenario tested.
-For example, the study shows that containers achieve near-native performance in CPU and memory benchmarks due to minimal overhead in context switching and memory management.
-Similarly, for networking and storage benchmarks, containers show superior throughput and lower latency compared to VMs, which are hampered by the additional virtualization layers.
-The paper also evaluates the performance of real-world applications such as Redis and MySQL, which are representative of common cloud workloads.
-These evaluations show that containers can handle high concurrency and I/O requirements more efficiently than VMs.
-The study concludes that containers not only provide the necessary isolation and resource control for cloud environments, but do so with significantly less performance penalty, making them a compelling choice for modern cloud architectures.
-The authors suggest that the adoption of container-based virtualization could lead to improved resource utilization and reduced operational costs in cloud computing.
+The authors conducted a series of benchmarks to evaluate CPU, memory, storage, and network performance in different environments: native Linux, Docker containers, and KVM-based virtual machines.
+The results showed that Docker containers deliver equal or better performance than VMs in nearly every scenario tested.
+For example, the study showed that containers achieve near-native performance in CPU and memory benchmarks due to minimal overhead in context switching and memory management.
+Similarly, for networking and storage benchmarks, containers showed superior throughput and lower latency compared to VMs, which are hampered by the additional virtualization layers.
+The paper also evaluated the performance of real-world applications such as Redis and MySQL, which are representative of common cloud workloads.
+These evaluations showed that containers can handle high concurrency and I/O requirements more efficiently than VMs.
+The study concluded that containers not only provide the necessary isolation and resource control for cloud environments, but do so with significantly less performance penalty, making them a compelling choice for modern cloud architectures.
+The authors suggested that the adoption of container-based virtualization could lead to improved resource utilization and reduced operational costs in cloud computing.
 
 \begin{figure}[ht]
 	\centering
@@ -55,28 +55,116 @@ The authors suggest that the adoption of container-based virtualization could le
 	\label{fig:Linpack_performance_comparison}
 \end{figure}
 
-In their paper, Felter et al. (2015) present a comprehensive evaluation of the performance of virtual machines (VMs) and Linux containers using Docker, emphasizing the significance of isolation and resource control in cloud computing environments. The authors highlight the historical reliance on VMs for these purposes, noting the associated performance costs due to additional abstraction layers. Containers, leveraging mature technologies like namespaces, offer an efficient alternative with minimal performance overhead, particularly when scaling out applications. The evaluation section details a series of benchmarks across CPU, memory, network, and storage resources, as well as real-world applications like Redis and MySQL, revealing that containers often match or exceed VM performance, especially in I/O-intensive scenarios. The study underscores the potential of containers to provide robust isolation and resource management with improved efficiency, making them a viable option for modern cloud infrastructures.
+In their paper, \citet{kolyasnikovExperimentalEvaluationVirtual2019} conducted a thorough experimental evaluation of the efficiency of virtual environments in distributed software development.
+The study highlights the need to select appropriate libraries, development technologies, data exchange formats, and virtual environment systems to meet the requirements of modern software design.
+The researchers used a web platform of digital psychological tools to develop methods for experimental parameter evaluation, focusing on improving the efficiency of Vagrant and Docker cloud virtual environments.
+Key criteria for evaluating the effectiveness of virtual development environments included rapid deployment, increased speed, reduced resource consumption, and improved data exchange rates between host and virtual machines.
+The paper identified significant challenges with the initial development environment, including high workloads on developer machines, low data exchange rates, and instability under load.
+To address these issues, an alternative configuration using a single virtual machine for all components was proposed.
+This approach significantly reduced CPU and RAM usage, shortened startup times, and improved the efficiency of the build process.
+An additional improvement was the implementation of an NFS-based file system access driver, which further optimized data exchange speeds and build times.
+The study concluded that a well-optimized virtual development environment can significantly improve developer efficiency by minimizing resource consumption and accelerating development tasks.
 
-Studies by \citet{kolyasnikovExperimentalEvaluationVirtual2019} and \citet{felterUpdatedPerformanceComparison2015} report on the notable performance advantages of containers over VMs, especially concerning startup time and resource usage.
-On a similar note, \citet{ionescuAlternativesRunningLinux2019} details the intricacies of both hypervisors and containers, and their performance implications.
 
-Docker's efficiency, especially in the realm of microservices, is highlighted by \citet{potdarPerformanceEvaluationDocker2020}, which acknowledges its benefits for cloud deployments in terms of scalability and resource optimization.
+\citet{ionescuAlternativesRunningLinux2019} explores the need to run Linux applications in a Windows environment, due to the dominance of Linux in online usage by Android since 2016.
+This requirement is relevant in both professional development and educational settings, particularly for engineering and IT students.
+This paper examines various methods for running Linux alongside Windows, evaluating inter-process communication performance and application speed.
+The solutions examined include the use of a virtual machine (VirtualBox), Cygwin for POSIX compatibility, Windows Subsystem for Linux (WSL), and Docker containers using Hyper-V.
+Each method has unique advantages and limitations: VirtualBox provides full Linux functionality but with higher resource consumption; Cygwin allows recompiled Linux applications to run in Windows; WSL translates Linux system calls for Windows compatibility; and Docker containers provide lightweight, isolated environments.
+The evaluation focuses on the effectiveness of these methods in providing a consistent and efficient cross-platform development platform, which is critical for both the development and testing phases of software development.
+The conclusions drawn highlight the comparative advantages of each approach in different contexts, helping developers and educators choose the most appropriate solution for their specific needs.
 
-\citet{merkelDockerLightweightLinux2014} discusses the lightweight nature of containers and their suitability across various software development phases.
-The reproducibility challenges, especially in research domains, are addressed by \citet{hungGUIdockUsingDocker2016}, showcasing the potential of containers like Docker in ensuring consistent results.
-Meanwhile, \citet{citoUsingDockerContainers2016} and \citet{chamberlainUsingDockerSupport2014} focus on Docker's role in aiding reproducible research.
+\citet{potdarPerformanceEvaluationDocker2020} analyzed the efficiency of Docker containers compared to traditional virtual machines (VMs).
+It highlights the limitations of VMs, such as large size, unstable performance, and lengthy boot times, which have led to the development of containerization technology.
+Docker containers, which operate at the OS level, use shared host resources more efficiently and execute faster by eliminating the guest OS overhead.
+The study used benchmarking tools like Sysbench, Phoronix, and Apache benchmark to evaluate CPU performance, memory throughput, storage read/write performance, load test, and operation speed on two HP servers: one running a VM on Windows 10 with Ubuntu 16.04 as the guest OS, and another running Docker on Ubuntu 16.04.
+The results showed that Docker containers outperform VMs in all tested parameters.
+Docker exhibited faster CPU performance in prime number calculations and file compression, better memory handling in RAM speed and cache operations, superior disk I/O performance, and higher load test throughput due to lower network latency.
+Additionally, Docker solved computational problems like the Eight Queens and Eight Puzzle tests more quickly.
+Statistical t-tests confirmed significant performance differences, favoring Docker's efficiency and suitability for low-overhead virtualization needs.
 
-\citet{gohringPracticalGuideContainerize2022} offers valuable insights into containerizing C applications.
-\citet{koskinenContainersSoftwareDevelopment2019} presents a systematic mapping study that reveals a trend toward modularizing software systems using containers, with Docker emerging as the front-runner.
+\section{Containerization in Development Practices}
 
-The criticality of continuous integration in modern agile setups is brought forth by \citet{agarwalContinuousIntegratedSoftware2018}, who advocates for automated testing and deployment to maintain software quality.
-Dealing with large-scale C++ projects, \citet{gygiCppBuildLargeScaleAutomatic2021} presents the importance of automation in managing dependencies and ensuring reproducibility.
-Additionally, \citet{randalIdealRealRevisiting2021} sheds light on the potential role of containers in simplifying software development complexities.
+In an article on Docker \citet{merkelDockerLightweightLinux2014} focuses on its growing adoption, technical strengths, and practical applications. Although still in its developmental stages at the time of writing, Docker has shown great promise in resolving dependency conflicts, simplifying deployment, and improving resource efficiency.
+Docker containers encapsulate applications and their dependencies, enabling consistent performance across different environments, which is particularly beneficial for development, test, and production setups.
+Docker is lightweight compared to traditional virtual machines because it virtualizes at the operating system level rather than the hardware level, resulting in more efficient resource utilization and faster container startup times.
+In addition, Docker leverages powerful technologies such as LXC, cgroups, and AuFS, which contribute to its robust performance and scalability.
+The article also highlights Docker's compatibility with various Linux distributions and its evolving support for other operating systems through virtual machines.
+Despite some security concerns related to the Docker daemon running with root privileges, the overall reception of Docker within the Linux community has been positive, with notable endorsements such as Red Hat's integration of Docker support into its enterprise products.
+This growing acceptance demonstrates Docker's potential to revolutionize software development and deployment practices, making it a valuable tool for modern DevOps workflows.
 
-Integration of dockerized build environments, especially with tools like Visual Studio Code, is the central theme of the works of \citet{danilovDockerizedBuildEnvironments2021,danilovVSCodeDockerized2022}.
-They discuss the benefits of such integration in providing a consistent development environment and addressing challenges faced by developers.
-For another hands-on approach, \citet{luDevelopmentDockerContainers2018} offers guidance on C++ development using Docker within Visual Studio Code.
+The evaluation and results presented by \citet{citoUsingDockerContainers2016} demonstrate the significant benefits of using Docker containers to improve reproducibility in software engineering research.
+By using Docker, researchers can encapsulate all necessary dependencies, configurations, and code in a single, lightweight virtual environment, overcoming common reproducibility challenges related to undocumented assumptions and internal knowledge.
+The study shows how Docker containers can simplify the setup of computational environments, making research artifacts more accessible and easier to replicate by others without extensive setup or prior knowledge.
+The authors conducted hands-on demonstrations using two specific software engineering use cases: packaging a quantitative analysis performed using the R statistical package, and an open-source prototype implementation from a research paper.
+These examples demonstrated the ease with which Docker containers could be created, distributed, and run on different systems, significantly reducing the effort required to reproduce results.
+In addition, the evaluation highlighted that Docker containers not only facilitate reproducibility, but also improve the dissemination and usability of scientific research by making artifacts immediately usable by reviewers and future researchers.
+The results of these evaluations strongly support the integration of Docker into the software engineering research workflow to effectively address reproducibility issues.
+
+In evaluating Docker's effectiveness in supporting reproducible research, \citet{chamberlainUsingDockerSupport2014} identify several key benefits and challenges.
+Docker facilitates the creation of isolated, consistent computing environments using Linux Containers (LXC), significantly reducing the overhead associated with traditional virtual machines (VMs).
+Docker's ability to encapsulate all necessary libraries, binaries, and data within a container ensures that computational experiments can be precisely replicated, promoting reproducibility across systems and over time.
+The study outlines a workflow that includes three types of Docker containers-base, dev, and release-that streamline both the development and distribution processes.
+The base container contains all the necessary libraries and tools for the algorithm, the dev container adds development tools such as IPython and matplotlib, and the release container packages the completed code.
+This structure allows seamless transitions from development to production environments while maintaining consistency.
+The authors highlight Docker's ability to easily version, distribute, and deploy as a key benefit, supported by a robust community in the DevOps and web application space.
+However, they also note the lack of standardized workflows for scientific computing with Docker, suggesting that the integration of tools such as IPython could further enhance its usability for researchers with limited computational expertise.
+Overall, integrating Docker into scientific research workflows offers a promising way to achieve reproducible research with minimal overhead and maximum reliability.
+
+In a blog post, \citet{gohringPracticalGuideContainerize2022} provides a detailed evaluation of the process of containerizing a C++ application using Docker.
+The guide focuses on building and deploying a simple HTTP server using Docker.
+The evaluation outlines the effectiveness of using Docker to isolate application processes, contrasting it with virtual machines that isolate hardware.
+It highlights the benefits of using multi-stage builds to create lean, efficient Docker images by separating the build and runtime environments.
+The results of the real-world implementation are promising, demonstrating a streamlined process for building and deploying C++ applications with Docker.
+The author successfully created a Docker image of a simple HTTP server, which was then tested for efficiency and correctness.
+The results showed a significant reduction in image size when using Alpine Linux as the base image compared to Debian, highlighting Docker's ability to create lightweight containers.
+The conclusion of the guide emphasizes the importance of integrating Docker into the software development workflow to improve deployment efficiency and resource management.
+Göhring suggests further improvements such as incorporating Docker into CI/CD pipelines, testing frameworks, and using linting tools for Dockerfile best practices, reinforcing Docker's role in modern software development.
+
+
+\section{Specific Applications and Case Studies}
+Highlight specific applications and case studies demonstrating the practical implementation of containerization:
+
+Koskinen et al. (2019): Modularizing software systems with containers.
+Danilov (2021, 2022): Integration of dockerized build environments with tools like VS Code.
+
+
+\section{Continuous Integration and Deployment}
+Explore the importance of continuous integration (CI) and continuous deployment (CD) in modern development, facilitated by containerization:
+
+Agarwal et al. (2018): Automated testing and deployment in agile setups.
+Gygi (2021): Automation in managing dependencies for large-scale projects.
 
 \section{Summary}
 
+\subsection{Challenges and Solutions}
+Discuss the challenges and solutions related to containerizing legacy software:
+
+Compatibility Issues: Differences between Windows and Linux development environments.
+Performance Overheads: Addressing resource utilization and performance overheads.
+
+\subsection{Gaps in Existing Research}
+Identify the gaps in existing research that your thesis aims to address:
+
+Integration of Containers in Legacy Systems: Effective strategies for integrating containerized environments into longstanding software development projects.
+Performance and Resource Utilization: Detailed comparison of build times, CPU utilization, and memory consumption in containerized versus native/VM environments.
+
+\subsection{Conclusion}
+Summarize the key points covered in the related work chapter and reiterate how your research will build on these foundations to advance the field of software development.
+
 While the literature offers extensive insights into the merits of containerization, automation in software development, and the advantages of using development containers, a significant research gap remains regarding the effective integration of containers within long-standing or very big legacy software development projects and the ensuing benefits.
+
+
+% The reproducibility challenges, especially in research domains, are addressed by \citet{hungGUIdockUsingDocker2016}, showcasing the potential of containers like Docker in ensuring consistent results.
+
+% \citet{gohringPracticalGuideContainerize2022} offers valuable insights into containerizing C applications.
+% \citet{koskinenContainersSoftwareDevelopment2019} presents a systematic mapping study that reveals a trend toward modularizing software systems using containers, with Docker emerging as the front-runner.
+
+% The criticality of continuous integration in modern agile setups is brought forth by \citet{agarwalContinuousIntegratedSoftware2018}, who advocates for automated testing and deployment to maintain software quality.
+% Dealing with large-scale C++ projects, \citet{gygiCppBuildLargeScaleAutomatic2021} presents the importance of automation in managing dependencies and ensuring reproducibility.
+% Additionally, \citet{randalIdealRealRevisiting2021} sheds light on the potential role of containers in simplifying software development complexities.
+
+% Integration of dockerized build environments, especially with tools like Visual Studio Code, is the central theme of the works of \citet{danilovDockerizedBuildEnvironments2021,danilovVSCodeDockerized2022}.
+% They discuss the benefits of such integration in providing a consistent development environment and addressing challenges faced by developers.
+% For another hands-on approach, \citet{luDevelopmentDockerContainers2018} offers guidance on C++ development using Docker within Visual Studio Code.
+
