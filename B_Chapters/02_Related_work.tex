@@ -104,7 +104,7 @@ The results of these evaluations strongly support the integration of Docker into
 In evaluating Docker's effectiveness in supporting reproducible research, \citet{chamberlainUsingDockerSupport2014} identify several key benefits and challenges.
 Docker facilitates the creation of isolated, consistent computing environments using Linux Containers (LXC), significantly reducing the overhead associated with traditional virtual machines (VMs).
 Docker's ability to encapsulate all necessary libraries, binaries, and data within a container ensures that computational experiments can be precisely replicated, promoting reproducibility across systems and over time.
-The study outlines a workflow that includes three types of Docker containers-base, dev, and release-that streamline both the development and distribution processes.
+The study outlines a workflow that includes three types of Docker containers - base, dev, and release - that streamline both the development and distribution processes.
 The base container contains all the necessary libraries and tools for the algorithm, the dev container adds development tools such as IPython and matplotlib, and the release container packages the completed code.
 This structure allows seamless transitions from development to production environments while maintaining consistency.
 The authors highlight Docker's ability to easily version, distribute, and deploy as a key benefit, supported by a robust community in the DevOps and web application space.
@@ -123,10 +123,33 @@ Göhring suggests further improvements such as incorporating Docker into CI/CD p
 
 
 \section{Specific Applications and Case Studies}
-Highlight specific applications and case studies demonstrating the practical implementation of containerization:
 
-Koskinen et al. (2019): Modularizing software systems with containers.
-Danilov (2021, 2022): Integration of dockerized build environments with tools like VS Code.
+The systematic mapping study on the use of containers in software engineering presented by \citet{koskinenContainersSoftwareDevelopment2019} focuses on evaluating current research, identifying gaps, and proposing future directions.
+The study systematically categorized 56 primary studies to map the landscape of container use in software engineering.
+The results show that containers are primarily discussed in the context of cloud computing, performance, and DevOps.
+Specifically, more than 50\% of the studies addressed cloud computing, 48\% discussed performance, and 45\% explored DevOps, reflecting these areas as central themes in container research.
+The dominance of Docker as the primary technology in these discussions is notable, with 57\% of the papers explicitly mentioning Docker.
+This indicates a significant focus on Docker over other container technologies.
+The study also found that containers are often used to modularize software systems, either through component-based architectures or microservices, as evidenced by 55\% of the studies.
+However, no studies were found that discussed containers for plugin-based architectures, suggesting a potential area for future research.
+The findings highlight the novelty of container technology in research, with most studies covering multiple categories and often starting with an introduction to containers, emphasizing their perceived novelty.
+In addition, the research identifies the need for more focused studies, particularly on container security, legacy applications, and plug-in technologies.
+This comprehensive assessment and mapping provides a clear direction for future research to address the identified gaps and further explore the capabilities and applications of container technology in software development.
+
+In a blog post, \citet{danilovDockerizedBuildEnvironments2021} evaluates Dockerized build environments for C/C++ projects, highlighting several key benefits and challenges.
+The main problem with native builds on a developer's workstation is the lack of a built-in dependency management mechanism in C++, which leads to inconsistencies between development and CI/CD environments due to different methods of adding third-party dependencies.
+Dockerization addresses these issues by providing isolated and reproducible build environments.
+The solution involves creating a Docker image with preinstalled dependencies and tools, ensuring consistency across all environments.
+This approach eliminates the "it works on my machine" problem because the build runs in a container, unaffected by local environment variables and settings.
+In addition, the Dockerized environment is easy to recreate by pulling the right image or rebuilding from the Dockerfile included in the Git repository, making it highly reproducible.
+Danilov's methodology was demonstrated through a sample project using Boost, showing how to set up and use the Docker environment effectively.
+The results were positive, with successful builds both inside the container and on the host machine.
+
+In another blog post, \citet{danilovVSCodeDockerized2022} explored the integration of Dockerized build environments with Visual Studio Code (VS Code).
+The author detailed the setup process, emphasizing the importance of using compiler-based tools like clangd for accurate autocompletion, which integrates well with Docker environments through VS Code's Remote - Containers extension.
+This setup allows developers to leverage the full suite of VS Code features within a Docker container, providing a seamless development experience.
+The configuration includes using a .devcontainer.json file to specify the Docker image and required extensions, ensuring that the development environment inside the container accurately reflects the needs of the project.
+The combination of Docker and VS Code facilitates a robust development workflow and reduces the complexity of managing dependencies and build environments for C/C++ projects.
 
 
 \section{Continuous Integration and Deployment}
@@ -157,14 +180,12 @@ While the literature offers extensive insights into the merits of containerizati
 
 % The reproducibility challenges, especially in research domains, are addressed by \citet{hungGUIdockUsingDocker2016}, showcasing the potential of containers like Docker in ensuring consistent results.
 
-% \citet{gohringPracticalGuideContainerize2022} offers valuable insights into containerizing C applications.
-% \citet{koskinenContainersSoftwareDevelopment2019} presents a systematic mapping study that reveals a trend toward modularizing software systems using containers, with Docker emerging as the front-runner.
+
 
 % The criticality of continuous integration in modern agile setups is brought forth by \citet{agarwalContinuousIntegratedSoftware2018}, who advocates for automated testing and deployment to maintain software quality.
 % Dealing with large-scale C++ projects, \citet{gygiCppBuildLargeScaleAutomatic2021} presents the importance of automation in managing dependencies and ensuring reproducibility.
 % Additionally, \citet{randalIdealRealRevisiting2021} sheds light on the potential role of containers in simplifying software development complexities.
 
-% Integration of dockerized build environments, especially with tools like Visual Studio Code, is the central theme of the works of \citet{danilovDockerizedBuildEnvironments2021,danilovVSCodeDockerized2022}.
 % They discuss the benefits of such integration in providing a consistent development environment and addressing challenges faced by developers.
 % For another hands-on approach, \citet{luDevelopmentDockerContainers2018} offers guidance on C++ development using Docker within Visual Studio Code.
 
