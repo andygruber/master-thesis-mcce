@@ -9,12 +9,12 @@
 % docker software development performance
 % docker legacy software
 
-
-
 This chapter presents the current literature on the subject.
 Relevant literature was first reviewed and researched, then categorized, and finally summarized.
 The following table illustrates the literature used based on the categories.
 The summarized content of the cited literature can be found later in the chapter.
+
+TODO insert table here
 
 % As software development continues to evolve, it has seen the rise of virtual machines, containers, and various tools for automation.
 % This chapter aims to provide a consolidated review of the existing literature.
@@ -65,7 +65,6 @@ This approach significantly reduced CPU and RAM usage, shortened startup times, 
 An additional improvement was the implementation of an NFS-based file system access driver, which further optimized data exchange speeds and build times.
 The study concluded that a well-optimized virtual development environment can significantly improve developer efficiency by minimizing resource consumption and accelerating development tasks.
 
-
 \citet{ionescuAlternativesRunningLinux2019} explores the need to run Linux applications in a Windows environment, due to the dominance of Linux in online usage by Android since 2016.
 This requirement is relevant in both professional development and educational settings, particularly for engineering and IT students.
 This paper examines various methods for running Linux alongside Windows, evaluating inter-process communication performance and application speed.
@@ -82,6 +81,16 @@ The results showed that Docker containers outperform VMs in all tested parameter
 Docker exhibited faster CPU performance in prime number calculations and file compression, better memory handling in RAM speed and cache operations, superior disk I/O performance, and higher load test throughput due to lower network latency.
 Additionally, Docker solved computational problems like the Eight Queens and Eight Puzzle tests more quickly.
 Statistical t-tests confirmed significant performance differences, favoring Docker's efficiency and suitability for low-overhead virtualization needs.
+
+In her comprehensive analysis, \citet{randalIdealRealRevisiting2021} evaluates the historical evolution and current state of virtual machine and container technologies, highlighting their intertwined evolution and common challenges.
+The evaluation includes key comparisons, such as Docker's transition from LXC to libcontainer, noting that Docker and LXC have equivalent performance in CPU, disk I/O, and network I/O, but LXC is superior in random write operations.
+The study also contrasts the security models of Docker, QEMU+KVM, and Xen on the ARM architecture, highlighting different approaches to isolation and resource control.
+The assessments also include a systematic review of security risks in container orchestration tools such as Kubernetes and Docker Swarm, highlighting the complexity and performance tradeoffs of these technologies.
+The results of the study point to the nuanced performance impact of different virtualization technologies. \citet{felterUpdatedPerformanceComparison2015} demonstrated that KVM's higher I/O overhead can be mitigated through optimized I/O operations, while \citet{kovacsComparisonDifferentLinux2017} found negligible differences in CPU and network performance between Docker, LXC, Singularity, KVM, and bare metal, except in certain network modes.
+This suggests that while containers are perceived to offer superior performance, this advantage is context-dependent and not always clear-cut.
+\citet{randalIdealRealRevisiting2021} concludes that short-term security improvements through patching are necessary, but not sufficient for long-term needs.
+The industry needs to explore radical innovations in hardware and software to ensure secure isolation in multi-tenant environments.
+She emphasizes the importance of understanding the historical trade-offs in virtualization and container technologies to avoid past mistakes and build a solid foundation for future developments.
 
 \section{Containerization in Development Practices}
 
@@ -151,12 +160,39 @@ This setup allows developers to leverage the full suite of VS Code features with
 The configuration includes using a .devcontainer.json file to specify the Docker image and required extensions, ensuring that the development environment inside the container accurately reflects the needs of the project.
 The combination of Docker and VS Code facilitates a robust development workflow and reduces the complexity of managing dependencies and build environments for C/C++ projects.
 
+A study by \citet{hungGUIdockUsingDocker2016} evaluates the utility of Docker containers in ensuring the reproducibility of software environments and workflows that incorporate graphical user interfaces (GUIs).
+This research focuses on overcoming the challenges of replicating complex computing environments across different operating systems, which often differ significantly in their graphical software layers.
+GUIdock leverages Docker's ability to encapsulate software dependencies and configurations within a container, ensuring consistency and portability.
+It adds a common X11 graphical user interface layer, allowing GUI-based workflows to be replicated across Linux, Mac OS, and Windows platforms.
+The researchers tested the GUIdock framework using the CyNetworkBMA application, which integrates R and Java-based tools for data analysis and visualization, and applied it to three datasets.
+The evaluation showed that GUIdock was able to reproduce identical analysis results on all platforms tested, demonstrating its effectiveness in maintaining consistency across software environments.
+This reproducibility is critical in bioinformatics and other fields that rely heavily on computational methods, as it ensures that scientific findings can be reliably replicated and validated by others.
+The results of the study showed that GUIdock simplifies the deployment and distribution of complex software workflows by automating the setup of dependencies and configurations through scripts.
+This approach not only saves time, but also reduces the potential for errors associated with manual installations.
+The researchers concluded that GUIdock represents a significant advancement in the reproducibility of research workflows involving GUIs and suggested further research into extending this framework to cloud-based applications and optimizing performance across different operating systems.
 
 \section{Continuous Integration and Deployment}
-Explore the importance of continuous integration (CI) and continuous deployment (CD) in modern development, facilitated by containerization:
 
-Agarwal et al. (2018): Automated testing and deployment in agile setups.
-Gygi (2021): Automation in managing dependencies for large-scale projects.
+The study conducted by \citet{agarwalContinuousIntegratedSoftware2018} focuses on the effectiveness and challenges of implementing continuous delivery (CD) and continuous deployment (CD) practices using DevOps methodologies.
+The research highlights the importance of automation in the CD/CI pipeline to improve software development processes.
+According to the survey, more than 70\% of respondents practice a semi-automated CD/CI pipeline, highlighting a significant reliance on automation tools such as Jenkins for continuous integration and deployment.
+However, the study identified several challenges, including the lack of fully automated acceptance testing, communication gaps between development and operations teams, and the need for manual code reviews due to cautious quality checks.
+The authors propose solutions to these challenges, recommending the adoption of trunk-based development to avoid long-lived branches, and emphasizing the need for better tools and skills development for effective automation.
+The study also explores the use of Docker for containerization to ensure consistent environments across different stages of development and deployment, thereby mitigating issues related to environmental inconsistencies.
+The conclusion highlights the need for more extensive research into DevOps practices, noting the limited academic work available in this area.
+The paper suggests that addressing these challenges with the proposed solutions can significantly improve the efficiency and reliability of software development and deployment processes.
+
+The research, conducted by \citet{gygiCppBuildLargeScaleAutomatic2021}, provides important insights into the performance and reliability of different build systems and continuous integration (CI) practices.
+The study evaluated a sample of 800 C/C++ projects from GitHub, where CMake emerged as the most popular build system, followed by make and GNU Autotools.
+Interestingly, 34\% of the projects used unrecognized or no build systems.
+When it comes to CI systems, Travis CI and GitHub Actions were predominant, together accounting for almost half of the repositories analyzed.
+Build success rates varied significantly, with Debian packages achieving a success rate of 82.8\% due to their well-defined build system and curated nature.
+In contrast, only 41.9\% of GitHub repositories using recognized build systems were successfully built, highlighting the challenges posed by less structured environments.
+The analysis also showed that projects using CI systems such as Travis CI, even without additional dependency installations, had higher success rates than those without CI integration.
+The effectiveness of parallelism in builds was also tested, showing that increasing the number of parallel jobs reduced build times, but with diminishing returns at a certain point.
+This was illustrated by build time and speedup graphs for Debian packages, showing that while more parallelism generally leads to faster builds, the benefits plateau after a certain level.
+The paper concludes that extending the FBACode tool - a tool that detects and installs dependencies - with more features, such as support for additional build systems and improved error and dependency detection, can significantly improve the reliability of automated builds.
+The study suggests potential future improvements, including the integration of C/C++ package managers such as Conan or vcpkg, and the implementation of duplicate code detection to refine the accuracy of the statistics.
 
 \section{Summary}
 
@@ -178,14 +214,9 @@ Summarize the key points covered in the related work chapter and reiterate how y
 While the literature offers extensive insights into the merits of containerization, automation in software development, and the advantages of using development containers, a significant research gap remains regarding the effective integration of containers within long-standing or very big legacy software development projects and the ensuing benefits.
 
 
-% The reproducibility challenges, especially in research domains, are addressed by \citet{hungGUIdockUsingDocker2016}, showcasing the potential of containers like Docker in ensuring consistent results.
+% The reproducibility challenges, especially in research domains, are addressed by , showcasing the potential of containers like Docker in ensuring consistent results.
 
 
 
-% The criticality of continuous integration in modern agile setups is brought forth by \citet{agarwalContinuousIntegratedSoftware2018}, who advocates for automated testing and deployment to maintain software quality.
-% Dealing with large-scale C++ projects, \citet{gygiCppBuildLargeScaleAutomatic2021} presents the importance of automation in managing dependencies and ensuring reproducibility.
-% Additionally, \citet{randalIdealRealRevisiting2021} sheds light on the potential role of containers in simplifying software development complexities.
-
-% They discuss the benefits of such integration in providing a consistent development environment and addressing challenges faced by developers.
 % For another hands-on approach, \citet{luDevelopmentDockerContainers2018} offers guidance on C++ development using Docker within Visual Studio Code.
 
