@@ -92,6 +92,45 @@ This suggests that while containers are perceived to offer superior performance,
 The industry needs to explore radical innovations in hardware and software to ensure secure isolation in multi-tenant environments.
 She emphasizes the importance of understanding the historical trade-offs in virtualization and container technologies to avoid past mistakes and build a solid foundation for future developments.
 
+\section{Containerization performance comparison}
+
+\citet{sergeevDockerContainerPerformance2022} evaluate the performance of Docker containers on Windows and Linux platforms using a set of benchmarks.
+The evaluation focuses on three key performance metrics: arithmetic operations, memory usage, and disk I/O operations.
+The test setup involved running Docker containers on the same system, alternating between Windows 10 Pro and Ubuntu 20.04 operating systems.
+The results showed that while Docker's arithmetic and memory performance on Linux was slightly better than on Windows, the most significant performance difference was observed in disk I/O operations.
+Specifically, reading and writing to an NVMe SSD on Windows was significantly slower than on Linux, due to Windows' use of a virtual machine with a simulated SATA bus that does not emulate the faster NVM Express bus used by Linux.
+Despite these differences, the study concludes that Docker on Windows is a viable option for most scenarios, with minimal performance degradation except in high-speed data transfer situations involving NVMe SSDs.
+For example, Linux-based applications can run in Docker containers on Windows with acceptable performance except when high-speed disk I/O is critical.
+The results suggest that Docker retains its functionality across both platforms, making it a flexible tool for containerization regardless of the underlying operating system.
+
+\begin{table}[ht]
+	\centering
+	\resizebox{\columnwidth}{!}{%
+	\begin{tabular}{|l|l|l|l|l|l|}
+	\hline
+	\multirow{3}{*}{\textbf{\begin{tabular}[c]{@{}l@{}}Operating\\ System\end{tabular}}} &
+	  \multicolumn{5}{c|}{\textbf{Test}} \\ \cline{2-6} 
+	 &
+	  \multicolumn{2}{c|}{\textit{\textbf{CPU}}} &
+	  \multicolumn{1}{c|}{\textit{\textbf{Memory}}} &
+	  \multicolumn{2}{c|}{\textit{\textbf{Disk}}} \\ \cline{2-6} 
+	 &
+	  \multicolumn{1}{c|}{\textit{\textbf{GFLOPS}}} &
+	  \multicolumn{1}{c|}{\textit{\textbf{GIOPS}}} &
+	  \multicolumn{1}{c|}{\textit{\textbf{\begin{tabular}[c]{@{}c@{}}Random\\ access (s)\end{tabular}}}} &
+	  \multicolumn{1}{c|}{\textit{\textbf{Write (MB/s)}}} &
+	  \multicolumn{1}{c|}{\textit{\textbf{Read (MB/s)}}} \\ \hline
+	\multirow{2}{*}{Linux}  & 3.16 & 4.05 & 0.96 & 888.55 & 1898.46 \\ \cline{2-6}
+	                        & 3.18 & 4.08 & 0.97 & 917.06 & 1758.19 \\ \hline
+	\multirow{2}{*}{Windows} & 3.01 & 3.58 & 0.96 & 173.62 & 678.74 \\ \cline{2-6}
+	                         & 3.00 & 3.58 & 0.98 & 168.40 & 697.44 \\ \hline
+	\end{tabular}%
+	}
+	\caption{Comparison of the performance of two containers on different operating systems (adapted from \cite{sergeevDockerContainerPerformance2022})}
+	\label{tab:CompareWindowsLinuxContainers}
+	\end{table}
+
+
 \section{Containerization in Development Practices}
 
 In an article on Docker \citet{merkelDockerLightweightLinux2014} focuses on its growing adoption, technical strengths, and practical applications. Although still in its developmental stages at the time of writing, Docker has shown great promise in resolving dependency conflicts, simplifying deployment, and improving resource efficiency.
@@ -120,16 +159,45 @@ The authors highlight Docker's ability to easily version, distribute, and deploy
 However, they also note the lack of standardized workflows for scientific computing with Docker, suggesting that the integration of tools such as IPython could further enhance its usability for researchers with limited computational expertise.
 Overall, integrating Docker into scientific research workflows offers a promising way to achieve reproducible research with minimal overhead and maximum reliability.
 
-In a blog post, \citet{gohringPracticalGuideContainerize2022} provides a detailed evaluation of the process of containerizing a C++ application using Docker.
-The guide focuses on building and deploying a simple HTTP server using Docker.
-The evaluation outlines the effectiveness of using Docker to isolate application processes, contrasting it with virtual machines that isolate hardware.
-It highlights the benefits of using multi-stage builds to create lean, efficient Docker images by separating the build and runtime environments.
-The results of the real-world implementation are promising, demonstrating a streamlined process for building and deploying C++ applications with Docker.
-The author successfully created a Docker image of a simple HTTP server, which was then tested for efficiency and correctness.
-The results showed a significant reduction in image size when using Alpine Linux as the base image compared to Debian, highlighting Docker's ability to create lightweight containers.
-The conclusion of the guide emphasizes the importance of integrating Docker into the software development workflow to improve deployment efficiency and resource management.
-Göhring suggests further improvements such as incorporating Docker into CI/CD pipelines, testing frameworks, and using linting tools for Dockerfile best practices, reinforcing Docker's role in modern software development.
+In his research paper, \citet{boettigerIntroductionDockerReproducible2015} evaluates the impact of Docker on computational reproducibility and highlights several key findings.
+Docker addresses key barriers to reproducible research, such as dependency hell, imprecise documentation, and code rot.
+Docker's use of Linux Container (LXC)-based OS-level virtualization allows researchers to share and archive container images, ensuring consistency across different computing environments.
+Dockerfiles that script the setup of these environments provide a transparent and accurate method for documenting dependencies, significantly reducing the likelihood of errors compared to traditional manual documentation methods.
+The results of using Docker in reproducible research are promising.
+Docker's modular design and lightweight containers allow for efficient use of resources, allowing many containers to run simultaneously on a single machine.
+This makes it easy to break down complex computational workflows into manageable, reusable components.
+Docker's git-like versioning system tracks changes and enables the recreation of specific computing environments, combating code rot and ensuring the longevity and reliability of research results.
+Integration with tools such as RStudio Server further enhances usability by providing a familiar interface for domain scientists, encouraging wider adoption.
+The study's conclusion underscores Docker's potential to significantly improve computational reproducibility in scientific research.
+However, it also acknowledges some limitations, such as its reliance on the Linux kernel, which may pose compatibility issues for non-Linux users, and the need for further evaluation of security concerns.
+Despite these challenges, Docker's ability to streamline the creation, execution, and sharing of reproducible computing environments represents a significant advance over traditional virtual machines and workflow systems.
+This paper advocates best practices for adopting Docker, such as using containers during development, writing Dockerfiles from the start, and sharing Docker images and Docker files through platforms such as Docker Hub.
+These practices not only facilitate reproducibility, but also encourage a cultural shift toward more open and collaborative scientific research.
+Overall, Docker provides a robust solution to many of the technical challenges that have hindered reproducibility in computational research in the past, and its ease of use and integration into existing workflows make it a valuable tool for researchers in a variety of scientific fields.
 
+In their research paper, \citet{valstarUsingDevContainersStandardize2020} evaluate the implementation of DevContainers in an Advanced Data Structures course to mitigate the challenges associated with configuring consistent development environments for students.
+The study included 416 students who were given the option to use either DevContainers or pre-configured Linux servers.
+The evaluation focused on the usability, preferences, and overall impact on both students and instructional staff.
+The results indicated a clear preference for DevContainers, with 71\% of students opting to use them over the Linux servers.
+Students cited the convenience of working on their local machines, the integration with VSCode, and the ability to work offline as significant advantages.
+Conversely, the main reasons some students preferred the Linux servers included familiarity with the system and the Vim editor, as well as issues with setting up DevContainers, such as resource constraints on their laptops and occasional connectivity problems with VSCode.
+The study also examined the impact of DevContainers on different demographic groups and found no significant correlation between gender or race/ethnicity and a preference for either environment.
+This suggests that DevContainers do not introduce additional barriers for underrepresented groups in computing.
+One of the primary benefits noted by instructors was the ease of maintaining and updating the development environment without relying on third-party managed servers.
+This autonomy allows for quicker turnaround times for software updates and course improvements.
+Additionally, the DevContainer setup can be easily integrated into auto-grading systems like Gradescope, reducing "it works on my machine" issues by ensuring consistency between the development and grading environments.
+However, the study also identified several disadvantages.
+The initial setup of Docker and DevContainers was challenging for some students, particularly those unfamiliar with Docker.
+The DevContainer environment also struggled with large files and required significant memory and storage resources, which could be limiting for students with less powerful hardware.
+Despite these issues, the majority of students and instructors recommended continuing the use of DevContainers in future courses due to their overall benefits and positive reception once the initial setup hurdles were overcome.
+In conclusion, while DevContainers present some initial setup challenges, they offer significant advantages in standardizing development environments, enhancing student convenience, and providing greater control and flexibility for instructors.
+The study's findings support the broader adoption of DevContainers in computer science education to streamline the setup process and improve the overall learning experience.
+\begin{figure}[ht]
+	\centering
+	\includegraphics[width=0.65\linewidth]{figures/Valstar et al. - 2020 - Using DevContainers to Standardize Student Develop_01.png}
+	\caption{A large percentage of students was neutral or leaned towards easy when asked about whether the DevContainer was easy to set up \citep{valstarUsingDevContainersStandardize2020}}
+	\label{fig:DevContainerStudentStudy}
+\end{figure}
 
 \section{Specific Applications and Case Studies}
 
@@ -144,21 +212,6 @@ However, no studies were found that discussed containers for plugin-based archit
 The findings highlight the novelty of container technology in research, with most studies covering multiple categories and often starting with an introduction to containers, emphasizing their perceived novelty.
 In addition, the research identifies the need for more focused studies, particularly on container security, legacy applications, and plug-in technologies.
 This comprehensive assessment and mapping provides a clear direction for future research to address the identified gaps and further explore the capabilities and applications of container technology in software development.
-
-In a blog post, \citet{danilovDockerizedBuildEnvironments2021} evaluates Dockerized build environments for C/C++ projects, highlighting several key benefits and challenges.
-The main problem with native builds on a developer's workstation is the lack of a built-in dependency management mechanism in C++, which leads to inconsistencies between development and CI/CD environments due to different methods of adding third-party dependencies.
-Dockerization addresses these issues by providing isolated and reproducible build environments.
-The solution involves creating a Docker image with preinstalled dependencies and tools, ensuring consistency across all environments.
-This approach eliminates the "it works on my machine" problem because the build runs in a container, unaffected by local environment variables and settings.
-In addition, the Dockerized environment is easy to recreate by pulling the right image or rebuilding from the Dockerfile included in the Git repository, making it highly reproducible.
-Danilov's methodology was demonstrated through a sample project using Boost, showing how to set up and use the Docker environment effectively.
-The results were positive, with successful builds both inside the container and on the host machine.
-
-In another blog post, \citet{danilovVSCodeDockerized2022} explored the integration of Dockerized build environments with Visual Studio Code (VS Code).
-The author detailed the setup process, emphasizing the importance of using compiler-based tools like clangd for accurate autocompletion, which integrates well with Docker environments through VS Code's Remote - Containers extension.
-This setup allows developers to leverage the full suite of VS Code features within a Docker container, providing a seamless development experience.
-The configuration includes using a .devcontainer.json file to specify the Docker image and required extensions, ensuring that the development environment inside the container accurately reflects the needs of the project.
-The combination of Docker and VS Code facilitates a robust development workflow and reduces the complexity of managing dependencies and build environments for C/C++ projects.
 
 A study by \citet{hungGUIdockUsingDocker2016} evaluates the utility of Docker containers in ensuring the reproducibility of software environments and workflows that incorporate graphical user interfaces (GUIs).
 This research focuses on overcoming the challenges of replicating complex computing environments across different operating systems, which often differ significantly in their graphical software layers.
@@ -220,3 +273,29 @@ While the literature offers extensive insights into the merits of containerizati
 
 % For another hands-on approach, \citet{luDevelopmentDockerContainers2018} offers guidance on C++ development using Docker within Visual Studio Code.
 
+
+% no blog posts allowed in related work
+% In a blog post, \citet{gohringPracticalGuideContainerize2022} provides a detailed evaluation of the process of containerizing a C++ application using Docker.
+% The guide focuses on building and deploying a simple HTTP server using Docker.
+% The evaluation outlines the effectiveness of using Docker to isolate application processes, contrasting it with virtual machines that isolate hardware.
+% It highlights the benefits of using multi-stage builds to create lean, efficient Docker images by separating the build and runtime environments.
+% The results of the real-world implementation are promising, demonstrating a streamlined process for building and deploying C++ applications with Docker.
+% The author successfully created a Docker image of a simple HTTP server, which was then tested for efficiency and correctness.
+% The results showed a significant reduction in image size when using Alpine Linux as the base image compared to Debian, highlighting Docker's ability to create lightweight containers.
+% The conclusion of the guide emphasizes the importance of integrating Docker into the software development workflow to improve deployment efficiency and resource management.
+% Göhring suggests further improvements such as incorporating Docker into CI/CD pipelines, testing frameworks, and using linting tools for Dockerfile best practices, reinforcing Docker's role in modern software development.
+
+% In a blog post, \citet{danilovDockerizedBuildEnvironments2021} evaluates Dockerized build environments for C/C++ projects, highlighting several key benefits and challenges.
+% The main problem with native builds on a developer's workstation is the lack of a built-in dependency management mechanism in C++, which leads to inconsistencies between development and CI/CD environments due to different methods of adding third-party dependencies.
+% Dockerization addresses these issues by providing isolated and reproducible build environments.
+% The solution involves creating a Docker image with preinstalled dependencies and tools, ensuring consistency across all environments.
+% This approach eliminates the "it works on my machine" problem because the build runs in a container, unaffected by local environment variables and settings.
+% In addition, the Dockerized environment is easy to recreate by pulling the right image or rebuilding from the Dockerfile included in the Git repository, making it highly reproducible.
+% Danilov's methodology was demonstrated through a sample project using Boost, showing how to set up and use the Docker environment effectively.
+% The results were positive, with successful builds both inside the container and on the host machine.
+
+% In another blog post, \citet{danilovVSCodeDockerized2022} explored the integration of Dockerized build environments with Visual Studio Code (VS Code).
+% The author detailed the setup process, emphasizing the importance of using compiler-based tools like clangd for accurate autocompletion, which integrates well with Docker environments through VS Code's Remote - Containers extension.
+% This setup allows developers to leverage the full suite of VS Code features within a Docker container, providing a seamless development experience.
+% The configuration includes using a .devcontainer.json file to specify the Docker image and required extensions, ensuring that the development environment inside the container accurately reflects the needs of the project.
+% The combination of Docker and VS Code facilitates a robust development workflow and reduces the complexity of managing dependencies and build environments for C/C++ projects.
