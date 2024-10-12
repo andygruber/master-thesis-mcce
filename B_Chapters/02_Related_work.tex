@@ -9,14 +9,21 @@
 % docker software development performance
 % docker legacy software
 
-This chapter presents the current literature on the subject.
-Relevant literature was first reviewed and researched, then categorized, and finally summarized.
-The following table illustrates the literature used based on the categories.
-The summarized content of the cited literature can be found later in the chapter.
+As software development continues to evolve, the advent of virtual machines, containers, and an array of tools for automation has become a crucial aspect of the field.
+The incorporation of these technologies into development workflows has become a pivotal objective to enhance efficiency, reproducibility, and scalability.
 
-TODO insert table here
+In new software development projects, virtualization and automation are frequently employed from the beginning and the used technology stack has already a deep integration of containers and automation tools.
+A resulting application is often deployed together with its dependencies in a containerized environment, orchestrated by Kubernetes, and built using CI/CD pipelines.
+Having this kind of environment makes it easier to also develop the application in a containerized environment, as the development environment is also set up similarly.
+Reproducibility should be considered as the minimum standard in scientific research according to \citet{pengReproducibleResearchComputational2011}.
+Also in software development, using the same environment for development and deployment can lead to fewer issues when deploying the application to production, as the environment is already known and tested.
 
-% As software development continues to evolve, it has seen the rise of virtual machines, containers, and various tools for automation.
+However, in legacy software development projects, integrating these technologies can be challenging for several reasons, including compatibility issues, performance overheads, and the necessity to modernize existing workflows or refactor existing code.
+
+This chapter aims to provide a consolidated review of the existing literature on the use of virtualization and containers and their impact on performance.
+It also explores the integration of containers and automation tools in software development practices, specific applications and case studies that highlight the benefits and challenges of containerization in various contexts.
+
+
 % This chapter aims to provide a consolidated review of the existing literature.
 
 % \begin{table}
@@ -216,7 +223,7 @@ This comprehensive assessment and mapping provides a clear direction for future 
 A study by \citet{hungGUIdockUsingDocker2016} evaluates the utility of Docker containers in ensuring the reproducibility of software environments and workflows that incorporate graphical user interfaces (GUIs).
 This research focuses on overcoming the challenges of replicating complex computing environments across different operating systems, which often differ significantly in their graphical software layers.
 GUIdock leverages Docker's ability to encapsulate software dependencies and configurations within a container, ensuring consistency and portability.
-It adds a common X11 graphical user interface layer, allowing GUI-based workflows to be replicated across Linux, Mac OS, and Windows platforms.
+It adds a common X11 graphical user interface layer, allowing GUI-based workflows to be replicated across Linux, macOS, and Windows platforms.
 The researchers tested the GUIdock framework using the CyNetworkBMA application, which integrates R and Java-based tools for data analysis and visualization, and applied it to three datasets.
 The evaluation showed that GUIdock was able to reproduce identical analysis results on all platforms tested, demonstrating its effectiveness in maintaining consistency across software environments.
 This reproducibility is critical in bioinformatics and other fields that rely heavily on computational methods, as it ensures that scientific findings can be reliably replicated and validated by others.
@@ -270,6 +277,10 @@ While the literature offers extensive insights into the merits of containerizati
 % The reproducibility challenges, especially in research domains, are addressed by , showcasing the potential of containers like Docker in ensuring consistent results.
 
 
+% This chapter presents the current literature on the subject.
+% Relevant literature was first reviewed and researched, then categorized, and finally summarized.
+% The following table illustrates the literature used based on the categories.
+% The summarized content of the cited literature can be found later in the chapter.
 
 % For another hands-on approach, \citet{luDevelopmentDockerContainers2018} offers guidance on C++ development using Docker within Visual Studio Code.
 
