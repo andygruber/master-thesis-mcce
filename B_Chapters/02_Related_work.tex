@@ -24,21 +24,6 @@ This chapter aims to provide a consolidated review of the existing literature on
 It also explores the integration of containers and automation tools in software development practices, specific applications and case studies that highlight the benefits and challenges of containerization in various contexts.
 
 
-% This chapter aims to provide a consolidated review of the existing literature.
-
-% \begin{table}
-%     \centering
-%     \caption{Literature categories}
-%     \label{tab:literature_categories}
-%     \begin{tabular}{|l|l|}
-%         \hline
-%         \textbf{Category} & \textbf{Literature} \\ \hline
-%         Containers & \citet{merkelDockerLightweightLinux2014, kolyasnikovExperimentalEvaluationVirtual2019, felterUpdatedPerformanceComparison2015, ionescuAlternativesRunningLinux2019, potdarPerformanceEvaluationDocker2020, hungGUIdockUsingDocker2016, citoUsingDockerContainers2016, chamberlainUsingDockerSupport2014, gohringPracticalGuideContainerize2022, koskinenContainersSoftwareDevelopment2019} \\ \hline
-%         Automation & \citet{agarwalContinuousIntegratedSoftware2018, gygiCppBuildLargeScaleAutomatic2021, randalIdealRealRevisiting2021} \\ \hline
-%         Development containers & \citet{danilovDockerizedBuildEnvironments2021, danilovVSCodeDockerized2022, luDevelopmentDockerContainers2018} \\ \hline
-%     \end{tabular}
-% \end{table}
-
 \section{Comparative Studies on VMs and Containers}
 
 In their study, \citet{felterUpdatedPerformanceComparison2015} presented a thorough evaluation of the performance of virtual machines (VMs) and Linux containers, with a particular focus on Docker.
@@ -76,7 +61,7 @@ The study concluded that a well-optimized virtual development environment can si
 This requirement is relevant in both professional development and educational settings, particularly for engineering and IT students.
 This paper examines various methods for running Linux alongside Windows, evaluating inter-process communication performance and application speed.
 The solutions examined include the use of a virtual machine (VirtualBox), Cygwin for POSIX compatibility, Windows Subsystem for Linux (WSL), and Docker containers using Hyper-V.
-Each method has unique advantages and limitations: VirtualBox provides full Linux functionality but with higher resource consumption; Cygwin allows recompiled Linux applications to run in Windows; WSL translates Linux system calls for Windows compatibility; and Docker containers provide lightweight, isolated environments.
+Each method has unique advantages and limitations: VirtualBox provides full Linux functionality but with higher resource consumption; Cygwin allows recompiled Linux applications to run on Windows; WSL translates Linux system calls for Windows compatibility; and Docker containers provide lightweight, isolated environments.
 The evaluation focuses on the effectiveness of these methods in providing a consistent and efficient cross-platform development platform, which is critical for both the development and testing phases of software development.
 The conclusions drawn highlight the comparative advantages of each approach in different contexts, helping developers and educators choose the most appropriate solution for their specific needs.
 
@@ -231,6 +216,17 @@ The results of the study showed that GUIdock simplifies the deployment and distr
 This approach not only saves time, but also reduces the potential for errors associated with manual installations.
 The researchers concluded that GUIdock represents a significant advancement in the reproducibility of research workflows involving GUIs and suggested further research into extending this framework to cloud-based applications and optimizing performance across different operating systems.
 
+The research by \citet{bentalebContainerizationTechnologiesTaxonomies2022} thoroughly evaluates containerization technologies, focusing on their performance, scalability, and potential applications across various computational domains.
+Containers, particularly Docker and Singularity, were found to deliver near-native performance with reduced overhead compared to traditional virtual machines.
+The results highlight significant improvements in CPU, memory, and I/O performance when using containers, especially in high-performance computing (HPC), cloud environments, and Internet of Things (IoT) ecosystems.
+Network performance evaluations, using benchmarks like Linpack and Netperf, confirmed that containerization is particularly effective for large-scale IoT applications, thanks to its minimal CPU and memory overhead.
+Orchestration platforms such as Kubernetes and Docker Swarm were evaluated, with Kubernetes outperforming Docker Swarm in terms of scalability and orchestration efficiency for complex, distributed applications.
+Possible applications of container technologies include scientific computing, big data processing, edge computing, and high-throughput computing.
+Scientific applications benefit from containers' ability to encapsulate applications and dependencies for parallel processing, while big data processing frameworks like Apache Spark see improvements in scalability and deployment time.
+IoT applications leverage containers for real-time data processing and efficient resource management.
+The paper concludes by advocating for further research into newer technologies like unikernels, which offer enhanced security and resource management compared to current container platforms.
+Despite their advances, containers still face challenges related to resource isolation and orchestration complexity, making this an ongoing area of interest for future technological developments.
+
 \section{Continuous Integration and Deployment}
 
 The study conducted by \citet{agarwalContinuousIntegratedSoftware2018} focuses on the effectiveness and challenges of implementing continuous delivery (CD) and continuous deployment (CD) practices using DevOps methodologies.
@@ -254,24 +250,113 @@ This was illustrated by build time and speedup graphs for Debian packages, showi
 The paper concludes that extending the FBACode tool - a tool that detects and installs dependencies - with more features, such as support for additional build systems and improved error and dependency detection, can significantly improve the reliability of automated builds.
 The study suggests potential future improvements, including the integration of C/C++ package managers such as Conan or vcpkg, and the implementation of duplicate code detection to refine the accuracy of the statistics.
 
+\section{Legacy Applications, Legacy Code}
+
+In his book, \citet{feathersWorkingEffectivelyLegacy2004} offers a profound and practical approach to understanding and dealing with legacy code.
+Legacy code, as Feathers defines it, is not merely old code or code inherited from another team, but rather code without tests.
+The absence of tests makes such code risky and difficult to modify because developers cannot be sure whether their changes will inadvertently introduce bugs.
+This means that even small alterations can lead to significant issues, making legacy code notoriously hard to work with.
+Feathers argues that code without tests, regardless of how clean or well-written it appears, is inherently "bad code" because there is no way to verify its behavior when changes are made.
+The lack of tests forces developers to "edit and pray," hoping that the changes they implement do not break existing functionality, but without any real safety net to catch errors before they proliferate.
+Feathers offers a detailed methodology for dealing with and optimizing legacy code, which begins with writing tests before making any changes.
+This ensures that existing behavior is preserved while new features are added, bugs are fixed, or structural improvements are made.
+His Legacy Code Change Algorithm is a systematic process that involves five crucial steps: identifying the points where changes need to be made, finding appropriate places to insert tests, breaking dependencies that prevent testing, writing the tests, and finally, making the desired changes while refactoring the code.
+One of the key challenges in dealing with legacy code is breaking dependencies - these are often deeply embedded in the code and make it difficult to test isolated units of functionality.
+Feathers emphasizes that only by breaking these dependencies can developers start to make safe, incremental improvements.
+Another important recommendation Feathers makes is to take a conservative approach when working with legacy code.
+He advises against large-scale refactoring without the safety of tests, likening such efforts to performing "aerial gymnastics without a net".
+By ensuring that tests are in place first, developers can refactor with confidence, knowing that they are not introducing new bugs or breaking existing features.
+This incremental approach to optimizing legacy build environments gradually transforms untested, difficult-to-modify code into well-tested, maintainable sections of code, or "islands" as Feathers calls them.
+Over time, these islands of test-covered code grow, making the codebase easier to understand, modify, and extend.
+Feathers' work thus provides a roadmap for developers facing the daunting task of improving legacy systems while ensuring stability and reliability \citep{feathersWorkingEffectivelyLegacy2004}.
+
+Legacy code refers to outdated software systems that continue to be used because they perform essential functions, despite their aging architecture, development tools, or programming languages.
+These systems, often written in languages such as COBOL, FORTRAN, or C, are difficult to maintain due to their complexity, lack of documentation, and the retirement of their original developers.
+Modernizing these systems involves transitioning them to newer technologies, particularly object-oriented platforms.
+However, rewriting the entire system is often infeasible due to the extensive business logic embedded in the code, accumulated over years of enhancements, debugging, and real-world use.
+According to \citet{jhaReusingCodeModernization2005}, the best strategy for handling legacy systems is to reuse existing code where possible, restructuring and refactoring it to fit modern paradigms like object-oriented programming.
+This reuse can be facilitated through architectural design patterns and generic programming, which allow the reorganization of the system into objects and encapsulation of logic, making the system more flexible and easier to maintain.
+Techniques such as wrapping, where legacy code is surrounded by a new interface, can provide short-term solutions, though they may complicate maintenance in the long run.
+For a more sustainable modernization, the authors recommend reverse engineering and refactoring the code to gradually transform it into a modern system while preserving its original functionality.
+Additionally, the use of software tools for reverse engineering and architectural reconstruction can help developers understand and restructure the legacy system's architecture, making it more suitable for future evolution.
+Ultimately, a successful modernization process enhances system maintainability, reduces long-term costs, and facilitates code reuse, all of which are critical for extending the life of legacy systems in a rapidly evolving technological landscape \citep{jhaReusingCodeModernization2005}.
+
+Legacy code, as discussed in \citet{svenssonDefiningIdentifyingLegacy2018} paper, is typically defined as code that is difficult to change or understand, often due to a lack of testing and documentation.
+Legacy code is considered problematic in software development because it becomes rigid and hard to maintain as new features and technologies are added.
+This difficulty arises from the fact that legacy code often includes outdated technologies or designs and is tightly coupled with other parts of the system, making it risky to modify without introducing errors elsewhere.
+Furthermore, legacy code is not limited to old code—poorly written or untested code can quickly become legacy if it is difficult to modify or lacks proper structure and clarity.
+Svensson's research presents several recommendations for identifying legacy code early in the development process.
+One of the key guidelines is to ensure proper documentation and testing.
+Code that lacks tests is prone to becoming legacy, as it is harder to verify changes or extend functionality without introducing bugs.
+Another recommendation is to avoid excessive reliance on external libraries, as these may become outdated or deprecated, introducing risks to the codebase.
+Code that is highly dependent on external modules can create bottlenecks when updates are needed, as the original library may no longer be maintained or compatible with new systems.
+Additionally, the study highlights the importance of clear and consistent coding practices, including naming conventions for variables and methods.
+Poorly named variables make it harder for developers, including the original author, to understand the code in the future, thereby increasing the risk of it becoming legacy.
+Svensson also emphasizes modular design and avoiding antipatterns like hard-coding, as these practices can hinder the flexibility and scalability of the software.
+Overall, by implementing practices such as proper testing, clear documentation, and modular design, developers can mitigate the risks associated with legacy code and ensure that their codebase remains maintainable over time \citep{svenssonDefiningIdentifyingLegacy2018}.
+
 \section{Summary}
 
-\subsection{Challenges and Solutions}
-Discuss the challenges and solutions related to containerizing legacy software:
+The review of the literature on virtualization and containerization in software development underscores the growing importance of these technologies in modern workflows.
+Containers, especially when compared to traditional virtual machines (VMs), offer several key advantages, including improved performance, scalability, and resource efficiency.
+Because containers operate at the operating system level, they can minimize overhead and run at near native speeds, making them highly efficient in terms of CPU, memory and disk I/O usage.
+These benefits make containers an attractive option for cloud computing, distributed systems, and environments that require high concurrency and I/O capabilities.
 
-Compatibility Issues: Differences between Windows and Linux development environments.
-Performance Overheads: Addressing resource utilization and performance overheads.
+Incorporating containers into development practices also brings significant benefits, especially when it comes to ensuring consistency across development, test, and production environments.
+Containers encapsulate an application's dependencies and configurations, reducing the risk of errors due to environmental differences and simplifying the deployment process.
+This capability is particularly valuable for ensuring reproducibility in both software development projects and research environments, as containers provide a reliable and consistent platform for running applications at different stages of development.
 
-\subsection{Gaps in Existing Research}
-Identify the gaps in existing research that your thesis aims to address:
+Integrating containerization into legacy systems, however, presents challenges.
+Older code bases, which often lack adequate documentation and testing, can be difficult to modernize and adapt to the containerized development environment.
+Overcoming these challenges typically requires careful refactoring and modernization efforts, sometimes involving techniques such as wrapping legacy code to make it compatible with newer technologies.
+Despite these difficulties, the potential for improving efficiency and scalability in legacy systems through containerization is significant, offering opportunities to extend the life and functionality of older software systems while benefiting from modern advancements in automation and virtualization.
 
-Integration of Containers in Legacy Systems: Effective strategies for integrating containerized environments into longstanding software development projects.
-Performance and Resource Utilization: Detailed comparison of build times, CPU utilization, and memory consumption in containerized versus native/VM environments.
+Table \ref{tab:CoreStatements} presents an overview of the core statements identified during the review of the scientific and technical literature, along with the sources from which they were derived.
 
-\subsection{Conclusion}
-Summarize the key points covered in the related work chapter and reiterate how your research will build on these foundations to advance the field of software development.
+\begin{table}[htbp]
+	\centering
+	\begin{tabular}{|p{10cm}|p{4cm}|}
+	\hline
+	\textbf{Core Statement} & \textbf{Source} \\ \hline
+	Containers outperform virtual machines in terms of CPU, memory, and disk I/O performance. & \citet{felterUpdatedPerformanceComparison2015}, \citet{potdarPerformanceEvaluationDocker2020} \\ \hline
+	Containers offer near-native execution speeds, minimizing overhead compared to traditional VMs. & \citet{felterUpdatedPerformanceComparison2015}, \citet{sergeevDockerContainerPerformance2022} \\ \hline
+	Using containers improves reproducibility in development and research environments. & \citet{citoUsingDockerContainers2016}, \citet{chamberlainUsingDockerSupport2014} \\ \hline
+	Containerized environments ensure consistent application behavior across development, testing, and production. & \citet{merkelDockerLightweightLinux2014}, \citet{citoUsingDockerContainers2016} \\ \hline
+	Legacy systems are difficult to modernize due to compatibility issues and lack of documentation. & \citet{jhaReusingCodeModernization2005}, \citet{svenssonDefiningIdentifyingLegacy2018} \\ \hline
+	Wrapping legacy code can provide short-term solutions for modernizing without full refactoring. & \citet{jhaReusingCodeModernization2005}, \citet{feathersWorkingEffectivelyLegacy2004} \\ \hline
+	Containers reduce performance overhead, making them suitable for high concurrency and I/O workloads. & \citet{potdarPerformanceEvaluationDocker2020}, \citet{sergeevDockerContainerPerformance2022} \\ \hline
+	DevContainers and similar technologies offer streamlined, reproducible development environments for students and developers. & \citet{valstarUsingDevContainersStandardize2020}, \citet{hungGUIdockUsingDocker2016} \\ \hline
+	Docker's efficiency in handling resource management and scalability is superior in cloud and edge computing environments. & \citet{bentalebContainerizationTechnologiesTaxonomies2022}, \citet{koskinenContainersSoftwareDevelopment2019} \\ \hline
+	Continuous integration (CI) and DevOps pipelines benefit from containerized environments by ensuring consistent deployment setups. & \citet{agarwalContinuousIntegratedSoftware2018}, \citet{gygiCppBuildLargeScaleAutomatic2021} \\ \hline
+	\end{tabular}
+	\caption{Core Statements from Publications and Their Sources}
+	\label{tab:CoreStatements}
+	\end{table}
 
-While the literature offers extensive insights into the merits of containerization, automation in software development, and the advantages of using development containers, a significant research gap remains regarding the effective integration of containers within long-standing or very big legacy software development projects and the ensuing benefits.
+
+In particular, while much of the discussion around modernizing legacy applications focuses on refactoring or rewriting code, this may not be necessary if the resulting product is modern enough from a user perspective.
+In such a case, a less disruptive approach that focuses solely on modernizing the build system may be more appropriate.
+By introducing containerization into the build process and creating reproducible development environments without modifying the core application code, developers can leverage many of the benefits of containers.
+This method involves containerizing the build environment to ensure consistency across different systems, while keeping existing legacy code intact.
+It can improve development and deployment efficiency without requiring extensive code base changes, making it an attractive solution for preserving legacy systems while modernizing workflows.
+
+
+% \subsection{Challenges and Solutions}
+% Discuss the challenges and solutions related to containerizing legacy software:
+
+% Compatibility Issues: Differences between Windows and Linux development environments.
+% Performance Overheads: Addressing resource utilization and performance overheads.
+
+% \subsection{Gaps in Existing Research}
+% Identify the gaps in existing research that your thesis aims to address:
+
+% Integration of Containers in Legacy Systems: Effective strategies for integrating containerized environments into longstanding software development projects.
+% Performance and Resource Utilization: Detailed comparison of build times, CPU utilization, and memory consumption in containerized versus native/VM environments.
+
+% \subsection{Conclusion}
+% Summarize the key points covered in the related work chapter and reiterate how your research will build on these foundations to advance the field of software development.
+
+% While the literature offers extensive insights into the merits of containerization, automation in software development, and the advantages of using development containers, a significant research gap remains regarding the effective integration of containers within long-standing or very big legacy software development projects and the ensuing benefits.
 
 
 % The reproducibility challenges, especially in research domains, are addressed by , showcasing the potential of containers like Docker in ensuring consistent results.
