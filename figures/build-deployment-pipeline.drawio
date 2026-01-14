@@ -1,0 +1,203 @@
+<mxfile host="app.diagrams.net" modified="2026-01-11T12:00:00.000Z" agent="Draw.io" version="28.2.5">
+  <diagram name="Build-Deployment-Pipeline" id="build-deployment-pipeline">
+    <mxGraphModel dx="900" dy="520" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="900" pageHeight="520" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+
+        <!-- Measurement Scope Box -->
+        <mxCell id="scope-box" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#E8E8E8;strokeColor=#000000;strokeWidth=2;dashed=1;dashPattern=8 4;" vertex="1" parent="1">
+          <mxGeometry x="170" y="40" width="710" height="370" as="geometry" />
+        </mxCell>
+        <mxCell id="scope-label" value="Developer Workstation (Measurement Scope)" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=11;fontStyle=3;" vertex="1" parent="1">
+          <mxGeometry x="180" y="45" width="280" height="20" as="geometry" />
+        </mxCell>
+
+        <!-- Path Labels (left side) -->
+        <mxCell id="label-vm" value="VM Path" style="text;html=1;strokeColor=none;fillColor=none;align=right;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=11;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="20" y="85" width="70" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="label-container" value="Container Path" style="text;html=1;strokeColor=none;fillColor=none;align=right;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=11;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="20" y="165" width="70" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="label-native" value="Native Path" style="text;html=1;strokeColor=none;fillColor=none;align=right;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=11;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="20" y="245" width="70" height="20" as="geometry" />
+        </mxCell>
+
+        <!-- Row 1: VM Path -->
+        <mxCell id="vm-source" value="LAN File Server&#xa;(VM Templates)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#C0C0C0;strokeColor=#000000;fontSize=10;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="100" y="70" width="100" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="vm-download" value="Template&#xa;Download" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#000000;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="230" y="70" width="90" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="vm-import" value="VBoxManage&#xa;Import" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#000000;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="350" y="70" width="90" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="vm-boot" value="VM Boot" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#000000;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="470" y="70" width="90" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="vm-ready" value="VS Code&#xa;Ready" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#000000;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="590" y="70" width="90" height="50" as="geometry" />
+        </mxCell>
+
+        <!-- Row 2: Container Path -->
+        <mxCell id="container-source" value="LAN Docker&#xa;Registry" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#C0C0C0;strokeColor=#000000;fontSize=10;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="100" y="150" width="100" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="container-pull" value="Image Pull" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#000000;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="230" y="150" width="90" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="container-start" value="DevContainer&#xa;Start" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#000000;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="350" y="150" width="90" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="container-ready" value="VS Code&#xa;Ready" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#000000;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="590" y="150" width="90" height="50" as="geometry" />
+        </mxCell>
+
+        <!-- Row 3: Native Path -->
+        <mxCell id="native-source" value="LAN Installer&#xa;Storage" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#C0C0C0;strokeColor=#000000;fontSize=10;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="100" y="230" width="100" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="native-download" value="VS Installer&#xa;Download" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#000000;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="230" y="230" width="90" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="native-install" value="VS Installation&#xa;+ Tools" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#000000;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="350" y="230" width="90" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="native-ready" value="VS Code&#xa;Ready" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#000000;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="590" y="230" width="90" height="50" as="geometry" />
+        </mxCell>
+
+        <!-- Developer Access (Convergence Point) -->
+        <mxCell id="dev-access" value="Developer&#xa;Access" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#000000;fontSize=11;fontStyle=1;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="720" y="137" width="90" height="76" as="geometry" />
+        </mxCell>
+
+        <!-- Common Operations Section -->
+        <mxCell id="common-label" value="Common Build/Test/Install Operations" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=11;fontStyle=3;" vertex="1" parent="1">
+          <mxGeometry x="270" y="300" width="250" height="20" as="geometry" />
+        </mxCell>
+
+        <mxCell id="cmake-config" value="CMake&#xa;Configure" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#000000;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="230" y="325" width="90" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="build" value="Build" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#000000;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="350" y="325" width="90" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="test" value="Test" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#000000;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="470" y="325" width="90" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="install" value="Install" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#000000;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="590" y="325" width="90" height="50" as="geometry" />
+        </mxCell>
+
+        <!-- Arrow from Developer Access to Common Operations -->
+        <mxCell id="arrow-to-common" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;strokeColor=#000000;endArrow=block;endFill=1;" edge="1" parent="1" source="dev-access" target="cmake-config">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="765" y="300" />
+              <mxPoint x="275" y="300" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+
+        <!-- VM Path Arrows -->
+        <mxCell id="arrow-vm-src" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;strokeColor=#000000;endArrow=block;endFill=1;" edge="1" parent="1" source="vm-source" target="vm-download">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="arrow-vm-1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;strokeColor=#000000;endArrow=block;endFill=1;" edge="1" parent="1" source="vm-download" target="vm-import">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="arrow-vm-2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;strokeColor=#000000;endArrow=block;endFill=1;" edge="1" parent="1" source="vm-import" target="vm-boot">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="arrow-vm-3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;strokeColor=#000000;endArrow=block;endFill=1;" edge="1" parent="1" source="vm-boot" target="vm-ready">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="arrow-vm-conv" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.25;entryDx=0;entryDy=0;strokeColor=#000000;endArrow=block;endFill=1;" edge="1" parent="1" source="vm-ready" target="dev-access">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- Container Path Arrows -->
+        <mxCell id="arrow-container-src" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;strokeColor=#000000;endArrow=block;endFill=1;" edge="1" parent="1" source="container-source" target="container-pull">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="arrow-container-1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;strokeColor=#000000;endArrow=block;endFill=1;" edge="1" parent="1" source="container-pull" target="container-start">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="arrow-container-2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;strokeColor=#000000;endArrow=block;endFill=1;" edge="1" parent="1" source="container-start" target="container-ready">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="arrow-container-conv" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;strokeColor=#000000;endArrow=block;endFill=1;" edge="1" parent="1" source="container-ready" target="dev-access">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- Native Path Arrows -->
+        <mxCell id="arrow-native-src" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;strokeColor=#000000;endArrow=block;endFill=1;" edge="1" parent="1" source="native-source" target="native-download">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="arrow-native-1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;strokeColor=#000000;endArrow=block;endFill=1;" edge="1" parent="1" source="native-download" target="native-install">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="arrow-native-2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;strokeColor=#000000;endArrow=block;endFill=1;" edge="1" parent="1" source="native-install" target="native-ready">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="arrow-native-conv" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.75;entryDx=0;entryDy=0;strokeColor=#000000;endArrow=block;endFill=1;" edge="1" parent="1" source="native-ready" target="dev-access">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- Common Operations Arrows -->
+        <mxCell id="arrow-common-1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;strokeColor=#000000;endArrow=block;endFill=1;" edge="1" parent="1" source="cmake-config" target="build">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="arrow-common-2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;strokeColor=#000000;endArrow=block;endFill=1;" edge="1" parent="1" source="build" target="test">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="arrow-common-3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;strokeColor=#000000;endArrow=block;endFill=1;" edge="1" parent="1" source="test" target="install">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- Legend -->
+        <mxCell id="legend-box" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=none;strokeColor=#000000;dashed=1;" vertex="1" parent="1">
+          <mxGeometry x="20" y="420" width="860" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="legend-title" value="Legend:" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=11;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="30" y="435" width="50" height="20" as="geometry" />
+        </mxCell>
+
+        <mxCell id="legend-infra" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#C0C0C0;strokeColor=#000000;" vertex="1" parent="1">
+          <mxGeometry x="90" y="437" width="30" height="18" as="geometry" />
+        </mxCell>
+        <mxCell id="legend-infra-text" value="Centralized Infrastructure" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="125" y="435" width="140" height="20" as="geometry" />
+        </mxCell>
+
+        <mxCell id="legend-workstation" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#000000;" vertex="1" parent="1">
+          <mxGeometry x="280" y="437" width="30" height="18" as="geometry" />
+        </mxCell>
+        <mxCell id="legend-workstation-text" value="Workstation Operations" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="315" y="435" width="130" height="20" as="geometry" />
+        </mxCell>
+
+        <mxCell id="legend-scope" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#E8E8E8;strokeColor=#000000;strokeWidth=2;dashed=1;dashPattern=8 4;" vertex="1" parent="1">
+          <mxGeometry x="460" y="437" width="30" height="18" as="geometry" />
+        </mxCell>
+        <mxCell id="legend-scope-text" value="Measurement Scope" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="495" y="435" width="120" height="20" as="geometry" />
+        </mxCell>
+
+        <mxCell id="legend-arrow" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#000000;endArrow=block;endFill=1;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="630" y="446" as="sourcePoint" />
+            <mxPoint x="680" y="446" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="legend-arrow-text" value="Workflow Sequence" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="690" y="435" width="110" height="20" as="geometry" />
+        </mxCell>
+
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

@@ -447,7 +447,7 @@ Compared to deployment containers, which are optimized for production environmen
 \begin{figure}[ht!]
 	\centering
 	\includegraphics[width=0.90\linewidth]{figures/DevelopmentContainers2025-devContainerStages.png}
-	\caption{Developement vs. Deployment Containers \citep{DevelopmentContainers2025}}
+	\caption{Development vs. Deployment Containers \citep{DevelopmentContainers2025}}
 	\label{fig:devContainerStages}
 \end{figure}
 
@@ -704,6 +704,34 @@ Practical implementation of reproducible CMake workflows in containerized enviro
     \item \textbf{Cache Management}: Build artifacts and CMake caches are strategically persisted using container volumes to optimize build performance while maintaining reproducibility.
     \item \textbf{Multi-stage Builds}: Docker multi-stage builds separate build environments from runtime environments, creating lean deployment images while maintaining comprehensive build toolchains for development.
 \end{itemize}
+
+\subsection{Compiler Caches and Build Acceleration}
+\label{subsec:compiler_caches}
+
+Compiler caching represents one of the most effective techniques for accelerating build processes in C++ development environments.
+Compiler caches store the results of previous compilations and reuse them when identical source files are compiled with the same compiler flags, eliminating redundant compilation work \citep{aidassoBuildOptimizationSystematic2025}.
+This technique is particularly valuable for large legacy codebases where full rebuilds can consume substantial time and computational resources.
+
+Tools such as ccache and sccache implement compiler caching by intercepting compiler invocations and computing hash values based on source file contents, compiler flags, and relevant environment variables.
+When a cache hit occurs, the cached object file is returned immediately without invoking the actual compiler, resulting in near-instantaneous compilation for unchanged source files.
+sccache extends this concept by supporting distributed caching across network storage backends, enabling build cache sharing across development teams and continuous integration environments \citep{mozillaSccacheSharedCompilation2025}.
+
+A systematic literature review of build optimization techniques identifies caching as a primary strategy for reducing build times \citep{aidassoBuildOptimizationSystematic2025}.
+The review categorizes caching approaches into several distinct patterns:
+\begin{itemize}
+    \item \textbf{Dependency File Caching}: Lazy loading and caching of build dependencies, with studies reporting up to 93.81\% faster dependency retrieval compared to non-cached approaches.
+    \item \textbf{Distributed Cache Services}: Cloud-based caching systems that share compiled artifacts across build nodes, achieving up to 10x faster build times in large-scale enterprise environments.
+    \item \textbf{Container Environment Caching}: Caching Docker layers and build environments to avoid recreating identical container images, reducing build times by approximately 50\% for 74\% of studied builds.
+    \item \textbf{Incremental Build Optimization}: Combining caching with selective recompilation strategies to minimize unnecessary build work, achieving up to 66\% reduction in build times.
+\end{itemize}
+
+The effectiveness of compiler caching depends on several factors including cache hit rates, source code churn patterns, and the overhead of cache lookup operations.
+Studies indicate that caching provides diminishing returns when used with container technologies that frequently recreate build environments from scratch, as this behaviour invalidates accumulated caches \citep{aidassoBuildOptimizationSystematic2025}.
+This limitation highlights the importance of strategic cache persistence when integrating compiler caches with containerized development workflows.
+
+Integration of compiler caches with CMake-based build systems requires minimal configuration.
+Modern compiler cache implementations support CMake's compiler launcher mechanism, allowing cache tools to intercept compilation commands transparently.
+This integration preserves CMake's build reproducibility guarantees while providing significant build time improvements for iterative development scenarios \citep{swidzinskiModernCMakeEffortlessly2024}.
 
 % 3.5 Developer Workflows and Containerization
 
