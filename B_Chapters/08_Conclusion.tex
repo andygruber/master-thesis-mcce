@@ -1,2 +1,31 @@
 \chapter{Conclusion}
 \label{ch:conclusion}
+
+Legacy software development environments suffer from configuration complexity, inconsistent build outcomes, and substantial onboarding overhead.
+This thesis investigated whether containerization could modernize development workflows for native software projects without fundamental codebase changes.
+Applied to an industrial SCADA system, this work produced empirical evidence that containerized environments substantially improve developer productivity and build performance compared to traditional approaches.
+
+The prototype demonstrated that containers integrate through three principles: automated provisioning using infrastructure-as-code, seamless IDE integration via DevContainers, and standardized cross-platform build configurations.
+Toolchain switching time reduced by 95\%---from 12.9 minutes to 37.5 seconds---validating direct productivity improvements for developer onboarding and multi-version development.
+
+Performance evaluation across six environments revealed nuanced characteristics.
+Linux-based containers outperformed Windows-native approaches by 35--72\% for filesystem-intensive operations, regardless of native or WSL2 execution.
+For CPU-bound compilation, all configurations performed within 15\% of each other, with native Linux containers imposing negligible overhead.
+Compiler caching amplified differences: Linux containers achieved 24--28$\times$ speedup versus 4--5$\times$ on Windows.
+Combined optimization techniques (caching and parallel testing) reduced total workflow time by up to 89\% compared to unoptimized Windows workflows.
+
+Resource utilization distinguished virtualization from containerization overhead.
+CPU utilization reflected operation types---compilation saturated cores regardless of environment.
+Hypervisor-based solutions require 5--10 GB additional host memory, making native containerization advantageous for constrained systems.
+
+\begin{sloppypar}
+This work provides quantitative benchmarks, architectural patterns, and implementation guidance for modernizing development infrastructure.
+The infrastructure-as-code approach addresses the ``works on my machine'' problem while maintaining compatibility with existing systems.
+It demonstrates that containerization principles from microservice deployment transfer effectively to monolithic legacy systems.
+\end{sloppypar}
+
+Future research should extend validation across diverse codebases and programming languages, complemented by qualitative studies of developer experience.
+The low overhead of native containers suggests opportunities for investigating remote development infrastructure.
+
+Containerization represents not merely a deployment technology but a fundamental improvement to legacy software development workflows.
+It delivers reproducibility, productivity, and performance benefits that make it a viable modernization strategy for organizations preserving established software investments while maintaining competitiveness.

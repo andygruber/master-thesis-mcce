@@ -1,0 +1,63 @@
+% Auto-generated master file for t-test tables
+% This file includes all benchmark t-test tables with configurable captions
+%
+% Usage: Include this file in your LaTeX document
+% To customize captions, redefine the caption commands before including:
+%   \renewcommand{\ttestCaptionBenchmarkName}{Your Custom Caption}
+% To set the path to the table files (if not in same directory):
+%   \renewcommand{\ttestBasePath}{path/to/tables/}
+%
+% Requires: booktabs, float, graphicx, currfile packages
+%   \usepackage{booktabs}
+%   \usepackage{float}
+%   \usepackage{graphicx}
+%   \usepackage{currfile}
+
+% Base path for table files (empty = same directory)
+\providecommand{\ttestBasePath}{\currfiledir}
+
+\subsection{T-test Results for scenario 2: Optimized workflow with compiler caching}
+
+% Legend explaining column abbreviations and environment names
+{\footnotesize
+\noindent\textbf{Metrics:} w = wall\_time\_seconds, c = system\_cpu\_delta\_from\_baseline, m = system\_memory\_delta\_mb\_max, hm = host\_peak\_vm\_memory\_mb.
+Bold values indicate statistical significance (p < 0.05).
+
+\noindent\textbf{Environments:} Hyper-V
+Windows 11 ... = Hyper-V
+Windows 11 Guest; Hyper-V
+Debian 12 G... = Hyper-V
+Debian 12 Guest; Docker Desktop Win1... = Docker Desktop Win11
+Debian 12 container
+volume-mounted; Docker Linux
+Debian... = Docker Linux
+Debian 12 (both).
+}
+
+% Default caption definitions
+\providecommand{\ttestCaptionScenarioCachedCmakeBuildFull}{T-test p-values for cmake\_build\_full}
+\providecommand{\ttestCaptionScenarioCachedCmakeBuildInstall}{T-test p-values for cmake\_build\_install}
+\providecommand{\ttestCaptionScenarioCachedCmakeConfigure}{T-test p-values for cmake\_configure}
+
+% Tables
+
+\begin{table}[H]
+\centering
+\resizebox{0.85\linewidth}{!}{\input{\ttestBasePath scenario_2_cached_ttest_cmake_build_full.tex}}
+\caption{\ttestCaptionScenarioCachedCmakeBuildFull}
+\label{tab:ttest_scenario_2_cached_cmake_build_full}
+\end{table}
+
+\begin{table}[H]
+\centering
+\resizebox{0.85\linewidth}{!}{\input{\ttestBasePath scenario_2_cached_ttest_cmake_build_install.tex}}
+\caption{\ttestCaptionScenarioCachedCmakeBuildInstall}
+\label{tab:ttest_scenario_2_cached_cmake_build_install}
+\end{table}
+
+\begin{table}[H]
+\centering
+\resizebox{0.85\linewidth}{!}{\input{\ttestBasePath scenario_2_cached_ttest_cmake_configure.tex}}
+\caption{\ttestCaptionScenarioCachedCmakeConfigure}
+\label{tab:ttest_scenario_2_cached_cmake_configure}
+\end{table}

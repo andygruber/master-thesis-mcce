@@ -1,4 +1,110 @@
-\chapter{Discussion of results and conclusions}
+\chapter{Discussion and implications}
 \label{ch:discussion}
 
-\section{Summary}
+This chapter interprets the empirical findings from the evaluation in light of the architectural insights from the prototype implementation.
+It revisits each research question, examines practical implications for organizations, and discusses the limitations of this study alongside directions for future work.
+
+\section{Research Questions revisited}
+
+This section answers each research question based on the evidence presented in preceding chapters.
+
+\subsection{RQ1: Container integration in legacy software development}
+
+RQ1 deals with the qualitative aspects of integrating containerization into established legacy software development workflows.
+The developed prototype demonstrates integration through several architectural components and separates concerns into distinct layers.
+This layered organization enables independent development and maintenance of different system aspects while ensuring clear dependency relationships.
+
+The prototype implements automated environment provisioning using Docker containers, enabling version-controlled and reproducible development environments that eliminate manual configuration steps prone to human error and configuration drift.
+Cross-platform build system standardization is achieved through CMake preset configurations that abstract platform-specific details while maintaining consistent build outputs regardless of underlying host operating system.
+
+Developer experience optimization occurs through seamless IDE integration via VS Code's DevContainer extension, which abstracts complex containerization workflows into simple operations accessible through familiar IDE interactions.
+The interface completely abstracts the environment type, ensuring uniform workflows whether compilation occurs directly on the host machine, within a virtual machine, or inside a container.
+
+Empirical evaluation of toolchain switching times validates these architectural benefits also quantitatively: containerized environments reduced environment switching from 12.9 minutes on Windows native to 37.5 seconds on native Linux containers, demonstrating that infrastructure-as-code principles translate directly into measurable productivity improvements.
+
+Containers can be integrated into legacy software development workflows through automated environment provisioning with infrastructure-as-code principles, seamless IDE integration that abstracts containerization complexity, and standardized build system configurations that ensure consistent outputs across platforms.
+
+\newpage
+\subsection{RQ1.1: Development workflow performance comparison}
+
+RQ1.1 addresses performance across the complete development workflow, including build system configuration, compilation, installation, and test execution.
+The empirical evaluation measured these operations across six environments using a legacy SCADA codebase.
+
+For filesystem-intensive operations, containerized Linux environments substantially outperformed Windows-based approaches.
+CMake configuration, incremental builds, and installation workflows completed 35--72\% faster on Linux containers compared to Windows native baseline.
+
+For CPU-intensive compilation workloads, performance differences remained modest across all environments.
+Native Linux containers completed clean builds 7.2--7.3\% faster than Windows native, while Docker Desktop on Windows showed 14.6\% overhead due to WSL2 virtualization.
+Hyper-V Linux Guest performance essentially matched Windows native, demonstrating that virtualization overhead minimally impacts CPU-bound operations.
+
+Compiler caching amplified performance differences substantially.
+Cache-warm builds on Linux containers achieved 24--28$\times$ speedup factors compared to 4--5$\times$ improvements on Windows, with Linux containers reaching approximately 96\% reduction compared to uncached Windows native builds.
+
+The cumulative impact of optimization techniques (compiler caching and parallel test execution) demonstrated the full potential of containerized workflows.
+Optimized workflows combining cache-warm builds and parallel tests reduced total runtime from 24.6 minutes (unoptimized Windows native baseline) to 7.6 minutes on optimized Windows native (69.1\% reduction), 5.6 minutes on Docker Desktop (77.3\% reduction), and 2.7 minutes on Docker Linux (88.9\% reduction).
+This indicates that containerized Linux environments achieve nearly 90\% time savings compared to traditional unoptimized Windows workflows when leveraging modern development practices.
+
+Total unoptimized workflow runtime (configuration, clean build, incremental builds, installation) showed native Linux containers 10.7\% faster than Windows native, demonstrating negligible containerization overhead when host and container share the same kernel.
+Docker Desktop on Windows exhibited 10.8\% slower total workflow time, though individual filesystem-intensive operations completed substantially faster.
+
+Containerized Linux environments consistently outperform Windows-based approaches for filesystem-intensive operations by 35--72\%, while CPU-bound compilation shows modest differences within 15\%.
+Native Linux containers impose negligible overhead compared to bare-metal execution, whereas Docker Desktop on Windows introduces moderate overhead for CPU-intensive workloads but substantially accelerates filesystem-intensive incremental development cycles.
+When optimization techniques are applied, containerized Linux environments deliver 77--89\% total workflow time reductions compared to unoptimized Windows native workflows.
+
+\subsection{RQ1.2: Resource utilization comparison}
+
+RQ1.2 explores resource utilization across different development tasks and environment types.
+
+CPU utilization patterns distinguished operation types rather than environment types.
+CPU-bound compilation workloads saturated available CPU cores regardless of environment type, with all environments achieving 99\%+ utilization during clean builds.
+This uniformly high utilization confirms that virtualization and containerization layers impose minimal CPU scheduling overhead when sufficient cores are allocated.
+I/O-bound operations (configuration, incremental builds, installation) showed low CPU utilization (3--16\%) across all environments, indicating that filesystem implementation drives performance differences rather than CPU availability.
+
+Memory consumption revealed critical distinctions between virtualization approaches rather than containerization overhead.
+Clean builds required 8--10 GB across all environments, with minor differences reflecting toolchain variations (GCC vs MSVC) rather than environment type.
+The key differentiation emerged in host-level memory footprints: hypervisor-based environments (Hyper-V guests, Docker Desktop) required 13--20 GB total host memory allocation, 5--10 GB more than native solutions.
+This distinction makes native environments or native containerization particularly advantageous for memory-constrained systems.
+
+\section{Real-world implications}
+
+The empirical findings of this thesis carry substantial implications for organizations maintaining and developing legacy software systems.
+The most immediate practical benefit concerns developer onboarding and productivity: the 95\% reduction in toolchain switching time---from 12.9 minutes for native Windows Visual Studio reinstallation to 37.5 seconds for container image switching---translates directly into accelerated time-to-first-commit for new team members.
+
+For teams targeting multiple platforms, the results demonstrate that containerized Linux environments on Windows hosts can deliver substantial performance improvements without requiring infrastructure changes.
+Docker Desktop on Windows, despite WSL2 virtualization overhead, outperforms native Windows for filesystem-intensive operations by 35--66\%, making it a viable intermediate solution for organizations not ready to transition fully to Linux-based development.
+The infrastructure-as-code approach enabled by container definitions addresses the persistent ``works on my machine'' problem by ensuring that environment specifications are version-controlled, reproducible, and shareable across development teams.
+This capability proves particularly valuable for legacy software maintenance, where specific toolchain versions must be preserved indefinitely and multiple compiler versions may need to coexist---a scenario that containers and virtual machines handle gracefully through parallel availability, unlike native installations that require complete reinstallation when switching.
+VS Code's DevContainer integration further minimizes the learning curve by abstracting container complexity behind familiar IDE interactions, enabling incremental migration without requiring developers to master container technologies directly.
+
+The performance characteristics observed across operation types inform infrastructure investment decisions.
+For I/O-bound operations such as incremental builds and installation workflows, Linux-based environments provide consistent 35--72\% improvements regardless of whether they run natively, virtualized, or containerized.
+For CPU-bound operations like clean builds, environment choice matters less, with all configurations performing within 15\% of each other.
+However, compiler caching amplifies these differences dramatically: Linux environments achieve 24--28$\times$ speedup factors compared to 4--5$\times$ on Windows, making caching infrastructure a high-return investment particularly for Linux-based workflows.
+Organizations should also consider memory requirements when planning workstation configurations, as hypervisor-based solutions (Docker Desktop with WSL2, Hyper-V virtual machines) require 13--20 GB host memory allocation, 5--10 GB more than when using native solutions.
+
+The findings extend naturally to continuous integration and deployment pipelines.
+Build servers running Linux containers with compiler caching can achieve up to 96\% reduction in build time compared to uncached Windows builds, substantially reducing feedback loop duration and infrastructure costs.
+
+\section{Limitations and future work}
+
+Several limitations constrain the generalizability of this study's findings.
+The evaluation was conducted using a single legacy codebase---the WinCC Open Architecture SCADA system---which, while representative of long-lived industrial software with decades of accumulated complexity, may not reflect the characteristics of legacy systems in other domains such as embedded systems, web applications, or software written in languages other than C++.
+Codebase-specific factors including size, dependency structure, and build system configuration likely influence the observed performance patterns, and different legacy systems may exhibit different relative performance across environment types.
+
+The hardware configuration represents another constraint on generalizability.
+All measurements were conducted on identical hardware.
+Performance ratios between environments may differ on systems with other hardware, and the evaluation did not include developer laptops, which often have more constrained thermal and power characteristics, or cloud-based development environments that introduce network latency considerations.
+Additionally, network-dependent measurements such as container image pulls and VM template downloads were conducted over 1 GbE LAN infrastructure; organizations relying on internet-based registries or slower network connections may experience different toolchain switching characteristics.
+
+The test suite reliability issues observed during evaluation highlight a common challenge in legacy software modernization.
+Unit test execution on Linux-based environments showed approximately twice the execution time compared to Windows, with Docker Desktop failing to complete tests within the configured timeout.
+The root cause of this cross-platform performance disparity was not investigated within the scope of this evaluation, as it likely stems from test suite implementation details rather than fundamental environment characteristics.
+This limitation prevented comprehensive cross-platform test performance comparison and underscores the importance of platform-agnostic test design when adopting containerized development workflows.
+
+Several technology choices were fixed for this evaluation that may affect result applicability.
+The study used specific compiler versions (MSVC 2022 on Windows, GCC on Debian 12), Docker Desktop with the WSL2 backend, and Hyper-V as the sole virtualization platform.
+Performance characteristics may differ with alternative hypervisors (VMware, KVM), future Docker Desktop updates, or different compiler toolchains.
+
+Future research could address these limitations through extended validation across diverse legacy codebases spanning multiple industries and programming languages.
+Qualitative studies examining developer experience, adoption barriers, and long-term maintenance overhead would complement the quantitative performance measurements presented here.
+Given the low overhead of native containers, remote development on on-premise or cloud infrastructure could be evaluated and compared to local development.

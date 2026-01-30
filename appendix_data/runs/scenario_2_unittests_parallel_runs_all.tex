@@ -1,0 +1,56 @@
+% Auto-generated master file for run data tables
+% This file includes all benchmark run tables with configurable captions
+%
+% Usage: Include this file in your LaTeX document
+% To customize captions, redefine the caption commands before including:
+%   \renewcommand{\runsCaptionEnvBenchmark}{Your Custom Caption}
+% To set the path to the table files (if not in same directory):
+%   \renewcommand{\runsBasePath}{path/to/tables/}
+%
+% Requires: booktabs, float, graphicx, currfile, adjustbox packages
+%   \usepackage{booktabs}
+%   \usepackage{float}
+%   \usepackage{graphicx}
+%   \usepackage{currfile}
+%   \usepackage{adjustbox}
+
+% Base path for table files (empty = same directory)
+\providecommand{\runsBasePath}{\currfiledir}
+
+\subsection{Run Data for scenario 2: Parallel test execution performance}
+
+% Legend explaining metrics
+{\footnotesize
+\noindent\textbf{Metrics:} 
+Process = benchmark process metrics (time in seconds, memory in MB, CPU in \%); 
+System CPU/Memory = system-wide resource usage during benchmark; 
+Baseline = idle system state before benchmark; 
+Delta = difference between during and baseline; 
+Host = hypervisor process metrics (for VM environments only).
+}
+
+% Default caption definitions
+\providecommand{\runsCaptionScenarioUnittestsParallelWindowsNativeDefaultUnitTests}{Run data for unit\_tests in Windows 11 native
+default}
+\providecommand{\runsCaptionScenarioUnittestsParallelWindowsNativeParallelUnittestsUnitTests}{Run data for unit\_tests in Windows 11 native
+parallel (20) unittests}
+\providecommand{\runsCaptionScenarioUnittestsParallelDebianNativeDefaultUnitTests}{Run data for unit\_tests in Debian 12 native
+default}
+\providecommand{\runsCaptionScenarioUnittestsParallelDebianNativeParallelUnittestsUnitTests}{Run data for unit\_tests in Debian 12 native
+parallel (20) unittests}
+
+% Tables
+
+\begin{table}[H]
+\centering
+\adjustbox{max height=0.29\textheight, max width=\linewidth}{\input{\runsBasePath scenario_2_unittests_parallel_runs_Debian_12_native_parallel_(20)_unittests_unit_tests.tex}}
+\caption{\runsCaptionScenarioUnittestsParallelDebianNativeParallelUnittestsUnitTests}
+\label{tab:runs_scenario_2_unittests_parallel_debian_12_native_parallel_20_unittests_unit_tests}
+\end{table}
+
+\begin{table}[H]
+\centering
+\adjustbox{max height=0.29\textheight, max width=\linewidth}{\input{\runsBasePath scenario_2_unittests_parallel_runs_Windows_11_native_parallel_(20)_unittests_unit_tests.tex}}
+\caption{\runsCaptionScenarioUnittestsParallelWindowsNativeParallelUnittestsUnitTests}
+\label{tab:runs_scenario_2_unittests_parallel_windows_11_native_parallel_20_unittests_unit_tests}
+\end{table}

@@ -30,6 +30,8 @@
 %\setcounter{tocdepth}{3} % FHBgld TOC depth
 \usepackage{csquotes} % Context sensitive quotation facilities, needed for babel and Biblatex-APA to work
 \usepackage{booktabs} % Publication quality tables in LaTeX
+\usepackage{pdflscape} % Landscape pages with rotated PDF view
+\usepackage{float} % For [H] placement specifier
 \usepackage{tabularx} % Tabulars with adjustable-width columns.
 \usepackage{multirow} % Create tabular cells spanning multiple rows
 \usepackage{algorithm2e} % Package to show algorithms
@@ -39,6 +41,8 @@
 \usepackage{fmtcount} % another superscript ;-)
 \usepackage{verbatim} % provides \begin{verbatim} formatting
 \usepackage{array} % additional functionality for the tabular environment
+\usepackage{currfile} % provides \currfiledir for automatic path detection
+\usepackage{adjustbox}
 
 \usepackage[printonlyused, nohyperlinks]{acronym}
 \usepackage[record=only,acronym,nonumberlist,nopostdot=false,toc=true,style=super]{glossaries-extra} % provides extra glossaries features plus bib2gls, use convertgls2bib  defns.tex defns.bib to convert

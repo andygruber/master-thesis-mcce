@@ -1,0 +1,87 @@
+% Auto-generated master file for t-test tables
+% This file includes all benchmark t-test tables with configurable captions
+%
+% Usage: Include this file in your LaTeX document
+% To customize captions, redefine the caption commands before including:
+%   \renewcommand{\ttestCaptionBenchmarkName}{Your Custom Caption}
+% To set the path to the table files (if not in same directory):
+%   \renewcommand{\ttestBasePath}{path/to/tables/}
+%
+% Requires: booktabs, float, graphicx, currfile packages
+%   \usepackage{booktabs}
+%   \usepackage{float}
+%   \usepackage{graphicx}
+%   \usepackage{currfile}
+
+% Base path for table files (empty = same directory)
+\providecommand{\ttestBasePath}{\currfiledir}
+
+\subsection{T-test results for scenario 2: Standard build workflow benchmarks}
+
+% Legend explaining column abbreviations and environment names
+{\footnotesize
+\noindent\textbf{Metrics:} w = wall\_time\_seconds, c = system\_cpu\_delta\_from\_baseline, m = system\_memory\_delta\_mb\_max, hm = host\_peak\_vm\_memory\_mb.
+Bold values indicate statistical significance (p < 0.05).
+
+\noindent\textbf{Environments:} Hyper-V
+Windows 11 ... = Hyper-V
+Windows 11 Guest; Hyper-V
+Debian 12 G... = Hyper-V
+Debian 12 Guest; Docker Desktop Win1... = Docker Desktop Win11
+Debian 12 container
+volume-mounted; Docker Linux
+Debian... = Docker Linux
+Debian 12 (both).
+}
+
+% Default caption definitions
+\providecommand{\ttestCaptionScenarioCmakeBuildFull}{T-test p-values for cmake\_build\_full}
+\providecommand{\ttestCaptionScenarioCmakeBuildIncrementalFeature}{T-test p-values for cmake\_build\_incremental\_feature}
+\providecommand{\ttestCaptionScenarioCmakeBuildIncrementalSinglefile}{T-test p-values for cmake\_build\_incremental\_singlefile}
+\providecommand{\ttestCaptionScenarioCmakeBuildInstall}{T-test p-values for cmake\_build\_install}
+\providecommand{\ttestCaptionScenarioCmakeConfigure}{T-test p-values for cmake\_configure}
+\providecommand{\ttestCaptionScenarioUnittestsUnitTests}{T-test p-values for unit\_tests}
+
+% Tables
+
+\begin{table}[H]
+\centering
+\resizebox{0.85\linewidth}{!}{\input{\ttestBasePath scenario_2_ttest_cmake_build_full.tex}}
+\caption{\ttestCaptionScenarioCmakeBuildFull}
+\label{tab:ttest_scenario_2_cmake_build_full}
+\end{table}
+
+\begin{table}[H]
+\centering
+\resizebox{0.85\linewidth}{!}{\input{\ttestBasePath scenario_2_ttest_cmake_build_incremental_feature.tex}}
+\caption{\ttestCaptionScenarioCmakeBuildIncrementalFeature}
+\label{tab:ttest_scenario_2_cmake_build_incremental_feature}
+\end{table}
+
+\begin{table}[H]
+\centering
+\resizebox{0.85\linewidth}{!}{\input{\ttestBasePath scenario_2_ttest_cmake_build_incremental_singlefile.tex}}
+\caption{\ttestCaptionScenarioCmakeBuildIncrementalSinglefile}
+\label{tab:ttest_scenario_2_cmake_build_incremental_singlefile}
+\end{table}
+
+\begin{table}[H]
+\centering
+\resizebox{0.85\linewidth}{!}{\input{\ttestBasePath scenario_2_ttest_cmake_build_install.tex}}
+\caption{\ttestCaptionScenarioCmakeBuildInstall}
+\label{tab:ttest_scenario_2_cmake_build_install}
+\end{table}
+
+\begin{table}[H]
+\centering
+\resizebox{0.85\linewidth}{!}{\input{\ttestBasePath scenario_2_ttest_cmake_configure.tex}}
+\caption{\ttestCaptionScenarioCmakeConfigure}
+\label{tab:ttest_scenario_2_cmake_configure}
+\end{table}
+
+\begin{table}[H]
+\centering
+\resizebox{0.85\linewidth}{!}{\input{\ttestBasePath scenario_2_unittests_ttest_unit_tests.tex}}
+\caption{\ttestCaptionScenarioUnittestsUnitTests}
+\label{tab:ttest_scenario_2_unittests_unit_tests}
+\end{table}

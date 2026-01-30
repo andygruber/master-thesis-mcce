@@ -1,0 +1,53 @@
+% Auto-generated master file for t-test tables
+% This file includes all benchmark t-test tables with configurable captions
+%
+% Usage: Include this file in your LaTeX document
+% To customize captions, redefine the caption commands before including:
+%   \renewcommand{\ttestCaptionBenchmarkName}{Your Custom Caption}
+% To set the path to the table files (if not in same directory):
+%   \renewcommand{\ttestBasePath}{path/to/tables/}
+%
+% Requires: booktabs, float, graphicx, currfile packages
+%   \usepackage{booktabs}
+%   \usepackage{float}
+%   \usepackage{graphicx}
+%   \usepackage{currfile}
+
+% Base path for table files (empty = same directory)
+\providecommand{\ttestBasePath}{\currfiledir}
+
+\subsection{T-test results for scenario 1: Toolchain switching performance}
+
+Direct statistical comparisons were only performed between the two containerized approaches (Docker Desktop on Windows vs native Docker on Linux), as the other approaches represent fundamentally different workflows.
+
+% Legend explaining column abbreviations and environment names
+{\footnotesize
+\noindent\textbf{Metrics:} w = wall\_time\_seconds, c = system\_cpu\_delta\_from\_baseline, m = system\_memory\_delta\_mb\_max, hm = host\_peak\_vm\_memory\_mb.
+Bold values indicate statistical significance (p < 0.05).
+
+\noindent\textbf{Environments:} Docker Desktop
+pull... = Docker Desktop
+pull without cache; Native Container
+pu... = Native Container
+pull without cache.
+}
+
+% Default caption definitions
+\providecommand{\ttestCaptionScenarioDockerPullDebian}{T-test p-values for docker\_pull\_debian}
+\providecommand{\ttestCaptionScenarioDockerRunDebian}{T-test p-values for docker\_run\_debian}
+
+% Tables
+
+\begin{table}[H]
+\centering
+\input{\ttestBasePath scenario_1_ttest_docker_pull_debian.tex}
+\caption{\ttestCaptionScenarioDockerPullDebian}
+\label{tab:ttest_scenario_1_docker_pull_debian}
+\end{table}
+
+\begin{table}[H]
+\centering
+\input{\ttestBasePath scenario_1_ttest_docker_run_debian.tex}
+\caption{\ttestCaptionScenarioDockerRunDebian}
+\label{tab:ttest_scenario_1_docker_run_debian}
+\end{table}

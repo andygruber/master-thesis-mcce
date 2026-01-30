@@ -1,0 +1,299 @@
+% Auto-generated master file for run data tables
+% This file includes all benchmark run tables with configurable captions
+%
+% Usage: Include this file in your LaTeX document
+% To customize captions, redefine the caption commands before including:
+%   \renewcommand{\runsCaptionEnvBenchmark}{Your Custom Caption}
+% To set the path to the table files (if not in same directory):
+%   \renewcommand{\runsBasePath}{path/to/tables/}
+%
+% Requires: booktabs, float, graphicx, currfile, adjustbox packages
+%   \usepackage{booktabs}
+%   \usepackage{float}
+%   \usepackage{graphicx}
+%   \usepackage{currfile}
+%   \usepackage{adjustbox}
+
+% Base path for table files (empty = same directory)
+\providecommand{\runsBasePath}{\currfiledir}
+
+\subsection{Run Data for scenario 2: Standard build workflow benchmarks}
+
+% Legend explaining metrics
+{\footnotesize
+\noindent\textbf{Metrics:} 
+Process = benchmark process metrics (time in seconds, memory in MB, CPU in \%); 
+System CPU/Memory = system-wide resource usage during benchmark; 
+Baseline = idle system state before benchmark; 
+Delta = difference between during and baseline; 
+Host = hypervisor process metrics (for VM environments only).
+}
+
+% Default caption definitions
+\providecommand{\runsCaptionScenarioWindowsNativeCmakeBuildFull}{Run data for cmake\_build\_full in Windows 11 native}
+\providecommand{\runsCaptionScenarioWindowsNativeCmakeBuildIncrementalFeature}{Run data for cmake\_build\_incremental\_feature in Windows 11 native}
+\providecommand{\runsCaptionScenarioWindowsNativeCmakeBuildIncrementalSinglefile}{Run data for cmake\_build\_incremental\_singlefile in Windows 11 native}
+\providecommand{\runsCaptionScenarioWindowsNativeCmakeBuildInstall}{Run data for cmake\_build\_install in Windows 11 native}
+\providecommand{\runsCaptionScenarioWindowsNativeCmakeConfigure}{Run data for cmake\_configure in Windows 11 native}
+\providecommand{\runsCaptionScenarioHyperVWindowsGuestCmakeConfigure}{Run data for cmake\_configure in Hyper-V
+Windows 11 Guest}
+\providecommand{\runsCaptionScenarioHyperVWindowsGuestCmakeBuildFull}{Run data for cmake\_build\_full in Hyper-V
+Windows 11 Guest}
+\providecommand{\runsCaptionScenarioHyperVWindowsGuestCmakeBuildInstall}{Run data for cmake\_build\_install in Hyper-V
+Windows 11 Guest}
+\providecommand{\runsCaptionScenarioHyperVWindowsGuestCmakeBuildIncrementalFeature}{Run data for cmake\_build\_incremental\_feature in Hyper-V
+Windows 11 Guest}
+\providecommand{\runsCaptionScenarioHyperVWindowsGuestCmakeBuildIncrementalSinglefile}{Run data for cmake\_build\_incremental\_singlefile in Hyper-V
+Windows 11 Guest}
+\providecommand{\runsCaptionScenarioDebianNativeCmakeBuildFull}{Run data for cmake\_build\_full in Debian 12 native}
+\providecommand{\runsCaptionScenarioDebianNativeCmakeBuildIncrementalFeature}{Run data for cmake\_build\_incremental\_feature in Debian 12 native}
+\providecommand{\runsCaptionScenarioDebianNativeCmakeBuildIncrementalSinglefile}{Run data for cmake\_build\_incremental\_singlefile in Debian 12 native}
+\providecommand{\runsCaptionScenarioDebianNativeCmakeBuildInstall}{Run data for cmake\_build\_install in Debian 12 native}
+\providecommand{\runsCaptionScenarioDebianNativeCmakeConfigure}{Run data for cmake\_configure in Debian 12 native}
+\providecommand{\runsCaptionScenarioHyperVDebianGuestCmakeBuildFull}{Run data for cmake\_build\_full in Hyper-V
+Debian 12 Guest}
+\providecommand{\runsCaptionScenarioHyperVDebianGuestCmakeBuildIncrementalFeature}{Run data for cmake\_build\_incremental\_feature in Hyper-V
+Debian 12 Guest}
+\providecommand{\runsCaptionScenarioHyperVDebianGuestCmakeBuildIncrementalSinglefile}{Run data for cmake\_build\_incremental\_singlefile in Hyper-V
+Debian 12 Guest}
+\providecommand{\runsCaptionScenarioHyperVDebianGuestCmakeBuildInstall}{Run data for cmake\_build\_install in Hyper-V
+Debian 12 Guest}
+\providecommand{\runsCaptionScenarioHyperVDebianGuestCmakeConfigure}{Run data for cmake\_configure in Hyper-V
+Debian 12 Guest}
+\providecommand{\runsCaptionScenarioDockerDesktopWinDebianContainerVolumeMountedCmakeBuildFull}{Run data for cmake\_build\_full in Docker Desktop Win11
+Debian 12 container
+volume-mounted}
+\providecommand{\runsCaptionScenarioDockerDesktopWinDebianContainerVolumeMountedCmakeBuildIncrementalFeature}{Run data for cmake\_build\_incremental\_feature in Docker Desktop Win11
+Debian 12 container
+volume-mounted}
+\providecommand{\runsCaptionScenarioDockerDesktopWinDebianContainerVolumeMountedCmakeBuildIncrementalSinglefile}{Run data for cmake\_build\_incremental\_singlefile in Docker Desktop Win11
+Debian 12 container
+volume-mounted}
+\providecommand{\runsCaptionScenarioDockerDesktopWinDebianContainerVolumeMountedCmakeBuildInstall}{Run data for cmake\_build\_install in Docker Desktop Win11
+Debian 12 container
+volume-mounted}
+\providecommand{\runsCaptionScenarioDockerDesktopWinDebianContainerVolumeMountedCmakeConfigure}{Run data for cmake\_configure in Docker Desktop Win11
+Debian 12 container
+volume-mounted}
+\providecommand{\runsCaptionScenarioDockerLinuxDebianBothCmakeBuildFull}{Run data for cmake\_build\_full in Docker Linux
+Debian 12 (both)}
+\providecommand{\runsCaptionScenarioDockerLinuxDebianBothCmakeBuildIncrementalFeature}{Run data for cmake\_build\_incremental\_feature in Docker Linux
+Debian 12 (both)}
+\providecommand{\runsCaptionScenarioDockerLinuxDebianBothCmakeBuildIncrementalSinglefile}{Run data for cmake\_build\_incremental\_singlefile in Docker Linux
+Debian 12 (both)}
+\providecommand{\runsCaptionScenarioDockerLinuxDebianBothCmakeBuildInstall}{Run data for cmake\_build\_install in Docker Linux
+Debian 12 (both)}
+\providecommand{\runsCaptionScenarioDockerLinuxDebianBothCmakeConfigure}{Run data for cmake\_configure in Docker Linux
+Debian 12 (both)}
+
+% Tables
+
+\begin{table}[H]
+\centering
+\adjustbox{max height=0.29\textheight, max width=\linewidth}{\input{\runsBasePath scenario_2_runs_Debian_12_native_cmake_build_full.tex}}
+\caption{\runsCaptionScenarioDebianNativeCmakeBuildFull}
+\label{tab:runs_scenario_2_debian_12_native_cmake_build_full}
+\end{table}
+
+\begin{table}[H]
+\centering
+\adjustbox{max height=0.29\textheight, max width=\linewidth}{\input{\runsBasePath scenario_2_runs_Debian_12_native_cmake_build_incremental_feature.tex}}
+\caption{\runsCaptionScenarioDebianNativeCmakeBuildIncrementalFeature}
+\label{tab:runs_scenario_2_debian_12_native_cmake_build_incremental_feature}
+\end{table}
+
+\begin{table}[H]
+\centering
+\adjustbox{max height=0.29\textheight, max width=\linewidth}{\input{\runsBasePath scenario_2_runs_Debian_12_native_cmake_build_incremental_singlefile.tex}}
+\caption{\runsCaptionScenarioDebianNativeCmakeBuildIncrementalSinglefile}
+\label{tab:runs_scenario_2_debian_12_native_cmake_build_incremental_singlefile}
+\end{table}
+
+\begin{table}[H]
+\centering
+\adjustbox{max height=0.29\textheight, max width=\linewidth}{\input{\runsBasePath scenario_2_runs_Debian_12_native_cmake_build_install.tex}}
+\caption{\runsCaptionScenarioDebianNativeCmakeBuildInstall}
+\label{tab:runs_scenario_2_debian_12_native_cmake_build_install}
+\end{table}
+
+\begin{table}[H]
+\centering
+\adjustbox{max height=0.29\textheight, max width=\linewidth}{\input{\runsBasePath scenario_2_runs_Debian_12_native_cmake_configure.tex}}
+\caption{\runsCaptionScenarioDebianNativeCmakeConfigure}
+\label{tab:runs_scenario_2_debian_12_native_cmake_configure}
+\end{table}
+
+\begin{table}[H]
+\centering
+\adjustbox{max height=0.29\textheight, max width=\linewidth}{\input{\runsBasePath scenario_2_runs_Docker_Desktop_Win11_Debian_12_container_volume-mounted_cmake_build_full.tex}}
+\caption{\runsCaptionScenarioDockerDesktopWinDebianContainerVolumeMountedCmakeBuildFull}
+\label{tab:runs_scenario_2_docker_desktop_win11_debian_12_container_volume_mounted_cmake_build_full}
+\end{table}
+
+\begin{table}[H]
+\centering
+\adjustbox{max height=0.29\textheight, max width=\linewidth}{\input{\runsBasePath scenario_2_runs_Docker_Desktop_Win11_Debian_12_container_volume-mounted_cmake_build_incremental_feature.tex}}
+\caption{\runsCaptionScenarioDockerDesktopWinDebianContainerVolumeMountedCmakeBuildIncrementalFeature}
+\label{tab:runs_scenario_2_docker_desktop_win11_debian_12_container_volume_mounted_cmake_build_incremental_feature}
+\end{table}
+
+\begin{table}[H]
+\centering
+\adjustbox{max height=0.29\textheight, max width=\linewidth}{\input{\runsBasePath scenario_2_runs_Docker_Desktop_Win11_Debian_12_container_volume-mounted_cmake_build_incremental_singlefile.tex}}
+\caption{\runsCaptionScenarioDockerDesktopWinDebianContainerVolumeMountedCmakeBuildIncrementalSinglefile}
+\label{tab:runs_scenario_2_docker_desktop_win11_debian_12_container_volume_mounted_cmake_build_incremental_singlefile}
+\end{table}
+
+\begin{table}[H]
+\centering
+\adjustbox{max height=0.29\textheight, max width=\linewidth}{\input{\runsBasePath scenario_2_runs_Docker_Desktop_Win11_Debian_12_container_volume-mounted_cmake_build_install.tex}}
+\caption{\runsCaptionScenarioDockerDesktopWinDebianContainerVolumeMountedCmakeBuildInstall}
+\label{tab:runs_scenario_2_docker_desktop_win11_debian_12_container_volume_mounted_cmake_build_install}
+\end{table}
+
+\begin{table}[H]
+\centering
+\adjustbox{max height=0.29\textheight, max width=\linewidth}{\input{\runsBasePath scenario_2_runs_Docker_Desktop_Win11_Debian_12_container_volume-mounted_cmake_configure.tex}}
+\caption{\runsCaptionScenarioDockerDesktopWinDebianContainerVolumeMountedCmakeConfigure}
+\label{tab:runs_scenario_2_docker_desktop_win11_debian_12_container_volume_mounted_cmake_configure}
+\end{table}
+
+\begin{table}[H]
+\centering
+\adjustbox{max height=0.29\textheight, max width=\linewidth}{\input{\runsBasePath scenario_2_runs_Docker_Linux_Debian_12_(both)_cmake_build_full.tex}}
+\caption{\runsCaptionScenarioDockerLinuxDebianBothCmakeBuildFull}
+\label{tab:runs_scenario_2_docker_linux_debian_12_both_cmake_build_full}
+\end{table}
+
+\begin{table}[H]
+\centering
+\adjustbox{max height=0.29\textheight, max width=\linewidth}{\input{\runsBasePath scenario_2_runs_Docker_Linux_Debian_12_(both)_cmake_build_incremental_feature.tex}}
+\caption{\runsCaptionScenarioDockerLinuxDebianBothCmakeBuildIncrementalFeature}
+\label{tab:runs_scenario_2_docker_linux_debian_12_both_cmake_build_incremental_feature}
+\end{table}
+
+\begin{table}[H]
+\centering
+\adjustbox{max height=0.29\textheight, max width=\linewidth}{\input{\runsBasePath scenario_2_runs_Docker_Linux_Debian_12_(both)_cmake_build_incremental_singlefile.tex}}
+\caption{\runsCaptionScenarioDockerLinuxDebianBothCmakeBuildIncrementalSinglefile}
+\label{tab:runs_scenario_2_docker_linux_debian_12_both_cmake_build_incremental_singlefile}
+\end{table}
+
+\begin{table}[H]
+\centering
+\adjustbox{max height=0.29\textheight, max width=\linewidth}{\input{\runsBasePath scenario_2_runs_Docker_Linux_Debian_12_(both)_cmake_build_install.tex}}
+\caption{\runsCaptionScenarioDockerLinuxDebianBothCmakeBuildInstall}
+\label{tab:runs_scenario_2_docker_linux_debian_12_both_cmake_build_install}
+\end{table}
+
+\begin{table}[H]
+\centering
+\adjustbox{max height=0.29\textheight, max width=\linewidth}{\input{\runsBasePath scenario_2_runs_Docker_Linux_Debian_12_(both)_cmake_configure.tex}}
+\caption{\runsCaptionScenarioDockerLinuxDebianBothCmakeConfigure}
+\label{tab:runs_scenario_2_docker_linux_debian_12_both_cmake_configure}
+\end{table}
+
+\begin{table}[H]
+\centering
+\adjustbox{max height=0.29\textheight, max width=\linewidth}{\input{\runsBasePath scenario_2_runs_Hyper-V_Debian_12_Guest_cmake_build_full.tex}}
+\caption{\runsCaptionScenarioHyperVDebianGuestCmakeBuildFull}
+\label{tab:runs_scenario_2_hyper_v_debian_12_guest_cmake_build_full}
+\end{table}
+
+\begin{table}[H]
+\centering
+\adjustbox{max height=0.29\textheight, max width=\linewidth}{\input{\runsBasePath scenario_2_runs_Hyper-V_Debian_12_Guest_cmake_build_incremental_feature.tex}}
+\caption{\runsCaptionScenarioHyperVDebianGuestCmakeBuildIncrementalFeature}
+\label{tab:runs_scenario_2_hyper_v_debian_12_guest_cmake_build_incremental_feature}
+\end{table}
+
+\begin{table}[H]
+\centering
+\adjustbox{max height=0.29\textheight, max width=\linewidth}{\input{\runsBasePath scenario_2_runs_Hyper-V_Debian_12_Guest_cmake_build_incremental_singlefile.tex}}
+\caption{\runsCaptionScenarioHyperVDebianGuestCmakeBuildIncrementalSinglefile}
+\label{tab:runs_scenario_2_hyper_v_debian_12_guest_cmake_build_incremental_singlefile}
+\end{table}
+
+\begin{table}[H]
+\centering
+\adjustbox{max height=0.29\textheight, max width=\linewidth}{\input{\runsBasePath scenario_2_runs_Hyper-V_Debian_12_Guest_cmake_build_install.tex}}
+\caption{\runsCaptionScenarioHyperVDebianGuestCmakeBuildInstall}
+\label{tab:runs_scenario_2_hyper_v_debian_12_guest_cmake_build_install}
+\end{table}
+
+\begin{table}[H]
+\centering
+\adjustbox{max height=0.29\textheight, max width=\linewidth}{\input{\runsBasePath scenario_2_runs_Hyper-V_Debian_12_Guest_cmake_configure.tex}}
+\caption{\runsCaptionScenarioHyperVDebianGuestCmakeConfigure}
+\label{tab:runs_scenario_2_hyper_v_debian_12_guest_cmake_configure}
+\end{table}
+
+\begin{table}[H]
+\centering
+\adjustbox{max height=0.29\textheight, max width=\linewidth}{\input{\runsBasePath scenario_2_runs_Hyper-V_Windows_11_Guest_cmake_build_full.tex}}
+\caption{\runsCaptionScenarioHyperVWindowsGuestCmakeBuildFull}
+\label{tab:runs_scenario_2_hyper_v_windows_11_guest_cmake_build_full}
+\end{table}
+
+\begin{table}[H]
+\centering
+\adjustbox{max height=0.29\textheight, max width=\linewidth}{\input{\runsBasePath scenario_2_runs_Hyper-V_Windows_11_Guest_cmake_build_incremental_feature.tex}}
+\caption{\runsCaptionScenarioHyperVWindowsGuestCmakeBuildIncrementalFeature}
+\label{tab:runs_scenario_2_hyper_v_windows_11_guest_cmake_build_incremental_feature}
+\end{table}
+
+\begin{table}[H]
+\centering
+\adjustbox{max height=0.29\textheight, max width=\linewidth}{\input{\runsBasePath scenario_2_runs_Hyper-V_Windows_11_Guest_cmake_build_incremental_singlefile.tex}}
+\caption{\runsCaptionScenarioHyperVWindowsGuestCmakeBuildIncrementalSinglefile}
+\label{tab:runs_scenario_2_hyper_v_windows_11_guest_cmake_build_incremental_singlefile}
+\end{table}
+
+\begin{table}[H]
+\centering
+\adjustbox{max height=0.29\textheight, max width=\linewidth}{\input{\runsBasePath scenario_2_runs_Hyper-V_Windows_11_Guest_cmake_build_install.tex}}
+\caption{\runsCaptionScenarioHyperVWindowsGuestCmakeBuildInstall}
+\label{tab:runs_scenario_2_hyper_v_windows_11_guest_cmake_build_install}
+\end{table}
+
+\begin{table}[H]
+\centering
+\adjustbox{max height=0.29\textheight, max width=\linewidth}{\input{\runsBasePath scenario_2_runs_Hyper-V_Windows_11_Guest_cmake_configure.tex}}
+\caption{\runsCaptionScenarioHyperVWindowsGuestCmakeConfigure}
+\label{tab:runs_scenario_2_hyper_v_windows_11_guest_cmake_configure}
+\end{table}
+
+\begin{table}[H]
+\centering
+\adjustbox{max height=0.29\textheight, max width=\linewidth}{\input{\runsBasePath scenario_2_runs_Windows_11_native_cmake_build_full.tex}}
+\caption{\runsCaptionScenarioWindowsNativeCmakeBuildFull}
+\label{tab:runs_scenario_2_windows_11_native_cmake_build_full}
+\end{table}
+
+\begin{table}[H]
+\centering
+\adjustbox{max height=0.29\textheight, max width=\linewidth}{\input{\runsBasePath scenario_2_runs_Windows_11_native_cmake_build_incremental_feature.tex}}
+\caption{\runsCaptionScenarioWindowsNativeCmakeBuildIncrementalFeature}
+\label{tab:runs_scenario_2_windows_11_native_cmake_build_incremental_feature}
+\end{table}
+
+\begin{table}[H]
+\centering
+\adjustbox{max height=0.29\textheight, max width=\linewidth}{\input{\runsBasePath scenario_2_runs_Windows_11_native_cmake_build_incremental_singlefile.tex}}
+\caption{\runsCaptionScenarioWindowsNativeCmakeBuildIncrementalSinglefile}
+\label{tab:runs_scenario_2_windows_11_native_cmake_build_incremental_singlefile}
+\end{table}
+
+\begin{table}[H]
+\centering
+\adjustbox{max height=0.29\textheight, max width=\linewidth}{\input{\runsBasePath scenario_2_runs_Windows_11_native_cmake_build_install.tex}}
+\caption{\runsCaptionScenarioWindowsNativeCmakeBuildInstall}
+\label{tab:runs_scenario_2_windows_11_native_cmake_build_install}
+\end{table}
+
+\begin{table}[H]
+\centering
+\adjustbox{max height=0.29\textheight, max width=\linewidth}{\input{\runsBasePath scenario_2_runs_Windows_11_native_cmake_configure.tex}}
+\caption{\runsCaptionScenarioWindowsNativeCmakeConfigure}
+\label{tab:runs_scenario_2_windows_11_native_cmake_configure}
+\end{table}

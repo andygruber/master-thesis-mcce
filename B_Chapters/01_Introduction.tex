@@ -1,9 +1,55 @@
 \chapter{Introduction}
 \label{ch:introduction}
 
-\section{Problem stating}
+The evolution of software development has been characterized by continuous shifts in methodologies, architectures, and the tools that support them.
+Over the decades, the industry has transitioned from monolithic architectures through service-oriented architectures to microservices, fundamentally changing how software is designed, developed, and deployed \citep{newmanBuildingMicroservicesDesigning2015}.
+Concurrently, development methodologies have evolved from the traditional waterfall model with its linear and phased approach to agile methodologies that embrace iterative and incremental delivery \citep{abrahamssonAgileSoftwareDevelopment2002}.
+These transformations have driven demand for development environments that can support rapid iteration, consistent builds, and reliable deployment across diverse platforms.
+
+One of the most significant technological shifts in recent years has been the widespread adoption of containerization, particularly for web-based software applications \citep{merkelDockerLightweightLinux2014}.
+Containers offer numerous benefits including consistency across development and production environments, efficient resource utilization, and simplified dependency management \citep{boettigerIntroductionDockerReproducible2015}.
+Web software developers quickly adopted containerization concepts for their development workflows, recognizing that easy access to environments similar to deployment targets reduces unforeseen side effects and streamlines the path from development to production \citep{citoUsingDockerContainers2016}.
+
+However, a substantial portion of the software landscape consists of native applications that run directly on end-user devices.
+Many of these projects have been in active development for decades and continue to employ traditional, \mbox{non-standardized} development environments \citep{feathersWorkingEffectivelyLegacy2004}.
+Such legacy software systems, while often modernized in terms of features and functionality, frequently retain development workflows established years ago when their codebases were first created.
+These traditional approaches present significant challenges for modern development teams seeking efficiency, reproducibility, and cross-platform compatibility \citep{annettWorkingLegacySystems2019}.
+
+\acp{vm} have historically provided one approach to standardizing development environments by emulating complete computing systems with their own operating systems \citep{randalIdealRealRevisiting2021}.
+While \acp{vm} offer isolation and reproducibility benefits, they introduce substantial resource overhead in terms of memory, storage, and computational power \citep{felterUpdatedPerformanceComparison2015}.
+Containerization presents a more lightweight alternative that shares the host \ac{os} kernel while maintaining environment isolation \citep{potdarPerformanceEvaluationDocker2020}.
+
+This thesis investigates the application of containerization to legacy software development, examining how container technologies can modernize development workflows for long-standing software projects.
+By exploring the integration of containerized development environments into the development lifecycle of a large-scale legacy C++ project, this research aims to provide empirical evidence and practical guidance for organizations seeking to modernize their development infrastructure without requiring fundamental changes to their existing codebases.
+
+\section{Problem statement}
+\label{sec:problem_statement}
+
+Legacy software development environments present numerous challenges that impede developer productivity and compromise build reproducibility.
+Traditional development setups frequently rely on manually configured workstations where developers install compilers, libraries, and tools individually \citep{pengReproducibleResearchComputational2011}.
+This approach inevitably leads to configuration drift, where development machines gradually diverge from one another and from production build environments, creating the infamous ``works on my machine'' problem \citep{hungGUIdockUsingDocker2016}.
+
+The challenges associated with traditional development environments manifest in several ways.
+Unnecessary overheads arise from legacy development environments that require extensive time and resources for setup, maintenance, and troubleshooting.
+New team members may spend days configuring their development environments before becoming productive contributors.
+Furthermore, when developers need to switch between different project configurations or compiler versions, the reconfiguration effort can be substantial \citep{gygiCppBuildLargeScaleAutomatic2021}.
+
+Instability in outcomes presents another significant challenge.
+When environments are not standardized, differences between individual development setups lead to inconsistent build results.
+Software that compiles and runs correctly on one developer's machine may fail on another's, making defect identification and resolution considerably more difficult.
+This inconsistency extends to the \ac{cicd} pipeline, where builds may succeed locally but fail on shared build servers due to environmental differences \citep{humbleContinuousDeliveryReliable2011}.
+
+While \acp{vm} have been employed to address some of these challenges, they introduce their own complications.
+\acp{vm} are resource-intensive, requiring substantial memory and storage to run complete operating systems alongside applications \citep{kolyasnikovExperimentalEvaluationVirtual2019}.
+Setting up and maintaining \acp{vm} remains cumbersome, and updating \ac{vm} images across a development team presents logistical challenges \citep{ionescuAlternativesRunningLinux2019}.
 
 \section{Research questions}
+\label{sec:research_questions}
+
+Given the challenges outlined in the problem statement, this research investigates how containerization can address the limitations of traditional and virtualized development environments in the context of legacy software development.
+The central focus lies on understanding the practical integration aspects and measurable performance implications of adopting containerized development workflows.
+
+The following research questions guide this investigation:
 
 \textbf{RQ1:} How can containers be integrated in software development tasks for legacy software development projects?
 
@@ -15,10 +61,71 @@
 	\item \textbf{RQ1.2:} How do containerized development environments compare to native or VM-based environments in terms of CPU utilization and memory consumption?
 \end{itemize}
 
-\subsection{Questions not included in the research}
-How to integrate other methods of reproducibility, then containers, into software development tasks for legacy software development projects?
-How to integrate Windows containers in software development tasks for legacy software development projects?
+\subsection{Scope delimitation}
+
+To maintain focus and feasibility, this research explicitly excludes the following related questions:
+
+\begin{itemize}
+	\item \textbf{Alternative reproducibility methods:} How can other approaches to reproducibility, such as package managers or configuration management tools, be integrated into legacy software development?
+	This question is excluded because the research focuses specifically on containerization as the modernization strategy.
+	\item \textbf{Windows containers:} How can Windows containers be integrated into legacy software development workflows?
+	Windows containers are excluded due to their limited adoption in development environments and the additional complexity of Windows container licensing and tooling compared to Linux containers.
+\end{itemize}
 
 \section{Research methodology}
+\label{sec:research_methodology}
+
+To address the research questions formulated above, this thesis employs the Design Science Research Methodology (DSRM) as introduced by \citet{peffersDesignScienceResearch2007}.
+Design science research differs from theory-building research by creating and evaluating artifacts that solve identified organizational problems rather than merely understanding or explaining reality.
+This approach is particularly suitable for this thesis, which develops and evaluates a containerized development environment system to modernize legacy software development workflows.
+DSRM ensures both rigor through systematic evaluation and relevance through solving practical problems, while its iterative nature allows ongoing adaptation and refinement of the artifact to address the research questions \citet{peffersDesignScienceResearch2007}.
+
+The evaluation specifically addresses build performance and resource utilization across native, containerized, and virtualized environments.
+The research unfolds through two iterative phases, each with distinct goals as illustrated in Figure~\ref{fig:research_methodology_iterations}.
+
+\begin{figure}[ht]
+	\centering
+	\includegraphics[width=0.95\linewidth]{figures/research-methodology-iterations.png}
+	\caption{The iterations of this thesis (adapted from \cite{peffersDesignScienceResearch2007})}
+	\label{fig:research_methodology_iterations}
+\end{figure}
+
+In the first iteration, the emphasis lies on designing and developing the initial version of the containerized development environment prototype.
+This phase prioritizes the core infrastructure: Docker container configurations, virtual machine setups for comparison, and the benchmark monitoring system.
+Initial demonstrations validate that the prototype can successfully build the legacy software project across native, containerized, and virtualized environments.
+Preliminary evaluation identifies refinement opportunities and validates the measurement approach.
+
+Moving to the second iteration, the focus shifts to comprehensive benchmarking and systematic evaluation.
+Based on insights from the initial iteration, the prototype is refined to address identified limitations.
+This stage executes the full evaluation scenarios: toolchain switching measurements and comprehensive performance benchmarking across all environment configurations.
+The collected data enables quantitative comparison of build times (RQ1.1) and resource utilization including CPU and RAM (RQ1.2), providing empirical evidence to address the research questions.
+Results are analyzed statistically, and conclusions are drawn regarding the practical implications of containerization for legacy software development workflows.
 
 \section{Thesis structure}
+\label{sec:thesis_structure}
+
+This thesis is structured into four thematic parts comprising eight chapters, as illustrated in Figure~\ref{fig:thesis_structure}.
+
+\begin{figure}[ht]
+	\centering
+	\includegraphics[width=0.95\linewidth]{figures/thesis-structure.png}
+	\caption{Structure and organization of this thesis}
+	\label{fig:thesis_structure}
+\end{figure}
+
+The \textbf{Foundation} part establishes the context and motivation for this research.
+Chapter~\ref{ch:introduction} introduces the problem domain, formulates the research questions guiding this investigation, and outlines the Design Science Research Methodology employed throughout the thesis.
+Chapter~\ref{ch:related_work} examines existing research on virtual machines versus containers, containerization in software development workflows, and modernization approaches for legacy applications, positioning this work within the broader research landscape.
+
+The \textbf{Theory \& Method} part provides the conceptual and methodological foundations.
+Chapter~\ref{ch:fundamentals} presents the theoretical background on legacy software development practices, containerization technologies including Docker and related tools, and principles of build system reproducibility.
+Chapter~\ref{ch:methodology} details the research design, describing the evaluation framework and the iterative development approach used to create and refine the containerized development environment.
+
+The \textbf{Implementation} part encompasses the practical artifact development and empirical investigation.
+Chapter~\ref{ch:prototype_architecture} describes the architecture of the prototype using the 4+1 architectural view model, explaining the component design and defining the evaluation scenarios.
+Chapter~\ref{ch:empirical_results_evaluation} presents the empirical results, including toolchain switching measurements, build performance comparisons, and resource utilization analysis across native, containerized, and virtualized environments.
+
+The \textbf{Synthesis} part integrates and concludes the research.
+Chapter~\ref{ch:discussion} revisits the research questions in light of the empirical findings, discusses the implications for practitioners and researchers, and acknowledges limitations while identifying opportunities for future work.
+Finally, Chapter~\ref{ch:conclusion} summarizes the key findings and articulates the contributions of this thesis to the field of legacy software development modernization.
+

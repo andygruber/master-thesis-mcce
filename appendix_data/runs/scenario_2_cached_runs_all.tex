@@ -1,0 +1,193 @@
+% Auto-generated master file for run data tables
+% This file includes all benchmark run tables with configurable captions
+%
+% Usage: Include this file in your LaTeX document
+% To customize captions, redefine the caption commands before including:
+%   \renewcommand{\runsCaptionEnvBenchmark}{Your Custom Caption}
+% To set the path to the table files (if not in same directory):
+%   \renewcommand{\runsBasePath}{path/to/tables/}
+%
+% Requires: booktabs, float, graphicx, currfile, adjustbox packages
+%   \usepackage{booktabs}
+%   \usepackage{float}
+%   \usepackage{graphicx}
+%   \usepackage{currfile}
+%   \usepackage{adjustbox}
+
+% Base path for table files (empty = same directory)
+\providecommand{\runsBasePath}{\currfiledir}
+
+\subsection{Run Data for scenario 2: Optimized workflow with compiler caching}
+
+% Legend explaining metrics
+{\footnotesize
+\noindent\textbf{Metrics:} 
+Process = benchmark process metrics (time in seconds, memory in MB, CPU in \%); 
+System CPU/Memory = system-wide resource usage during benchmark; 
+Baseline = idle system state before benchmark; 
+Delta = difference between during and baseline; 
+Host = hypervisor process metrics (for VM environments only).
+}
+
+% Default caption definitions
+\providecommand{\runsCaptionScenarioCachedWindowsNativeCmakeConfigure}{Run data for cmake\_configure in Windows 11 native}
+\providecommand{\runsCaptionScenarioCachedWindowsNativeCmakeBuildFull}{Run data for cmake\_build\_full in Windows 11 native}
+\providecommand{\runsCaptionScenarioCachedWindowsNativeCmakeBuildInstall}{Run data for cmake\_build\_install in Windows 11 native}
+\providecommand{\runsCaptionScenarioCachedHyperVWindowsGuestCmakeBuildFull}{Run data for cmake\_build\_full in Hyper-V
+Windows 11 Guest}
+\providecommand{\runsCaptionScenarioCachedHyperVWindowsGuestCmakeBuildInstall}{Run data for cmake\_build\_install in Hyper-V
+Windows 11 Guest}
+\providecommand{\runsCaptionScenarioCachedHyperVWindowsGuestCmakeConfigure}{Run data for cmake\_configure in Hyper-V
+Windows 11 Guest}
+\providecommand{\runsCaptionScenarioCachedDebianNativeCmakeBuildFull}{Run data for cmake\_build\_full in Debian 12 native}
+\providecommand{\runsCaptionScenarioCachedDebianNativeCmakeBuildInstall}{Run data for cmake\_build\_install in Debian 12 native}
+\providecommand{\runsCaptionScenarioCachedDebianNativeCmakeConfigure}{Run data for cmake\_configure in Debian 12 native}
+\providecommand{\runsCaptionScenarioCachedHyperVDebianGuestCmakeConfigure}{Run data for cmake\_configure in Hyper-V
+Debian 12 Guest}
+\providecommand{\runsCaptionScenarioCachedHyperVDebianGuestCmakeBuildFull}{Run data for cmake\_build\_full in Hyper-V
+Debian 12 Guest}
+\providecommand{\runsCaptionScenarioCachedHyperVDebianGuestCmakeBuildInstall}{Run data for cmake\_build\_install in Hyper-V
+Debian 12 Guest}
+\providecommand{\runsCaptionScenarioCachedDockerDesktopWinDebianContainerVolumeMountedCmakeBuildFull}{Run data for cmake\_build\_full in Docker Desktop Win11
+Debian 12 container
+volume-mounted}
+\providecommand{\runsCaptionScenarioCachedDockerDesktopWinDebianContainerVolumeMountedCmakeBuildInstall}{Run data for cmake\_build\_install in Docker Desktop Win11
+Debian 12 container
+volume-mounted}
+\providecommand{\runsCaptionScenarioCachedDockerDesktopWinDebianContainerVolumeMountedCmakeConfigure}{Run data for cmake\_configure in Docker Desktop Win11
+Debian 12 container
+volume-mounted}
+\providecommand{\runsCaptionScenarioCachedDockerLinuxDebianBothCmakeBuildFull}{Run data for cmake\_build\_full in Docker Linux
+Debian 12 (both)}
+\providecommand{\runsCaptionScenarioCachedDockerLinuxDebianBothCmakeBuildInstall}{Run data for cmake\_build\_install in Docker Linux
+Debian 12 (both)}
+\providecommand{\runsCaptionScenarioCachedDockerLinuxDebianBothCmakeConfigure}{Run data for cmake\_configure in Docker Linux
+Debian 12 (both)}
+
+% Tables
+
+\begin{table}[H]
+\centering
+\adjustbox{max height=0.29\textheight, max width=\linewidth}{\input{\runsBasePath scenario_2_cached_runs_Debian_12_native_cmake_build_full.tex}}
+\caption{\runsCaptionScenarioCachedDebianNativeCmakeBuildFull}
+\label{tab:runs_scenario_2_cached_debian_12_native_cmake_build_full}
+\end{table}
+
+\begin{table}[H]
+\centering
+\adjustbox{max height=0.29\textheight, max width=\linewidth}{\input{\runsBasePath scenario_2_cached_runs_Debian_12_native_cmake_build_install.tex}}
+\caption{\runsCaptionScenarioCachedDebianNativeCmakeBuildInstall}
+\label{tab:runs_scenario_2_cached_debian_12_native_cmake_build_install}
+\end{table}
+
+\begin{table}[H]
+\centering
+\adjustbox{max height=0.29\textheight, max width=\linewidth}{\input{\runsBasePath scenario_2_cached_runs_Debian_12_native_cmake_configure.tex}}
+\caption{\runsCaptionScenarioCachedDebianNativeCmakeConfigure}
+\label{tab:runs_scenario_2_cached_debian_12_native_cmake_configure}
+\end{table}
+
+\begin{table}[H]
+\centering
+\adjustbox{max height=0.29\textheight, max width=\linewidth}{\input{\runsBasePath scenario_2_cached_runs_Docker_Desktop_Win11_Debian_12_container_volume-mounted_cmake_build_full.tex}}
+\caption{\runsCaptionScenarioCachedDockerDesktopWinDebianContainerVolumeMountedCmakeBuildFull}
+\label{tab:runs_scenario_2_cached_docker_desktop_win11_debian_12_container_volume_mounted_cmake_build_full}
+\end{table}
+
+\begin{table}[H]
+\centering
+\adjustbox{max height=0.29\textheight, max width=\linewidth}{\input{\runsBasePath scenario_2_cached_runs_Docker_Desktop_Win11_Debian_12_container_volume-mounted_cmake_build_install.tex}}
+\caption{\runsCaptionScenarioCachedDockerDesktopWinDebianContainerVolumeMountedCmakeBuildInstall}
+\label{tab:runs_scenario_2_cached_docker_desktop_win11_debian_12_container_volume_mounted_cmake_build_install}
+\end{table}
+
+\begin{table}[H]
+\centering
+\adjustbox{max height=0.29\textheight, max width=\linewidth}{\input{\runsBasePath scenario_2_cached_runs_Docker_Desktop_Win11_Debian_12_container_volume-mounted_cmake_configure.tex}}
+\caption{\runsCaptionScenarioCachedDockerDesktopWinDebianContainerVolumeMountedCmakeConfigure}
+\label{tab:runs_scenario_2_cached_docker_desktop_win11_debian_12_container_volume_mounted_cmake_configure}
+\end{table}
+
+\begin{table}[H]
+\centering
+\adjustbox{max height=0.29\textheight, max width=\linewidth}{\input{\runsBasePath scenario_2_cached_runs_Docker_Linux_Debian_12_(both)_cmake_build_full.tex}}
+\caption{\runsCaptionScenarioCachedDockerLinuxDebianBothCmakeBuildFull}
+\label{tab:runs_scenario_2_cached_docker_linux_debian_12_both_cmake_build_full}
+\end{table}
+
+\begin{table}[H]
+\centering
+\adjustbox{max height=0.29\textheight, max width=\linewidth}{\input{\runsBasePath scenario_2_cached_runs_Docker_Linux_Debian_12_(both)_cmake_build_install.tex}}
+\caption{\runsCaptionScenarioCachedDockerLinuxDebianBothCmakeBuildInstall}
+\label{tab:runs_scenario_2_cached_docker_linux_debian_12_both_cmake_build_install}
+\end{table}
+
+\begin{table}[H]
+\centering
+\adjustbox{max height=0.29\textheight, max width=\linewidth}{\input{\runsBasePath scenario_2_cached_runs_Docker_Linux_Debian_12_(both)_cmake_configure.tex}}
+\caption{\runsCaptionScenarioCachedDockerLinuxDebianBothCmakeConfigure}
+\label{tab:runs_scenario_2_cached_docker_linux_debian_12_both_cmake_configure}
+\end{table}
+
+\begin{table}[H]
+\centering
+\adjustbox{max height=0.29\textheight, max width=\linewidth}{\input{\runsBasePath scenario_2_cached_runs_Hyper-V_Debian_12_Guest_cmake_build_full.tex}}
+\caption{\runsCaptionScenarioCachedHyperVDebianGuestCmakeBuildFull}
+\label{tab:runs_scenario_2_cached_hyper_v_debian_12_guest_cmake_build_full}
+\end{table}
+
+\begin{table}[H]
+\centering
+\adjustbox{max height=0.29\textheight, max width=\linewidth}{\input{\runsBasePath scenario_2_cached_runs_Hyper-V_Debian_12_Guest_cmake_build_install.tex}}
+\caption{\runsCaptionScenarioCachedHyperVDebianGuestCmakeBuildInstall}
+\label{tab:runs_scenario_2_cached_hyper_v_debian_12_guest_cmake_build_install}
+\end{table}
+
+\begin{table}[H]
+\centering
+\adjustbox{max height=0.29\textheight, max width=\linewidth}{\input{\runsBasePath scenario_2_cached_runs_Hyper-V_Debian_12_Guest_cmake_configure.tex}}
+\caption{\runsCaptionScenarioCachedHyperVDebianGuestCmakeConfigure}
+\label{tab:runs_scenario_2_cached_hyper_v_debian_12_guest_cmake_configure}
+\end{table}
+
+\begin{table}[H]
+\centering
+\adjustbox{max height=0.29\textheight, max width=\linewidth}{\input{\runsBasePath scenario_2_cached_runs_Hyper-V_Windows_11_Guest_cmake_build_full.tex}}
+\caption{\runsCaptionScenarioCachedHyperVWindowsGuestCmakeBuildFull}
+\label{tab:runs_scenario_2_cached_hyper_v_windows_11_guest_cmake_build_full}
+\end{table}
+
+\begin{table}[H]
+\centering
+\adjustbox{max height=0.29\textheight, max width=\linewidth}{\input{\runsBasePath scenario_2_cached_runs_Hyper-V_Windows_11_Guest_cmake_build_install.tex}}
+\caption{\runsCaptionScenarioCachedHyperVWindowsGuestCmakeBuildInstall}
+\label{tab:runs_scenario_2_cached_hyper_v_windows_11_guest_cmake_build_install}
+\end{table}
+
+\begin{table}[H]
+\centering
+\adjustbox{max height=0.29\textheight, max width=\linewidth}{\input{\runsBasePath scenario_2_cached_runs_Hyper-V_Windows_11_Guest_cmake_configure.tex}}
+\caption{\runsCaptionScenarioCachedHyperVWindowsGuestCmakeConfigure}
+\label{tab:runs_scenario_2_cached_hyper_v_windows_11_guest_cmake_configure}
+\end{table}
+
+\begin{table}[H]
+\centering
+\adjustbox{max height=0.29\textheight, max width=\linewidth}{\input{\runsBasePath scenario_2_cached_runs_Windows_11_native_cmake_build_full.tex}}
+\caption{\runsCaptionScenarioCachedWindowsNativeCmakeBuildFull}
+\label{tab:runs_scenario_2_cached_windows_11_native_cmake_build_full}
+\end{table}
+
+\begin{table}[H]
+\centering
+\adjustbox{max height=0.29\textheight, max width=\linewidth}{\input{\runsBasePath scenario_2_cached_runs_Windows_11_native_cmake_build_install.tex}}
+\caption{\runsCaptionScenarioCachedWindowsNativeCmakeBuildInstall}
+\label{tab:runs_scenario_2_cached_windows_11_native_cmake_build_install}
+\end{table}
+
+\begin{table}[H]
+\centering
+\adjustbox{max height=0.29\textheight, max width=\linewidth}{\input{\runsBasePath scenario_2_cached_runs_Windows_11_native_cmake_configure.tex}}
+\caption{\runsCaptionScenarioCachedWindowsNativeCmakeConfigure}
+\label{tab:runs_scenario_2_cached_windows_11_native_cmake_configure}
+\end{table}

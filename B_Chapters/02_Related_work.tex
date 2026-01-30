@@ -13,7 +13,7 @@ As software development continues to evolve, the advent of virtual machines, con
 The incorporation of these technologies into development workflows has become a pivotal objective to enhance efficiency, reproducibility, and scalability.
 
 In new software development projects, virtualization and automation are frequently employed from the beginning and the used technology stack has already a deep integration of containers and automation tools.
-A resulting application is often deployed together with its dependencies in a containerized environment, orchestrated by Kubernetes, and built using CI/CD pipelines.
+A resulting application is often deployed together with its dependencies in a containerized environment, orchestrated by Kubernetes, and built using \ac{cicd} pipelines.
 Having this kind of environment makes it easier to also develop the application in a containerized environment, as the development environment is also set up similarly.
 Reproducibility should be considered as the minimum standard in scientific research according to \citet{pengReproducibleResearchComputational2011}.
 Also in software development, using the same environment for development and deployment can lead to fewer issues when deploying the application to production, as the environment is already known and tested.
@@ -26,15 +26,15 @@ It also explores the integration of containers and automation tools in software 
 
 \section{Comparative Studies on VMs and Containers}
 
-In their study, \citet{felterUpdatedPerformanceComparison2015} presented a thorough evaluation of the performance of virtual machines (VMs) and Linux containers, with a particular focus on Docker.
-They highlighted the importance of isolation and resource control in cloud computing environments and discussed the historical reliance on VMs for these purposes.
-The paper provided a detailed comparison between VMs and containers, emphasizing that containers, which use mature technologies such as namespaces and control groups (cgroups), offer a more lightweight alternative.
-Containers allow applications to be isolated with minimal performance overhead thanks to their ability to share the host operating system kernel.
+In their study, \citet{felterUpdatedPerformanceComparison2015} presented a thorough evaluation of the performance of \acp{vm} and Linux containers, with a particular focus on Docker.
+They highlighted the importance of isolation and resource control in cloud computing environments and discussed the historical reliance on \acp{vm} for these purposes.
+The paper provided a detailed comparison between \acp{vm} and containers, emphasizing that containers, which use mature technologies such as namespaces and control groups (cgroups), offer a more lightweight alternative.
+Containers allow applications to be isolated with minimal performance overhead thanks to their ability to share the host \ac{os} kernel.
 This capability allows containers to perform closer to native execution levels than VMs, which must virtualize hardware resources.
 The authors conducted a series of benchmarks to evaluate CPU, memory, storage, and network performance in different environments: native Linux, Docker containers, and KVM-based virtual machines.
-The results showed that Docker containers deliver equal or better performance than VMs in nearly every scenario tested.
+The results showed that Docker containers deliver equal or better performance than \acp{vm} in nearly every scenario tested.
 For example, the study showed that containers achieve near-native performance in CPU and memory benchmarks due to minimal overhead in context switching and memory management.
-Similarly, for networking and storage benchmarks, containers showed superior throughput and lower latency compared to VMs, which are hampered by the additional virtualization layers.
+Similarly, for networking and storage benchmarks, containers showed superior throughput and lower latency compared to \acp{vm}, which are hampered by the additional virtualization layers.
 The paper also evaluated the performance of real-world applications such as Redis and MySQL, which are representative of common cloud workloads.
 These evaluations showed that containers can handle high concurrency and I/O requirements more efficiently than VMs.
 The study concluded that containers not only provide the necessary isolation and resource control for cloud environments, but do so with significantly less performance penalty, making them a compelling choice for modern cloud architectures.
@@ -42,8 +42,8 @@ The authors suggested that the adoption of container-based virtualization could 
 
 \begin{figure}[ht]
 	\centering
-	\includegraphics[width=0.65\linewidth]{figures/Felter et al. - 2015 - performance comparison Linpack.png}
-	\caption{Linpack performance comparison \citep{felterUpdatedPerformanceComparison2015}}
+	\includegraphics[width=0.8\linewidth]{figures/linpack_performance_comparison_thesis.png}
+	\caption{Linpack performance comparison (adapted from \cite{felterUpdatedPerformanceComparison2015})}
 	\label{fig:Linpack_performance_comparison}
 \end{figure}
 
@@ -52,25 +52,25 @@ The study highlights the need to select appropriate libraries, development techn
 The researchers used a web platform of digital psychological tools to develop methods for experimental parameter evaluation, focusing on improving the efficiency of Vagrant and Docker cloud virtual environments.
 Key criteria for evaluating the effectiveness of virtual development environments included rapid deployment, increased speed, reduced resource consumption, and improved data exchange rates between host and virtual machines.
 The paper identified significant challenges with the initial development environment, including high workloads on developer machines, low data exchange rates, and instability under load.
-To address these issues, an alternative configuration using a single virtual machine for all components was proposed.
+To address these issues, an alternative configuration using a single \ac{vm} for all components was proposed.
 This approach significantly reduced CPU and RAM usage, shortened startup times, and improved the efficiency of the build process.
-An additional improvement was the implementation of an NFS-based file system access driver, which further optimized data exchange speeds and build times.
-The study concluded that a well-optimized virtual development environment can significantly improve developer efficiency by minimizing resource consumption and accelerating development tasks.
+An additional improvement was the implementation of an \ac{nfs}-based file system access driver, which further optimized data exchange speeds and build times.
+The study concluded that a \mbox{well-optimized} virtual development environment can significantly improve developer efficiency by minimizing resource consumption and accelerating development tasks.
 
 \citet{ionescuAlternativesRunningLinux2019} explores the need to run Linux applications in a Windows environment, due to the dominance of Linux in online usage by Android since 2016.
 This requirement is relevant in both professional development and educational settings, particularly for engineering and IT students.
 This paper examines various methods for running Linux alongside Windows, evaluating inter-process communication performance and application speed.
-The solutions examined include the use of a virtual machine (VirtualBox), Cygwin for POSIX compatibility, Windows Subsystem for Linux (WSL), and Docker containers using Hyper-V.
+The solutions examined include the use of a \ac{vm} (VirtualBox), Cygwin for POSIX compatibility, \ac{wsl}, and Docker containers using Hyper-V.
 Each method has unique advantages and limitations: VirtualBox provides full Linux functionality but with higher resource consumption; Cygwin allows recompiled Linux applications to run on Windows; WSL translates Linux system calls for Windows compatibility; and Docker containers provide lightweight, isolated environments.
 The evaluation focuses on the effectiveness of these methods in providing a consistent and efficient cross-platform development platform, which is critical for both the development and testing phases of software development.
 The conclusions drawn highlight the comparative advantages of each approach in different contexts, helping developers and educators choose the most appropriate solution for their specific needs.
 
-\citet{potdarPerformanceEvaluationDocker2020} analyzed the efficiency of Docker containers compared to traditional virtual machines (VMs).
-It highlights the limitations of VMs, such as large size, unstable performance, and lengthy boot times, which have led to the development of containerization technology.
-Docker containers, which operate at the OS level, use shared host resources more efficiently and execute faster by eliminating the guest OS overhead.
-The study used benchmarking tools like Sysbench, Phoronix, and Apache benchmark to evaluate CPU performance, memory throughput, storage read/write performance, load test, and operation speed on two HP servers: one running a VM on Windows 10 with Ubuntu 16.04 as the guest OS, and another running Docker on Ubuntu 16.04.
-The results showed that Docker containers outperform VMs in all tested parameters.
-Docker exhibited faster CPU performance in prime number calculations and file compression, better memory handling in RAM speed and cache operations, superior disk I/O performance, and higher load test throughput due to lower network latency.
+\citet{potdarPerformanceEvaluationDocker2020} analyzed the efficiency of Docker containers compared to traditional \acp{vm}.
+It highlights the limitations of \acp{vm}, such as large size, unstable performance, and lengthy boot times, which have led to the development of containerization technology.
+Docker containers, which operate at the \ac{os} level, use shared host resources more efficiently and execute faster by eliminating the guest \ac{os} overhead.
+The study used benchmarking tools like Sysbench, Phoronix, and Apache benchmark to evaluate CPU performance, memory throughput, storage read/write performance, load test, and operation speed on two HP servers: one running a \ac{vm} on Windows 10 with Ubuntu 16.04 as the guest \ac{os}, and another running Docker on Ubuntu 16.04.
+The results showed that Docker containers outperform \acp{vm} in all tested parameters.
+Docker exhibited faster CPU performance in prime number calculations and file compression, better memory handling in RAM speed and cache operations, superior disk \ac{io} performance, and higher load test throughput due to lower network latency.
 Additionally, Docker solved computational problems like the Eight Queens and Eight Puzzle tests more quickly.
 Statistical t-tests confirmed significant performance differences, favoring Docker's efficiency and suitability for low-overhead virtualization needs.
 
@@ -78,7 +78,7 @@ In her comprehensive analysis, \citet{randalIdealRealRevisiting2021} evaluates t
 The evaluation includes key comparisons, such as Docker's transition from LXC to libcontainer, noting that Docker and LXC have equivalent performance in CPU, disk I/O, and network I/O, but LXC is superior in random write operations.
 The study also contrasts the security models of Docker, QEMU+KVM, and Xen on the ARM architecture, highlighting different approaches to isolation and resource control.
 The assessments also include a systematic review of security risks in container orchestration tools such as Kubernetes and Docker Swarm, highlighting the complexity and performance tradeoffs of these technologies.
-The results of the study point to the nuanced performance impact of different virtualization technologies. \citet{felterUpdatedPerformanceComparison2015} demonstrated that KVM's higher I/O overhead can be mitigated through optimized I/O operations, while \citet{kovacsComparisonDifferentLinux2017} found negligible differences in CPU and network performance between Docker, LXC, Singularity, KVM, and bare metal, except in certain network modes.
+The results of the study point to the nuanced performance impact of different virtualization technologies. \citet{felterUpdatedPerformanceComparison2015} demonstrated that KVM's higher \ac{io} overhead can be mitigated through optimized \ac{io} operations, while \citet{kovacsComparisonDifferentLinux2017} found negligible differences in CPU and network performance between Docker, \ac{lxc}, Singularity, KVM, and bare metal, except in certain network modes.
 This suggests that while containers are perceived to offer superior performance, this advantage is context-dependent and not always clear-cut.
 \citet{randalIdealRealRevisiting2021} concludes that short-term security improvements through patching are necessary, but not sufficient for long-term needs.
 The industry needs to explore radical innovations in hardware and software to ensure secure isolation in multi-tenant environments.
@@ -89,15 +89,14 @@ She emphasizes the importance of understanding the historical trade-offs in virt
 \citet{sergeevDockerContainerPerformance2022} evaluate the performance of Docker containers on Windows and Linux platforms using a set of benchmarks.
 The evaluation focuses on three key performance metrics: arithmetic operations, memory usage, and disk I/O operations.
 The test setup involved running Docker containers on the same system, alternating between Windows 10 Pro and Ubuntu 20.04 operating systems.
-The results showed that while Docker's arithmetic and memory performance on Linux was slightly better than on Windows, the most significant performance difference was observed in disk I/O operations.
-Specifically, reading and writing to an NVMe SSD on Windows was significantly slower than on Linux, due to Windows' use of a virtual machine with a simulated SATA bus that does not emulate the faster NVM Express bus used by Linux.
-Despite these differences, the study concludes that Docker on Windows is a viable option for most scenarios, with minimal performance degradation except in high-speed data transfer situations involving NVMe SSDs.
+The results showed that while Docker's arithmetic and memory performance on Linux was slightly better than on Windows, the most significant performance difference was observed in disk \ac{io} operations.
+Specifically, reading and writing to an \ac{nvme} \ac{ssd} on Windows was significantly slower than on Linux, due to Windows' use of a \ac{vm} with a simulated SATA bus that does not emulate the faster NVM Express bus used by Linux.
+Despite these differences, the study concludes that Docker on Windows is a viable option for most scenarios, with minimal performance degradation except in high-speed data transfer situations involving \ac{nvme} \acp{ssd}.
 For example, Linux-based applications can run in Docker containers on Windows with acceptable performance except when high-speed disk I/O is critical.
 The results suggest that Docker retains its functionality across both platforms, making it a flexible tool for containerization regardless of the underlying operating system.
 
 \begin{table}[ht]
 	\centering
-	\resizebox{\columnwidth}{!}{%
 	\begin{tabular}{|l|l|l|l|l|l|}
 	\hline
 	\multirow{3}{*}{\textbf{\begin{tabular}[c]{@{}l@{}}Operating\\ System\end{tabular}}} &
@@ -117,7 +116,6 @@ The results suggest that Docker retains its functionality across both platforms,
 	\multirow{2}{*}{Windows} & 3.01 & 3.58 & 0.96 & 173.62 & 678.74 \\ \cline{2-6}
 	                         & 3.00 & 3.58 & 0.98 & 168.40 & 697.44 \\ \hline
 	\end{tabular}%
-	}
 	\caption{Comparison of the performance of two containers on different operating systems (adapted from \cite{sergeevDockerContainerPerformance2022})}
 	\label{tab:CompareWindowsLinuxContainers}
 	\end{table}
@@ -128,7 +126,7 @@ The results suggest that Docker retains its functionality across both platforms,
 In an article on Docker \citet{merkelDockerLightweightLinux2014} focuses on its growing adoption, technical strengths, and practical applications. Although still in its developmental stages at the time of writing, Docker has shown great promise in resolving dependency conflicts, simplifying deployment, and improving resource efficiency.
 Docker containers encapsulate applications and their dependencies, enabling consistent performance across different environments, which is particularly beneficial for development, test, and production setups.
 Docker is lightweight compared to traditional virtual machines because it virtualizes at the operating system level rather than the hardware level, resulting in more efficient resource utilization and faster container startup times.
-In addition, Docker leverages powerful technologies such as LXC, cgroups, and AuFS, which contribute to its robust performance and scalability.
+In addition, Docker leverages powerful technologies such as \ac{lxc}, cgroups, and AuFS, which contribute to its robust performance and scalability.
 The article also highlights Docker's compatibility with various Linux distributions and its evolving support for other operating systems through virtual machines.
 Despite some security concerns related to the Docker daemon running with root privileges, the overall reception of Docker within the Linux community has been positive, with notable endorsements such as Red Hat's integration of Docker support into its enterprise products.
 This growing acceptance demonstrates Docker's potential to revolutionize software development and deployment practices, making it a valuable tool for modern DevOps workflows.
@@ -153,13 +151,13 @@ Overall, integrating Docker into scientific research workflows offers a promisin
 
 In his research paper, \citet{boettigerIntroductionDockerReproducible2015} evaluates the impact of Docker on computational reproducibility and highlights several key findings.
 Docker addresses key barriers to reproducible research, such as dependency hell, imprecise documentation, and code rot.
-Docker's use of Linux Container (LXC)-based OS-level virtualization allows researchers to share and archive container images, ensuring consistency across different computing environments.
+Docker's use of \ac{lxc}-based \ac{os}-level virtualization allows researchers to share and archive container images, ensuring consistency across different computing environments.
 Dockerfiles that script the setup of these environments provide a transparent and accurate method for documenting dependencies, significantly reducing the likelihood of errors compared to traditional manual documentation methods.
 The results of using Docker in reproducible research are promising.
 Docker's modular design and lightweight containers allow for efficient use of resources, allowing many containers to run simultaneously on a single machine.
 This makes it easy to break down complex computational workflows into manageable, reusable components.
 Docker's git-like versioning system tracks changes and enables the recreation of specific computing environments, combating code rot and ensuring the longevity and reliability of research results.
-Integration with tools such as RStudio Server further enhances usability by providing a familiar interface for domain scientists, encouraging wider adoption.
+Integration with tools such as RStudio Server further enhances usability by providing a familiar \ac{ide} for domain scientists, encouraging wider adoption.
 The study's conclusion underscores Docker's potential to significantly improve computational reproducibility in scientific research.
 However, it also acknowledges some limitations, such as its reliance on the Linux kernel, which may pose compatibility issues for non-Linux users, and the need for further evaluation of security concerns.
 Despite these challenges, Docker's ability to streamline the creation, execution, and sharing of reproducible computing environments represents a significant advance over traditional virtual machines and workflow systems.
@@ -186,8 +184,8 @@ In conclusion, while DevContainers present some initial setup challenges, they o
 The study's findings support the broader adoption of DevContainers in computer science education to streamline the setup process and improve the overall learning experience.
 \begin{figure}[ht]
 	\centering
-	\includegraphics[width=0.65\linewidth]{figures/Valstar et al. - 2020 - Using DevContainers to Standardize Student Develop_01.png}
-	\caption{A large percentage of students was neutral or leaned towards easy when asked about whether the DevContainer was easy to set up \citep{valstarUsingDevContainersStandardize2020}}
+	\includegraphics[width=0.8\linewidth]{figures/devcontainer_setup_difficulty_thesis.png}
+	\caption{A large percentage of students was neutral or leaned towards easy when asked about whether the DevContainer was easy to set up (adapted from \cite{valstarUsingDevContainersStandardize2020})}
 	\label{fig:DevContainerStudentStudy}
 \end{figure}
 

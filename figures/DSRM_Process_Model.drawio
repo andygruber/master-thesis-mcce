@@ -1,0 +1,136 @@
+<mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36" version="29.3.4">
+  <diagram name="DSRM Process Model" id="dsrm-process">
+    <mxGraphModel dx="1181" dy="630" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="595" pageHeight="842" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="sndLkn3wsRp9jBFx2SSh-7" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=none;" value="" vertex="1">
+          <mxGeometry height="400" width="170" x="10" y="60" as="geometry" />
+        </mxCell>
+        <mxCell id="title" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=12;fontStyle=1;fontColor=#000000;" value="Process Iteration" vertex="1">
+          <mxGeometry height="30" width="114.5" x="367" y="391" as="geometry" />
+        </mxCell>
+        <mxCell id="activity1" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fontSize=10;fillColor=#e0e0e0;strokeColor=#333333;fontColor=#000000;align=center;verticalAlign=top;" value="&lt;b&gt;Identify Problem &amp;amp; Motivate&lt;/b&gt;&lt;div&gt;&lt;span style=&quot;font-size: 9px; text-align: left;&quot;&gt;Define problem&lt;/span&gt;&lt;br style=&quot;font-size: 9px; text-align: left;&quot;&gt;&lt;span style=&quot;font-size: 9px; text-align: left;&quot;&gt;Show importance&lt;/span&gt;&lt;b&gt;&lt;/b&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="60" width="130" x="200" y="70" as="geometry" />
+        </mxCell>
+        <mxCell id="entry1" parent="1" style="ellipse;whiteSpace=wrap;html=1;fontSize=9;fillColor=#f5f5f5;strokeColor=#333333;fontColor=#000000;align=center;" value="Problem-Centered&#xa;Initiation" vertex="1">
+          <mxGeometry height="50" width="120" x="35" y="75" as="geometry" />
+        </mxCell>
+        <mxCell id="arrow1-2" edge="1" parent="1" source="activity1" style="endArrow=classic;html=1;exitX=0.5;exitY=1;entryX=0.5;entryY=0;strokeColor=#000000;strokeWidth=2;" target="activity2" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="arrow1-2-label" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=9;fontColor=#000000;" value="Inference" vertex="1">
+          <mxGeometry height="20" width="40" x="273" y="135" as="geometry" />
+        </mxCell>
+        <mxCell id="activity2" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fontSize=10;fillColor=#e0e0e0;strokeColor=#333333;fontColor=#000000;align=center;verticalAlign=top;" value="&lt;b&gt;Define Objectives of a Solution&lt;/b&gt;&lt;div&gt;&lt;span style=&quot;font-size: 9px; text-align: left;&quot;&gt;What would a better&lt;/span&gt;&lt;br style=&quot;font-size: 9px; text-align: left;&quot;&gt;&lt;span style=&quot;font-size: 9px; text-align: left;&quot;&gt;artifact accomplish?&lt;/span&gt;&lt;b&gt;&lt;/b&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="60" width="130" x="200" y="165" as="geometry" />
+        </mxCell>
+        <mxCell id="entry2" parent="1" style="ellipse;whiteSpace=wrap;html=1;fontSize=9;fillColor=#f5f5f5;strokeColor=#333333;fontColor=#000000;align=center;" value="Objective-Centered&#xa;Solution" vertex="1">
+          <mxGeometry height="50" width="120" x="35" y="170" as="geometry" />
+        </mxCell>
+        <mxCell id="arrow2-3" edge="1" parent="1" source="activity2" style="endArrow=classic;html=1;exitX=0.5;exitY=1;entryX=0.5;entryY=0;strokeColor=#000000;strokeWidth=2;" target="activity3" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="arrow2-3-label" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=9;fontColor=#000000;" value="Theory" vertex="1">
+          <mxGeometry height="20" width="40" x="269" y="230" as="geometry" />
+        </mxCell>
+        <mxCell id="activity3" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fontSize=10;fillColor=#e0e0e0;strokeColor=#333333;fontColor=#000000;align=center;verticalAlign=top;" value="&lt;b&gt;Design &amp;amp;&lt;br&gt;Development&lt;/b&gt;&lt;div&gt;&lt;span style=&quot;font-size: 9px; text-align: left;&quot;&gt;Artifact&lt;/span&gt;&lt;b&gt;&lt;/b&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="60" width="130" x="200" y="260" as="geometry" />
+        </mxCell>
+        <mxCell id="entry3" parent="1" style="ellipse;whiteSpace=wrap;html=1;fontSize=9;fillColor=#f5f5f5;strokeColor=#333333;fontColor=#000000;align=center;" value="Design &amp;&#xa;Development-Centered&#xa;Initiation" vertex="1">
+          <mxGeometry height="50" width="120" x="35" y="265" as="geometry" />
+        </mxCell>
+        <mxCell id="arrow3-4" edge="1" parent="1" source="activity3" style="endArrow=classic;html=1;exitX=0.5;exitY=1;entryX=0.5;entryY=0;strokeColor=#000000;strokeWidth=2;" target="activity4" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="arrow3-4-label" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=9;fontColor=#000000;" value="How-to&#xa;knowledge" vertex="1">
+          <mxGeometry height="30" width="65" x="260.5" y="320" as="geometry" />
+        </mxCell>
+        <mxCell id="activity4" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fontSize=10;fillColor=#e0e0e0;strokeColor=#333333;fontColor=#000000;align=center;verticalAlign=top;" value="&lt;b&gt;Demonstration&lt;/b&gt;&lt;div&gt;&lt;span style=&quot;font-size: 9px; text-align: left;&quot;&gt;&lt;br&gt;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;font-size: 9px; text-align: left;&quot;&gt;Find suitable&amp;nbsp;&lt;/span&gt;&lt;span style=&quot;font-size: 9px; text-align: left;&quot;&gt;context&lt;/span&gt;&lt;br style=&quot;font-size: 9px; text-align: left;&quot;&gt;&lt;span style=&quot;font-size: 9px; text-align: left;&quot;&gt;Use artifact to&amp;nbsp;&lt;/span&gt;&lt;span style=&quot;font-size: 9px; text-align: left;&quot;&gt;solve problem&lt;/span&gt;&lt;b&gt;&lt;/b&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="60" width="130" x="200" y="356" as="geometry" />
+        </mxCell>
+        <mxCell id="entry4" parent="1" style="ellipse;whiteSpace=wrap;html=1;fontSize=9;fillColor=#f5f5f5;strokeColor=#333333;fontColor=#000000;align=center;" value="Client/Context&#xa;Initiated" vertex="1">
+          <mxGeometry height="50" width="120" x="35" y="361" as="geometry" />
+        </mxCell>
+        <mxCell id="arrow4-5" edge="1" parent="1" source="activity4" style="endArrow=classic;html=1;exitX=0.5;exitY=1;entryX=0.5;entryY=0;strokeColor=#000000;strokeWidth=2;" target="activity5" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="arrow4-5-label" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=9;fontColor=#000000;" value="Metrics, Analysis Knowledge" vertex="1">
+          <mxGeometry height="20" width="77" x="266" y="423" as="geometry" />
+        </mxCell>
+        <mxCell id="activity5" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fontSize=10;fillColor=#e0e0e0;strokeColor=#333333;fontColor=#000000;align=center;verticalAlign=top;" value="&lt;b&gt;Evaluation&lt;/b&gt;&lt;div&gt;&lt;b&gt;&lt;br&gt;&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;font-size: 9px; text-align: left;&quot;&gt;Observe how&amp;nbsp;&lt;/span&gt;&lt;span style=&quot;font-size: 9px; text-align: left;&quot;&gt;effective, efficient&lt;/span&gt;&lt;br style=&quot;font-size: 9px; text-align: left;&quot;&gt;&lt;span style=&quot;font-size: 9px; text-align: left;&quot;&gt;Iterate back to&amp;nbsp;&lt;/span&gt;&lt;span style=&quot;font-size: 9px; text-align: left;&quot;&gt;design&lt;/span&gt;&lt;b&gt;&lt;/b&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="60" width="130" x="200" y="451" as="geometry" />
+        </mxCell>
+        <mxCell id="arrow5-6" edge="1" parent="1" source="activity5" style="endArrow=classic;html=1;exitX=0.5;exitY=1;entryX=0.5;entryY=0;strokeColor=#000000;strokeWidth=2;" target="activity6" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="arrow5-6-label" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=9;fontColor=#000000;" value="Disciplinary Knowledge" vertex="1">
+          <mxGeometry height="20" width="77" x="259" y="519" as="geometry" />
+        </mxCell>
+        <mxCell id="activity6" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fontSize=10;fillColor=#e0e0e0;strokeColor=#333333;fontColor=#000000;align=center;verticalAlign=top;" value="&lt;b&gt;Communication&lt;/b&gt;&lt;div&gt;&lt;span style=&quot;font-size: 9px; text-align: left;&quot;&gt;&lt;br&gt;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;font-size: 9px; text-align: left;&quot;&gt;Scholarly&amp;nbsp;&lt;/span&gt;&lt;span style=&quot;font-size: 9px; text-align: left;&quot;&gt;publications&lt;/span&gt;&lt;br style=&quot;font-size: 9px; text-align: left;&quot;&gt;&lt;span style=&quot;font-size: 9px; text-align: left;&quot;&gt;Professional&amp;nbsp;&lt;/span&gt;&lt;span style=&quot;font-size: 9px; text-align: left;&quot;&gt;publications&lt;/span&gt;&lt;b&gt;&lt;/b&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="60" width="130" x="200" y="546" as="geometry" />
+        </mxCell>
+        <mxCell id="entry-label" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=10;fontStyle=1;fontColor=#000000;" value="Possible Research Entry Points" vertex="1">
+          <mxGeometry height="30" width="150" x="20" y="421" as="geometry" />
+        </mxCell>
+        <mxCell id="sndLkn3wsRp9jBFx2SSh-1" edge="1" parent="1" style="endArrow=classic;html=1;strokeColor=#000000;strokeWidth=2;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" target="activity2" value="">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="370" y="480" />
+              <mxPoint x="370" y="195" />
+            </Array>
+            <mxPoint x="330" y="480" as="sourcePoint" />
+            <mxPoint x="370" y="280" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="sndLkn3wsRp9jBFx2SSh-2" edge="1" parent="1" style="endArrow=classic;html=1;strokeColor=#000000;strokeWidth=2;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" value="">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="370" y="575.5" />
+              <mxPoint x="370" y="290.5" />
+            </Array>
+            <mxPoint x="330" y="575.5" as="sourcePoint" />
+            <mxPoint x="330" y="290.5" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="sndLkn3wsRp9jBFx2SSh-3" edge="1" parent="1" source="activity4" style="endArrow=classic;html=1;exitX=0;exitY=0.5;entryX=1;entryY=0.5;strokeColor=#000000;strokeWidth=2;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" target="entry4" value="">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="180" y="388" as="sourcePoint" />
+            <mxPoint x="180" y="423" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="sndLkn3wsRp9jBFx2SSh-4" edge="1" parent="1" style="endArrow=classic;html=1;exitX=0;exitY=0.5;entryX=1;entryY=0.5;strokeColor=#000000;strokeWidth=2;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" value="">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="200" y="289.71" as="sourcePoint" />
+            <mxPoint x="155" y="289.71" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="sndLkn3wsRp9jBFx2SSh-5" edge="1" parent="1" style="endArrow=classic;html=1;exitX=0;exitY=0.5;entryX=1;entryY=0.5;strokeColor=#000000;strokeWidth=2;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" value="">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="200" y="194.71" as="sourcePoint" />
+            <mxPoint x="155" y="194.71" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="sndLkn3wsRp9jBFx2SSh-6" edge="1" parent="1" style="endArrow=classic;html=1;exitX=0;exitY=0.5;entryX=1;entryY=0.5;strokeColor=#000000;strokeWidth=2;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" value="">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="200" y="99.71" as="sourcePoint" />
+            <mxPoint x="155" y="99.71" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="sndLkn3wsRp9jBFx2SSh-12" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=10;fontStyle=1;fontColor=#000000;" value="Nominal process sequence" vertex="1">
+          <mxGeometry height="30" width="150" x="101" y="6" as="geometry" />
+        </mxCell>
+        <mxCell id="sndLkn3wsRp9jBFx2SSh-13" edge="1" parent="1" source="sndLkn3wsRp9jBFx2SSh-7" style="curved=1;endArrow=classic;html=1;rounded=0;strokeWidth=2;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="activity1" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <Array as="points">
+              <mxPoint x="120" y="30" />
+              <mxPoint x="240" y="30" />
+            </Array>
+            <mxPoint x="120" y="27" as="sourcePoint" />
+            <mxPoint x="120" y="-23" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

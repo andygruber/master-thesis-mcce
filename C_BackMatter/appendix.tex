@@ -1,18 +1,18 @@
 % affidavit
-\chapter*{Declaration of Academic Honesty}
-\addcontentsline{toc}{chapter}{Declaration of Academic Honesty}
-%\vspace{1cm}
-I hereby declare on my word of honor, that I created the thesis at hand independently, that I did not use any material other than the cited resources and that I have marked all results created by somebody else, be they quoted in my thesis word for word or by a matter of meaning, accordingly. \\
+% \chapter*{Declaration of Academic Honesty}
+% \addcontentsline{toc}{chapter}{Declaration of Academic Honesty}
+% %\vspace{1cm}
+% I hereby declare on my word of honor, that I created the thesis at hand independently, that I did not use any material other than the cited resources and that I have marked all results created by somebody else, be they quoted in my thesis word for word or by a matter of meaning, accordingly. \\
 
-\noindent I further declare that the thesis at hand has not been submitted to any other institution (university, university of applied sciences, university of education or other comparable institution) to obtain any academic degree.
-\vspace{3cm}
+% \noindent I further declare that the thesis at hand has not been submitted to any other institution (university, university of applied sciences, university of education or other comparable institution) to obtain any academic degree.
+% \vspace{3cm}
 
-%\linebreak %\\
-%---------------------------------------\hspace*{4cm}--------------------------
-%\\\hspace*{1.5cm}Place, Date\hspace*{6.15cm}Signature
+% %\linebreak %\\
+% %---------------------------------------\hspace*{4cm}--------------------------
+% %\\\hspace*{1.5cm}Place, Date\hspace*{6.15cm}Signature
 
-\noindent \rule[1em]{15em}{0.5pt}  \hfill \rule[1em]{15em}{0.5pt}\\ % This prints a line to write the date
-Location, Date \hfill Signature\\
+% \noindent \rule[1em]{15em}{0.5pt}  \hfill \rule[1em]{15em}{0.5pt}\\ % This prints a line to write the date
+% Location, Date \hfill Signature\\
 
 
 \begin{comment}
@@ -44,4 +44,35 @@ here you can put further things you want to add like transcripts, questionnaires
 
 % Appendix
 \addcontentsline{toc}{chapter}{Appendix}
+\renewcommand{\thechapter}{\Alph{chapter}}
+\renewcommand{\thesection}{\Alph{section}}
 \chapter*{Appendix}
+% Configure table numbering for appendix: section-based only (e.g., A.1, A.2)
+\counterwithin{table}{section}
+\renewcommand{\thetable}{\thesection.\arabic{table}}
+\section{Statistical Test Results}
+\label{appendix:statistical_tests}
+
+This appendix presents statistical test results for pairwise environment comparisons conducted in the evaluation (Chapter~\ref{ch:empirical_results_evaluation}).
+Two-tailed independent samples t-tests were performed as specified in Section~\ref{sec:methodology_evaluation}, with statistical significance evaluated at $\alpha = 0.05$.
+
+\input{appendix_data/ttests/scenario_1_ttest_all}
+\begin{landscape}
+
+\input{appendix_data/ttests/scenario_2_ttest_all}
+\input{appendix_data/ttests/scenario_2_unittests_parallel_ttest_all}
+\newpage
+\input{appendix_data/ttests/scenario_2_cached_ttest_all}
+\input{appendix_data/ttests/scenario_2_optimization_compare_ttest_all}
+
+\section{Run Data}
+\label{appendix:run_data}
+\input{appendix_data/runs/scenario_1_walltime}
+\input{appendix_data/runs/scenario_2_runs_all}
+\input{appendix_data/runs/scenario_2_dockerdesktop_bind_mount_runs_all}
+\input{appendix_data/runs/scenario_2_unittests_runs_all}
+\input{appendix_data/runs/scenario_2_unittests_parallel_runs_all}
+\input{appendix_data/runs/scenario_2_cached_runs_all}
+\input{appendix_data/runs/scenario_2_optimization_compare_runs_all}
+
+\end{landscape}

@@ -1,0 +1,87 @@
+% Auto-generated master file for run data tables
+% This file includes all benchmark run tables with configurable captions
+%
+% Usage: Include this file in your LaTeX document
+% To customize captions, redefine the caption commands before including:
+%   \renewcommand{\runsCaptionEnvBenchmark}{Your Custom Caption}
+% To set the path to the table files (if not in same directory):
+%   \renewcommand{\runsBasePath}{path/to/tables/}
+%
+% Requires: booktabs, float, graphicx, currfile, adjustbox packages
+%   \usepackage{booktabs}
+%   \usepackage{float}
+%   \usepackage{graphicx}
+%   \usepackage{currfile}
+%   \usepackage{adjustbox}
+
+% Base path for table files (empty = same directory)
+\providecommand{\runsBasePath}{\currfiledir}
+
+\subsection{Run Data for scenario 2: Test execution performance}
+
+% Legend explaining metrics
+{\footnotesize
+\noindent\textbf{Metrics:} 
+Process = benchmark process metrics (time in seconds, memory in MB, CPU in \%); 
+System CPU/Memory = system-wide resource usage during benchmark; 
+Baseline = idle system state before benchmark; 
+Delta = difference between during and baseline; 
+Host = hypervisor process metrics (for VM environments only).
+}
+
+% Default caption definitions
+\providecommand{\runsCaptionScenarioUnittestsWindowsNativeUnitTests}{Run data for unit\_tests in Windows 11 native}
+\providecommand{\runsCaptionScenarioUnittestsHyperVWindowsGuestUnitTests}{Run data for unit\_tests in Hyper-V
+Windows 11 Guest}
+\providecommand{\runsCaptionScenarioUnittestsDebianNativeUnitTests}{Run data for unit\_tests in Debian 12 native}
+\providecommand{\runsCaptionScenarioUnittestsHyperVDebianGuestUnitTests}{Run data for unit\_tests in Hyper-V
+Debian 12 Guest}
+\providecommand{\runsCaptionScenarioUnittestsDockerDesktopWinDebianContainerVolumeMountedUnitTests}{Run data for unit\_tests in Docker Desktop Win11
+Debian 12 container
+volume-mounted}
+\providecommand{\runsCaptionScenarioUnittestsDockerLinuxDebianBothUnitTests}{Run data for unit\_tests in Docker Linux
+Debian 12 (both)}
+
+% Tables
+
+\begin{table}[H]
+\centering
+\adjustbox{max height=0.29\textheight, max width=\linewidth}{\input{\runsBasePath scenario_2_unittests_runs_Debian_12_native_unit_tests.tex}}
+\caption{\runsCaptionScenarioUnittestsDebianNativeUnitTests}
+\label{tab:runs_scenario_2_unittests_debian_12_native_unit_tests}
+\end{table}
+
+\begin{table}[H]
+\centering
+\adjustbox{max height=0.29\textheight, max width=\linewidth}{\input{\runsBasePath scenario_2_unittests_runs_Docker_Desktop_Win11_Debian_12_container_volume-mounted_unit_tests.tex}}
+\caption{\runsCaptionScenarioUnittestsDockerDesktopWinDebianContainerVolumeMountedUnitTests}
+\label{tab:runs_scenario_2_unittests_docker_desktop_win11_debian_12_container_volume_mounted_unit_tests}
+\end{table}
+
+\begin{table}[H]
+\centering
+\adjustbox{max height=0.29\textheight, max width=\linewidth}{\input{\runsBasePath scenario_2_unittests_runs_Docker_Linux_Debian_12_(both)_unit_tests.tex}}
+\caption{\runsCaptionScenarioUnittestsDockerLinuxDebianBothUnitTests}
+\label{tab:runs_scenario_2_unittests_docker_linux_debian_12_both_unit_tests}
+\end{table}
+
+\begin{table}[H]
+\centering
+\adjustbox{max height=0.29\textheight, max width=\linewidth}{\input{\runsBasePath scenario_2_unittests_runs_Hyper-V_Debian_12_Guest_unit_tests.tex}}
+\caption{\runsCaptionScenarioUnittestsHyperVDebianGuestUnitTests}
+\label{tab:runs_scenario_2_unittests_hyper_v_debian_12_guest_unit_tests}
+\end{table}
+
+\begin{table}[H]
+\centering
+\adjustbox{max height=0.29\textheight, max width=\linewidth}{\input{\runsBasePath scenario_2_unittests_runs_Hyper-V_Windows_11_Guest_unit_tests.tex}}
+\caption{\runsCaptionScenarioUnittestsHyperVWindowsGuestUnitTests}
+\label{tab:runs_scenario_2_unittests_hyper_v_windows_11_guest_unit_tests}
+\end{table}
+
+\begin{table}[H]
+\centering
+\adjustbox{max height=0.29\textheight, max width=\linewidth}{\input{\runsBasePath scenario_2_unittests_runs_Windows_11_native_unit_tests.tex}}
+\caption{\runsCaptionScenarioUnittestsWindowsNativeUnitTests}
+\label{tab:runs_scenario_2_unittests_windows_11_native_unit_tests}
+\end{table}

@@ -1,7 +1,13 @@
 \chapter{Fundamentals}
 \label{ch:fundamentals}
 
+This chapter establishes the theoretical foundations for modernizing developer workflows through containerization.
+It covers legacy software characteristics and challenges, containerization technology, development containers, automated machine generation, and build system reproducibility.
+
 \section{Legacy Software Development}
+Understanding legacy software is essential for contextualizing the challenges that containerization aims to address.
+This section defines legacy software, examines the challenges associated with maintaining such systems, and presents established strategies for their improvement and modernization.
+
 \subsection{Legacy, legacy code and legacy software}
 When talking about legacy in the realm of computer technology it is often used to describe a previous or outdated computer system.
 Or more in general a technology from an earlier time \citep{Legacy}.
@@ -27,15 +33,15 @@ Legacy usually implies something positive, such as a valuable inheritance or a s
 In Information Technology, however, the term is viewed negatively, often used as an insult to describe outdated software systems.
 A legacy system refers to technology developed in the past, built according to the best practices and tools available at the time, but which no longer aligns with current standards.
 For example, a system designed in 2001 using Java 1.2 and Oracle 8i was appropriate and effective when created, but today developers would choose newer tools or languages.
-To better understand legacy, it is crucial to examine the software development life cycle (SDLC), which includes stages like requirements gathering, development, deployment, and eventually maintenance.
+To better understand legacy, it is crucial to examine the \ac{sdlc}, which includes stages like requirements gathering, development, deployment, and eventually maintenance.
 While software developers focus primarily on development phases, business users perceive software differently, emphasizing the long-term maintenance phase, where systems generate value with minimal ongoing investment.
 Legacy thus emerges naturally in this later stage, characterized by diminishing changes until the system is eventually replaced or upgraded due to obsolescence or inefficiency.
 Despite the negative connotation, a legacy system actually represents successful past investments, and organizations should recognize that reaching this stage indicates a significant return on investment rather than a technological failure \citep{annettWorkingLegacySystems2019}.
 
 \begin{figure}[ht]
 	\centering
-	\includegraphics[width=0.90\linewidth]{figures/Annett - 2019 - The life cycle in context and scaled with time.png}
-	\caption{The software (development) life cycle in context and scaled with time \citep{annettWorkingLegacySystems2019}}
+	\includegraphics[width=0.90\linewidth]{figures/annett2019-lifecycle.png}
+	\caption{The software (development) life cycle in context and scaled with time (adapted from \cite{annettWorkingLegacySystems2019})}
 	\label{fig:software_life_cycle_scaled_with_time}
 \end{figure}
 
@@ -71,7 +77,7 @@ Legacy systems may have restrictive licensing conditions, making virtualization,
 Additionally, evolving regulations impose compliance requirements that legacy systems may struggle to meet without significant and costly adaptations.
 Organizational politics often amplify these technical challenges.
 Stakeholders whose jobs, influence, or workflows are threatened by system updates might actively or passively resist essential improvements.
-This resistance can manifest through withholding knowledge, complicating decision-making processes, or delaying critical changes.
+This resistance can manifest through withholding knowledge, complicating \mbox{decision-making} processes, or delaying critical changes.
 Finally, external processes and data management strategies often evolve to accommodate legacy software, embedding inefficiencies into organizational workflows.
 The data within these systems may also degrade over time, becoming increasingly inaccurate or outdated due to human errors, changes in external feeder systems, and discontinued validation practices.
 This gradual decay of data quality can lead to unreliable outputs and reduced trust in system capabilities \citep{annettWorkingLegacySystems2019}.
@@ -99,6 +105,7 @@ Process and Data Decay & Inefficient processes and accumulating data inaccuracie
 \label{tab:legacy_issues}
 \end{table}
 
+\newpage
 \subsection{Strategies to mitigate Legacy Software Challenges}
 
 Effectively addressing the challenges posed by legacy software requires comprehensive strategies aimed at incremental improvement, stabilization, and modernization.
@@ -139,13 +146,13 @@ Incremental Modernization & Gradual adoption of modern technologies and phasing 
 \subsection{Importance of refactoring legacy code}
 When working with legacy software or software in general it is important to understand the concept of refactoring \citep{feathersWorkingEffectivelyLegacy2004}.
 Refactoring is a fundamental practice in software development that involves restructuring existing code without changing its external behavior.
-The primary goal of refactoring is to improve code maintainability, readability, and extendibility, thus enabling safer and more cost-effective future changes \citep{feathersWorkingEffectivelyLegacy2004}.
+The primary goal of refactoring is to improve code maintainability, readability, and extendibility, thus enabling safer and more \mbox{cost-effective} future changes \citep{feathersWorkingEffectivelyLegacy2004}.
 Legacy code does not always need to be altered.
 If it functions adequately and requires no modifications, it can remain untouched to avoid unnecessary risks.
 However, refactoring becomes crucial when legacy code must accommodate changes, bug fixes, or new features.
 By first establishing a suite of unit tests, developers can safely refactor legacy code incrementally, significantly reducing the risk of introducing new bugs \citep{bernsteinLegacyCodeNine2015}.
 
-\citet{bernsteinLegacyCodeNine2015} emphasizes the importance to adhere to principles like the Open-Closed Principle during refactoring, advocating that software should be "open for extension but closed for modification".
+\citet{bernsteinLegacyCodeNine2015} emphasizes the importance to adhere to principles like the \mbox{Open-Closed} Principle during refactoring, advocating that software should be "open for extension but closed for modification".
 In practicing this principle, the goal is to integrate new features with new code.
 If this is not possible, it means first refactoring the existing code to safely integrate new features, followed by adding the new behavior itself.
 This structured, two-step approach ensures changes are both safe and efficient.
@@ -185,38 +192,37 @@ Given resource constraints, it is essential to strategically select when refacto
 
 
 \section{Containerization}
-% Containers and Virtual Machines (VMs) are essential technologies in modern computing infrastructure \citep{poultonDockerDeepDive2019}.
-% Both offer distinct approaches to isolating applications and managing resources, significantly influencing efficiency, scalability, and security \citep{poultonDockerDeepDive2019}.
-% Understanding their core differences is crucial for making informed technological decisions \citep{felterUpdatedPerformanceComparison2015}.
+This section introduces containerization as a lightweight virtualization approach.
+It compares containers with virtual machines, explains the underlying Linux kernel technologies, and describes the architecture of container runtimes and images.
 
 \subsection{Containers vs Virtual Machines}
-A virtual machine (VM) is created through hardware virtualization, where a hypervisor manages and partitions physical hardware resources such as CPU, RAM, storage, and network interfaces.
-Each VM runs its own full-fledged operating system, complete with a kernel, user space, libraries, and dependencies.
-As illustrated in Figure \ref{fig:vm_structure}, this approach ensures complete isolation but incurs overhead known as the "VM tax".
-Each OS installed consumes additional resources, requires separate licensing, and presents its own security and maintenance challenges \citep{poultonDockerDeepDive2019}.
+A \ac{vm} is created through hardware virtualization, where a hypervisor manages and partitions physical hardware resources such as CPU, RAM, storage, and network interfaces.
+Each \ac{vm} runs its own full-fledged operating system, complete with a kernel, user space, libraries, and dependencies.
+As illustrated in Figure \ref{fig:vm_structure}, this approach ensures complete isolation but incurs overhead known as the "\ac{vm} tax".
+Each \ac{os} installed consumes additional resources, requires separate licensing, and presents its own security and maintenance challenges \citep{poultonDockerDeepDive2019}.
 
 \begin{figure}[ht!]
 	\centering
 	\includegraphics[width=0.80\linewidth]{figures/poultonDockerDeepDive2019-vms.png}
-	\caption{Structure of Virtual Machines \citep{poultonDockerDeepDive2019}}
+	\caption{Structure of Virtual Machines (adapted from \cite{poultonDockerDeepDive2019})}
 	\label{fig:vm_structure}
 \end{figure}
 
-Containers, conversely, use OS virtualization, leveraging a single shared kernel provided by the host OS.
-The container engine, segments OS resources like the filesystem, process tree, and network stack into isolated units called containers.
-Each container encapsulates a single application and its direct dependencies, running as isolated processes on the host OS.
-This model significantly reduces overhead compared to VMs, as demonstrated in Figure~\ref{fig:container_structure}.
+Containers, conversely, use \ac{os} virtualization, leveraging a single shared kernel provided by the host \ac{os}.
+The container engine, segments \ac{os} resources like the filesystem, process tree, and network stack into isolated units called containers.
+Each container encapsulates a single application and its direct dependencies, running as isolated processes on the host \ac{os}.
+This model significantly reduces overhead compared to \acp{vm}, as demonstrated in Figure~\ref{fig:container_structure}.
 Containers thus offer advantages in terms of resource utilization, scalability, startup speed, and reduced management complexity \citep{poultonDockerDeepDive2019}.
 
 \begin{figure}[ht!]
 	\centering
 	\includegraphics[width=0.60\linewidth]{figures/poultonDockerDeepDive2019-containers.png}
-	\caption{Structure of Containers \citep{poultonDockerDeepDive2019}}
+	\caption{Structure of Containers (adapted from \cite{poultonDockerDeepDive2019})}
 	\label{fig:container_structure}
 \end{figure}
 
 According to the foundational criteria set forth by \citet{popekFormalRequirementsVirtualizable1974}, containers do not strictly fit the classical definition of virtual machines.
-Containers perform OS-level virtualization rather than hardware virtualization, providing isolated application environments by sharing the host OS kernel.
+Containers perform \ac{os}-level virtualization rather than hardware virtualization, providing isolated application environments by sharing the host \ac{os} kernel.
 This approach deviates from the requirement of strict hardware equivalence and comprehensive hardware-level resource control.
 Consequently, containers offer improved efficiency and performance over traditional virtual machines, but they compromise on absolute isolation due to their dependence on a shared kernel.
 
@@ -228,17 +234,18 @@ Table~\ref{table:key_diff_vm_containers} summarizes the primary differences betw
         \hline
         \textbf{Attribute} & \textbf{Virtual Machines} & \textbf{Containers} \\
         \hline
-        Virtualization Type & Hardware virtualization & OS virtualization \\ \hline
-        Isolation & Strong (each VM isolated by its own kernel) & Moderate (shared kernel among containers) \\ \hline
-        Resource Overhead & High (each VM has full OS overhead) & Low (containers share kernel resources) \\ \hline
-        Startup Time & Slow (requires booting a full OS) & Fast (no OS boot required) \\ \hline
+        Virtualization Type & Hardware virtualization & \ac{os} virtualization \\ \hline
+        Isolation & Strong (each \ac{vm} isolated by its own kernel) & Moderate (shared kernel among containers) \\ \hline
+        Resource Overhead & High (each \ac{vm} has full \ac{os} overhead) & Low (containers share kernel resources) \\ \hline
+        Startup Time & Slow (requires booting a full \ac{os}) & Fast (no \ac{os} boot required) \\ \hline
         Scalability & Limited by resource overhead & Highly scalable due to lightweight nature \\ \hline
-        Maintenance & High (each VM requires separate updates) & Low (single kernel update affects all containers) \\ \hline
+        Maintenance & High (each \ac{vm} requires separate updates) & Low (single kernel update affects all containers) \\ \hline
     \end{tabular}
-    \caption{Key Differences between VMs and Containers}
+    \caption{Key Differences between \acp{vm} and Containers}
     \label{table:key_diff_vm_containers}
 \end{table}
 
+\newpage
 \subsection{Core Container Technologies}
 This section outlines the three foundational technologies that enable containerization: namespaces for process and resource isolation, control groups (cgroups) for resource allocation and limiting, and layered file systems such as OverlayFS for efficient storage management.
 
@@ -266,7 +273,7 @@ Tools like \texttt{clone}, \texttt{unshare}, and \texttt{setns} manage namespace
 % Location: Should illustrate how PID, Network, Mount, User, IPC, Cgroup, and Time namespaces isolate resources
 
 \subsubsection{Control Groups (cgroups)}
-\citet{jainLinuxContainersVirtualization2023} describes cgroups as mechanisms to limit and account for resource usage (CPU, memory, I/O, etc.) across processes in containers.
+\citet{jainLinuxContainersVirtualization2023} describes cgroups as mechanisms to limit and account for resource usage (CPU, memory, \ac{io}, etc.) across processes in containers.
 Available cgroup controllers are:
 \begin{itemize}
     \item \textbf{CPU Controller}: Controls CPU time via:
@@ -275,7 +282,7 @@ Available cgroup controllers are:
         \item \texttt{cpu.cfs\_quota\_us} / \texttt{cpu.cfs\_period\_us} - time-based CPU quota.
     \end{itemize}
     \item \textbf{Memory Controller}: Tracks and limits memory usage, prevents OOM via limits like \texttt{memory.max} and events via \texttt{memory.events}.
-    \item \textbf{Block I/O Controller}: Uses the CFQ (Completely Fair Queuing) and throttling mechanisms to ensure fairness in disk usage across cgroups.
+    \item \textbf{Block \ac{io} Controller}: Uses the CFQ (Completely Fair Queuing) and throttling mechanisms to ensure fairness in disk usage across cgroups.
 \end{itemize}
 cgroups are represented by kernel data structures like \texttt{cfs\_rq}, \texttt{cfs\_bandwidth}, and \texttt{blkcg}.
 They enable hierarchical scheduling, grouping, and quota enforcement \citep{jainLinuxContainersVirtualization2023}.
@@ -308,7 +315,7 @@ Container runtimes are modular by design, consisting of specialized tools workin
 Modern container runtimes typically follow open standards, most prominently those outlined by the \ac{oci}, ensuring compatibility and interoperability across various implementations.
 A container runtime generally includes several components:
 \begin{itemize}
-    \item \textbf{Client Interface}: Provides a user-facing interface, commonly via CLI or API.
+    \item \textbf{Client Interface}: Provides a user-facing interface, commonly via \ac{cli} or \ac{api}.
     \item \textbf{Daemon or Supervisor}: Manages high-level container operations such as starting, stopping, and managing images.
     \item \textbf{Runtime Engine}: Responsible for direct interactions with the operating system kernel to instantiate containers.
     \item \textbf{Shim Processes}: Handle low-level process interactions, maintaining containers independently of the main daemon \citep{poultonDockerDeepDive2019}.
@@ -318,8 +325,8 @@ Due to the standardization efforts of \ac{oci}, container runtimes such as Docke
 Each implementation provides specific strengths suited for different environments, whether development, testing, or production-grade orchestration systems like Kubernetes.
 Docker, a widely-used container runtime, exemplifies the modular runtime architecture:
 \begin{itemize}
-    \item \textbf{Docker Client}: Converts user commands into API calls to communicate with the Docker daemon.
-    \item \textbf{Docker Daemon (dockerd)}: Implements the Docker API, manages images, networking, and orchestration.
+    \item \textbf{Docker Client}: Converts user commands into \ac{api} calls to communicate with the Docker daemon.
+    \item \textbf{Docker Daemon (dockerd)}: Implements the Docker \ac{api}, manages images, networking, and orchestration.
     \item \textbf{containerd}: Handles container lifecycle operations.
                                Docker delegates container execution tasks to containerd, which itself communicates via gRPC APIs.
     \item \textbf{runc}: An OCI-compliant runtime used by containerd. It directly interfaces with kernel features like namespaces and control groups (cgroups) to create and manage containers.
@@ -328,7 +335,7 @@ Docker, a widely-used container runtime, exemplifies the modular runtime archite
 
 \begin{figure}[ht!]
 	\centering
-	\includegraphics[width=0.60\linewidth]{figures/poultonDockerDeepDive2019-dockerEngineArch.png}
+	\includegraphics[width=0.65\linewidth]{figures/poultonDockerDeepDive2019-dockerEngineArch.png}
 	\caption{Architecture of Docker engine \citep{poultonDockerDeepDive2019}}
 	\label{fig:dockerEngineArch}
 \end{figure}
@@ -355,7 +362,6 @@ Due to their lightweight nature, container images are designed to be small, whic
 	\label{fig:dockerConceptImageContainer}
 \end{figure}
 
-
 \subsubsection{Image Layers}
 Container images consist of multiple read-only layers stacked on top of each other.
 Each layer represents a specific state or change from a preceding base image.
@@ -367,10 +373,11 @@ If changes occur, a new layer is simply added, maintaining consistency and repro
 \begin{figure}[ht!]
 	\centering
 	\includegraphics[width=0.60\linewidth]{figures/poultonDockerDeepDive2019-imageLayerExample.png}
-	\caption{Simple image layer example (all layers write protected) \citep{poultonDockerDeepDive2019}}
+	\caption{Simple image layer example (all layers write protected) (adapted from \cite{poultonDockerDeepDive2019})}
 	\label{fig:dockerImageLayerExampleContainer}
 \end{figure}
 
+\newpage
 \subsubsection{Image Registry}
 Image registries are repositories that store container images.
 A widely used public registry is Docker Hub, which hosts numerous image repositories, including official images verified by Docker and unofficial repositories created by community members.
@@ -382,24 +389,25 @@ The process of creating a container image involves defining the environment usin
 A Dockerfile is a text document containing commands Docker uses to assemble an image \citep{dockerDockerReferenceDocumentation2025}.
 
 A basic Dockerfile structure:
-\begin{lstlisting}[caption=Dockerfile example]
-FROM alpine
-RUN apk add --update nodejs nodejs-npm
-COPY . /src
-WORKDIR /src
-RUN npm install
+\begin{lstlisting}[caption=Dockerfile example (adapted from \cite{dockerDockerReferenceDocumentation2025})]
+FROM node:22-alpine
+WORKDIR /app
+COPY . .
+RUN yarn install --production
 EXPOSE 8080
-ENTRYPOINT ["node", "./app.js"]
+CMD ["node", "./src/index.js"]
 \end{lstlisting}
 Each instruction creates layers or metadata:
 \begin{itemize}
     \item \texttt{FROM} sets the base image.
-    \item \texttt{RUN} executes commands.
+    \item \texttt{WORKDIR} sets the working directory.
     \item \texttt{COPY} adds files from the build context.
+    \item \texttt{RUN} executes commands.
     \item \texttt{EXPOSE} documents ports used.
-    \item \texttt{ENTRYPOINT} sets the default application to run.
+    \item \texttt{CMD} sets the default command to run.
 \end{itemize}
 
+\newpage
 Important commands for working with images include:
 \begin{itemize}
     \item Images can be tagged to distinguish between different versions or environments with the \texttt{docker tag} command.
@@ -415,21 +423,21 @@ To ensure efficient and secure container images, adhere to best practices:
     \item Combine multiple \texttt{RUN} commands using logical operators to minimize layers.
     \item Avoid installing unnecessary packages or dependencies.
     \item Utilize caching to speed up builds; place frequently changing commands last.
-    \item Regularly push images to secure image registries \citep{dockerDockerReferenceDocumentation2025}.
+    \item Regularly push images to secure image registries (adapted from \cite{dockerDockerReferenceDocumentation2025}).
 \end{itemize}
 
 \section{Containerization in software development}
+Building on the technical foundations of containerization, this section examines its practical application in software development workflows.
+It covers containerized C++ development, the DevContainer specification, IDE integration, and the performance considerations of bind mounts on non-native platforms.
 
 \subsection{Containerization in C++ development}
-The process of containerizing a C++ application using Docker enables efficient isolation of application processes, contrasting with virtual machines that isolate hardware.
-Using multi-stage builds enables to produce lean and efficient Docker images by separating build and runtime environments.
+Containerizing a C++ application using Docker enables efficient process isolation, contrasting with virtual machines that isolate hardware.
+Multi-stage builds produce lean and efficient Docker images by separating build and runtime environments.
 Integrating Docker into the software development workflow enhances deployment efficiency and resource management.
 Further improvements include incorporating Docker into CI/CD pipelines, leveraging testing frameworks, and applying linting tools to enforce Dockerfile best practices, reinforcing Docker's role in modern software development \citep{gohringPracticalGuideContainerize2022}.
 
-Dockerized build environments for C/C++ projects offer isolated and reproducible solutions to common challenges, such as the lack of built-in dependency management in C++.
-This deficiency often leads to inconsistencies between development and CI/CD environments due to varying methods of handling third-party dependencies.
-By creating Docker images with preinstalled dependencies and tools, consistency across environments is ensured, effectively eliminating the "it works on my machine" problem.
-Builds run within containers, remaining unaffected by local environment variables and settings.
+Dockerized build environments for C/C++ projects provide isolated, reproducible solutions to challenges like lacking built-in dependency management, which often causes inconsistencies between development and CI/CD environments.
+By creating Docker images with preinstalled dependencies and tools, consistency across environments is ensured, eliminating the "it works on my machine" problem.
 These environments are easily reproducible by pulling predefined images or rebuilding from Dockerfiles stored in version control systems \citep{danilovDockerizedBuildEnvironments2021}.
 
 \subsection{DevContainers}
@@ -451,7 +459,7 @@ Compared to deployment containers, which are optimized for production environmen
 	\label{fig:devContainerStages}
 \end{figure}
 
-At the core of a DevContainer is the \texttt{devcontainer.json} file. This JSON file defines the configuration of the development environment, including:
+At the core of a DevContainer is the \texttt{devcontainer.json} file. This \ac{json} file defines the configuration of the development environment, including:
 \begin{itemize}
     \item \textbf{Base Image or Dockerfile}: Specifies the container image or Dockerfile to use.
     \item \textbf{Features}: Adds additional tools or configurations.
@@ -475,18 +483,18 @@ At the core of a DevContainer is the \texttt{devcontainer.json} file. This JSON 
 
 
 \subsection{IDE integration}
-Modern integrated development environments (IDEs) have embraced containerization as a fundamental component of the development workflow, offering seamless integration with DevContainer technology.
+Modern \ac{ide}s have embraced containerization as a fundamental component of the development workflow, offering seamless integration with DevContainer technology.
 This integration enables developers to maintain consistent development environments regardless of the underlying host operating system or local tool configurations \citep{DevelopmentContainers2025}.
 
 Visual Studio Code leads the industry in DevContainer support through its official Dev Containers extension \citep{microsoftDevelopingContainer2025}.
 This extension automatically detects \texttt{devcontainer.json} configurations and provides one-click environment setup.
 Upon opening a project containing DevContainer configuration, Visual Studio Code prompts users to reopen the project inside the container, automatically building and configuring the environment based on the specified parameters.
 The integration includes full debugging support, integrated terminal access, and extension synchronization between the host and container environments.
-Visual Studio Code also supports remote development through containers, enabling developers to work with codebases hosted on remote machines while maintaining local IDE responsiveness \citep{luDevelopmentDockerContainers2018}.
+Visual Studio Code also supports remote development through containers, enabling developers to work with codebases hosted on remote machines while maintaining local \ac{ide} responsiveness \citep{luDevelopmentDockerContainers2018}.
 
-JetBrains IDEs, including IntelliJ IDEA, CLion, and PyCharm, provide comprehensive DevContainer support through their integrated Docker tooling \citep{jetbrainsUsingDevContainers2024}.
-These IDEs can automatically detect Dockerfile and \texttt{docker-compose.yml} configurations, offering built-in container management directly within the development environment.
-JetBrains IDEs excel in providing advanced debugging capabilities for containerized applications, including remote debugging sessions and performance profiling tools.
+JetBrains \acp{ide}, including IntelliJ IDEA, CLion, and PyCharm, provide comprehensive DevContainer support through their integrated Docker tooling \citep{jetbrainsUsingDevContainers2024}.
+These \acp{ide} can automatically detect Dockerfile and \texttt{docker-compose.yml} configurations, offering built-in container management directly within the development environment.
+JetBrains \acp{ide} excel in providing advanced debugging capabilities for containerized applications, including remote debugging sessions and performance profiling tools.
 The integration extends to build system management, allowing developers to execute build processes, run tests, and deploy applications entirely within containerized environments.
 
 Other notable IDE integrations include GitHub Codespaces, which provides cloud-based DevContainer environments accessible through web browsers \citep{githubIntroductionDevContainers2025}, and various Vim/Neovim plugins that enable container-aware development workflows.
@@ -511,7 +519,7 @@ This native approach results in near-zero performance penalty for file operation
 
 Non-native platforms, including Windows and macOS, present considerable challenges for bind mount performance \citep{dockerDockerDesktopWSL2020,cncfDockerMacOSSlow2023}.
 Docker Desktop implementations on these platforms require virtualization layers that translate filesystem operations between the host operating system and the Linux-based container runtime.
-On Windows, Docker Desktop utilizes Windows Subsystem for Linux (WSL2) or Hyper-V virtualization, introducing additional abstraction layers that significantly impact I/O performance \citep{dockerDockerDesktopWSL2020}.
+On Windows, Docker Desktop utilizes \ac{wsl}2 or Hyper-V virtualization, introducing additional abstraction layers that significantly impact \ac{io} performance \citep{dockerDockerDesktopWSL2020}.
 Similarly, macOS implementations rely on virtual machines running Linux kernels, creating filesystem translation overhead between the host macOS filesystem and the guest Linux filesystem \citep{cncfDockerMacOSSlow2023}.
 
 The performance implications of non-native bind mounts are particularly pronounced in development scenarios involving:
@@ -552,6 +560,7 @@ Traditional approaches to automated machine generation focus on virtual machine 
 These approaches provide strong isolation guarantees and complete control over the operating system environment, making them particularly suitable for legacy applications with complex system dependencies or specific operating system requirements.
 However, they typically incur higher resource overhead compared to containerization approaches and require longer initialization times due to full operating system bootstrapping processes \citep{felterUpdatedPerformanceComparison2015}.
 
+\newpage
 \subsection{Bare metal provisioning approaches}
 Bare metal provisioning involves direct configuration of physical hardware systems using automated deployment tools, from initial operating system installation through complete system configuration.
 This approach provides maximum performance and complete hardware control but presents significant challenges in terms of reproducibility and flexibility compared to virtualized environments \citep{nemethUNIXLinuxSystem2017}.
@@ -569,13 +578,13 @@ Modern implementations extend PXE capabilities through enhanced protocols such a
 In contrast to very limited manual provisioning alternatives, an alternative method is the use of remote management interfaces such as \ac{ipmi} to access bare metal servers remotely performing server management \citep{intelIntelligentPlatformManagement2015}.
 
 Enterprise-grade solutions such as \ac{maas} platforms provide comprehensive bare metal provisioning capabilities that transform physical servers into cloud-like infrastructure.
-Ubuntu \ac{maas} exemplifies this approach by offering automated server discovery, self-service hardware deployment, and fast OS installation across multiple operating systems including Ubuntu, Windows, CentOS, and ESXi.
-The platform integrates with configuration management tools such as Ansible, Chef, and Puppet, while providing REST API access for automation and comprehensive hardware inventory management \citep{canonicalUbuntuMAASMetal2025}.
+Ubuntu \ac{maas} exemplifies this approach by offering automated server discovery, self-service hardware deployment, and fast \ac{os} installation across multiple operating systems including Ubuntu, Windows, CentOS, and ESXi.
+The platform integrates with configuration management tools such as Ansible, Chef, and Puppet, while providing \ac{rest} \ac{api} access for automation and comprehensive hardware inventory management \citep{canonicalUbuntuMAASMetal2025}.
 
 The primary advantages of bare metal provisioning approaches include \citep{felterUpdatedPerformanceComparison2015,nemethUNIXLinuxSystem2017}:
 \begin{itemize}
     \item \textbf{Maximum Performance}: Direct hardware access eliminates virtualization overhead, providing optimal resource utilization for performance-critical applications and high-performance computing workloads.
-    \item \textbf{Hardware-specific Optimization}: Applications can leverage specialized hardware features such as GPU acceleration, custom networking hardware, FPGA acceleration, or specific CPU architectures without virtualization layer interference.
+    \item \textbf{Hardware-specific Optimization}: Applications can leverage specialized hardware features such as \ac{gpu} acceleration, custom networking hardware, FPGA acceleration, or specific CPU architectures without virtualization layer interference.
     \item \textbf{Complete System Control}: Full access to kernel modules, system services, hardware interfaces, and low-level system configuration enables comprehensive customization for specialized requirements.
     \item \textbf{Security Isolation}: Physical hardware isolation provides stronger security boundaries compared to shared virtualized environments, particularly important for sensitive or regulated workloads.
 \end{itemize}
@@ -598,12 +607,12 @@ These tools create standardized virtual machine images that encapsulate complete
 
 Vagrant represents a prominent example of VM template-based development environment management.
 Vagrant uses simple text-based configuration files (Vagrantfiles) written in Ruby to define virtual machine specifications, including base operating systems, provisioning scripts, network configurations, and shared folder mappings.
-The tool abstracts hypervisor-specific details, supporting multiple virtualization providers such as VirtualBox, VMware, and cloud platforms like AWS and Azure.
+The tool abstracts hypervisor-specific details, supporting multiple virtualization providers such as VirtualBox, VMware, and cloud platforms like \ac{aws} and Azure.
 Importantly, Vagrant integrates with configuration management tools through dedicated provisioners for Shell scripts, Ansible, Chef, and Puppet, enabling automated system configuration during virtual machine creation \citep{kolyasnikovExperimentalEvaluationVirtual2019}.
 
 Packer extends virtual machine template generation by creating machine images for multiple platforms from a single configuration.
 Unlike Vagrant, which focuses on development environment lifecycle management, Packer specializes in building immutable machine images suitable for production deployment.
-Packer configurations define builder specifications for different target platforms (AWS AMI, Azure VHD, VMware VMDK, etc.) and provisioner scripts that customize the base images using the same configuration management tools employed in bare metal environments.
+Packer configurations define builder specifications for different target platforms (\ac{aws} AMI, Azure VHD, VMware VMDK, etc.) and provisioner scripts that customize the base images using the same configuration management tools employed in bare metal environments.
 The resulting images can be deployed consistently across various infrastructure providers without requiring additional configuration steps during deployment \citep{hashicorpPackerHashiCorpDeveloper2025}.
 
 The key advantages of VM template approaches include \citep{portnoyVirtualizationEssentials2016}:
@@ -627,12 +636,12 @@ Both bare metal provisioning and virtual machine template generation rely heavil
 Configuration management tools such as Ansible, Chef, and Puppet enable comprehensive system configuration through declarative specifications that define the desired system state, executing provisioning scripts and configuration templates to install software packages, configure services, manage users and permissions, and apply security policies according to organizational requirements \citep{nemethUNIXLinuxSystem2017}.
 
 Configuration management integration typically occurs during the post-installation phase, where provisioning systems automatically install configuration management agents and establish secure communication channels between managed nodes and central management servers.
-Ansible represents a notable exception by utilizing agentless architecture, connecting to target systems via SSH to execute configuration tasks without requiring persistent agent processes.
+Ansible represents a notable exception by utilizing agentless architecture, connecting to target systems via \ac{ssh} to execute configuration tasks without requiring persistent agent processes.
 This approach provides advantages in environments where agent installation is restricted or where simplified management overhead is prioritized \citep{nemethUNIXLinuxSystem2017}.
 
 The declarative nature of configuration management tools ensures consistency across different deployment targets, whether bare metal hardware or virtual machine instances.
-Configuration templates and playbooks can be version-controlled alongside application code, enabling infrastructure-as-code practices that improve reproducibility and facilitate collaborative development workflows.
-Modern configuration management platforms also provide integration capabilities with cloud provisioning APIs, enabling seamless coordination between infrastructure provisioning and system configuration phases \citep{humbleContinuousDeliveryReliable2011}.
+Configuration templates and playbooks can be version-controlled alongside application code, enabling \ac{iac} practices that improve reproducibility and facilitate collaborative development workflows.
+Modern configuration management platforms also provide integration capabilities with cloud provisioning \acp{api}, enabling seamless coordination between infrastructure provisioning and system configuration phases \citep{humbleContinuousDeliveryReliable2011}.
 
 \section{CMake and build system reproducibility}
 CMake has evolved from a simple cross-platform build generator into a comprehensive build system ecosystem that supports reproducible development workflows across diverse platforms and development environments.
@@ -640,7 +649,7 @@ Modern CMake features, particularly CMake Presets and integrated testing framewo
 These tools address fundamental challenges in legacy C++ development, where build configuration complexity and environmental dependencies often create significant barriers to reproducible development processes \citep{swidzinskiModernCMakeEffortlessly2024}.
 
 CMake Presets, introduced in CMake 3.19, represent a paradigm shift toward declarative build configuration management.
-Presets allow developers to define reusable build configurations in JSON format, specifying compiler settings, build directories, environment variables, and CMake cache variables.
+Presets allow developers to define reusable build configurations in \ac{json} format, specifying compiler settings, build directories, environment variables, and CMake cache variables.
 This approach eliminates the need for complex shell scripts or manual configuration steps that traditionally accompanied C++ project setup procedures.
 Presets support inheritance and conditional logic, enabling sophisticated build configuration hierarchies that adapt to different development contexts while maintaining consistency \citep{swidzinskiModernCMakeEffortlessly2024}.
 
@@ -649,6 +658,7 @@ Presets support inheritance and conditional logic, enabling sophisticated build 
 % Source: CMake preset examples and patterns from \citep{swidzinskiModernCMakeEffortlessly2024}
 % Location: Should illustrate how presets inherit and override configuration settings
 
+\newpage
 \begin{lstlisting}[caption={Example CMake Preset Configuration}, label={lst:cmake_preset}]
 {
   "version": 3,
@@ -716,6 +726,7 @@ Tools such as ccache and sccache implement compiler caching by intercepting comp
 When a cache hit occurs, the cached object file is returned immediately without invoking the actual compiler, resulting in near-instantaneous compilation for unchanged source files.
 sccache extends this concept by supporting distributed caching across network storage backends, enabling build cache sharing across development teams and continuous integration environments \citep{mozillaSccacheSharedCompilation2025}.
 
+\newpage
 A systematic literature review of build optimization techniques identifies caching as a primary strategy for reducing build times \citep{aidassoBuildOptimizationSystematic2025}.
 The review categorizes caching approaches into several distinct patterns:
 \begin{itemize}
@@ -726,7 +737,7 @@ The review categorizes caching approaches into several distinct patterns:
 \end{itemize}
 
 The effectiveness of compiler caching depends on several factors including cache hit rates, source code churn patterns, and the overhead of cache lookup operations.
-Studies indicate that caching provides diminishing returns when used with container technologies that frequently recreate build environments from scratch, as this behaviour invalidates accumulated caches \citep{aidassoBuildOptimizationSystematic2025}.
+Studies indicate that caching provides diminishing returns when used with container technologies that frequently recreate build environments from scratch, as this behavior invalidates accumulated caches \citep{aidassoBuildOptimizationSystematic2025}.
 This limitation highlights the importance of strategic cache persistence when integrating compiler caches with containerized development workflows.
 
 Integration of compiler caches with CMake-based build systems requires minimal configuration.

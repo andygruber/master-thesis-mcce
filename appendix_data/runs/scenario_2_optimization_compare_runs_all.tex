@@ -1,0 +1,80 @@
+% Auto-generated master file for run data tables
+% This file includes all benchmark run tables with configurable captions
+%
+% Usage: Include this file in your LaTeX document
+% To customize captions, redefine the caption commands before including:
+%   \renewcommand{\runsCaptionEnvBenchmark}{Your Custom Caption}
+% To set the path to the table files (if not in same directory):
+%   \renewcommand{\runsBasePath}{path/to/tables/}
+%
+% Requires: booktabs, float, graphicx, currfile, adjustbox packages
+%   \usepackage{booktabs}
+%   \usepackage{float}
+%   \usepackage{graphicx}
+%   \usepackage{currfile}
+%   \usepackage{adjustbox}
+
+% Base path for table files (empty = same directory)
+\providecommand{\runsBasePath}{\currfiledir}
+
+\subsection{Run Data for scenario 2: Cumulative optimization impact}
+
+% Legend explaining metrics
+{\footnotesize
+\noindent\textbf{Metrics:} 
+Process = benchmark process metrics (time in seconds, memory in MB, CPU in \%); 
+System CPU/Memory = system-wide resource usage during benchmark; 
+Baseline = idle system state before benchmark; 
+Delta = difference between during and baseline; 
+Host = hypervisor process metrics (for VM environments only).
+}
+
+% Default caption definitions
+\providecommand{\runsCaptionScenarioOptimizationCompareWindowsNativeUnoptimizedCmakeBuildFull}{Run data for cmake\_build\_full in Windows 11 native
+unoptimized}
+\providecommand{\runsCaptionScenarioOptimizationCompareWindowsNativeUnoptimizedCmakeBuildInstall}{Run data for cmake\_build\_install in Windows 11 native
+unoptimized}
+\providecommand{\runsCaptionScenarioOptimizationCompareWindowsNativeUnoptimizedCmakeConfigure}{Run data for cmake\_configure in Windows 11 native
+unoptimized}
+\providecommand{\runsCaptionScenarioOptimizationCompareWindowsNativeUnoptimizedUnitTests}{Run data for unit\_tests in Windows 11 native
+unoptimized}
+\providecommand{\runsCaptionScenarioOptimizationCompareWindowsNativeOptimizedCmakeConfigure}{Run data for cmake\_configure in Windows 11 native
+optimized}
+\providecommand{\runsCaptionScenarioOptimizationCompareWindowsNativeOptimizedCmakeBuildFull}{Run data for cmake\_build\_full in Windows 11 native
+optimized}
+\providecommand{\runsCaptionScenarioOptimizationCompareWindowsNativeOptimizedCmakeBuildInstall}{Run data for cmake\_build\_install in Windows 11 native
+optimized}
+\providecommand{\runsCaptionScenarioOptimizationCompareWindowsNativeOptimizedUnitTests}{Run data for unit\_tests in Windows 11 native
+optimized}
+\providecommand{\runsCaptionScenarioOptimizationCompareDockerDesktopWinOptimizedCmakeBuildFull}{Run data for cmake\_build\_full in Docker Desktop Win11
+optimized}
+\providecommand{\runsCaptionScenarioOptimizationCompareDockerDesktopWinOptimizedCmakeBuildInstall}{Run data for cmake\_build\_install in Docker Desktop Win11
+optimized}
+\providecommand{\runsCaptionScenarioOptimizationCompareDockerDesktopWinOptimizedCmakeConfigure}{Run data for cmake\_configure in Docker Desktop Win11
+optimized}
+\providecommand{\runsCaptionScenarioOptimizationCompareDockerDesktopWinOptimizedUnitTests}{Run data for unit\_tests in Docker Desktop Win11
+optimized}
+\providecommand{\runsCaptionScenarioOptimizationCompareDockerLinuxOptimizedCmakeBuildFull}{Run data for cmake\_build\_full in Docker Linux
+optimized}
+\providecommand{\runsCaptionScenarioOptimizationCompareDockerLinuxOptimizedCmakeBuildInstall}{Run data for cmake\_build\_install in Docker Linux
+optimized}
+\providecommand{\runsCaptionScenarioOptimizationCompareDockerLinuxOptimizedCmakeConfigure}{Run data for cmake\_configure in Docker Linux
+optimized}
+\providecommand{\runsCaptionScenarioOptimizationCompareDockerLinuxOptimizedUnitTests}{Run data for unit\_tests in Docker Linux
+optimized}
+
+% Tables
+
+\begin{table}[H]
+\centering
+\adjustbox{max height=0.29\textheight, max width=\linewidth}{\input{\runsBasePath scenario_2_optimization_compare_runs_Docker_Desktop_Win11_optimized_unit_tests.tex}}
+\caption{\runsCaptionScenarioOptimizationCompareDockerDesktopWinOptimizedUnitTests}
+\label{tab:runs_scenario_2_optimization_compare_docker_desktop_win11_optimized_unit_tests}
+\end{table}
+
+\begin{table}[H]
+\centering
+\adjustbox{max height=0.29\textheight, max width=\linewidth}{\input{\runsBasePath scenario_2_optimization_compare_runs_Docker_Linux_optimized_unit_tests.tex}}
+\caption{\runsCaptionScenarioOptimizationCompareDockerLinuxOptimizedUnitTests}
+\label{tab:runs_scenario_2_optimization_compare_docker_linux_optimized_unit_tests}
+\end{table}

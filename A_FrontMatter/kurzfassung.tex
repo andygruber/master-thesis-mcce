@@ -1,26 +1,25 @@
+% LTeX: language=de-DE
 \chapter{Kurzfassung}
-Hier ist der Inhalt der Arbeit in komprimierter Form darzustellen.  
 
-Länge maximal 1 Seite. 
+Legacy-Softwareentwicklungsumgebungen stellen erhebliche Herausforderungen dar, die die Produktivität der Entwickler beeinträchtigen und die Reproduzierbarkeit der Builds gefährden.
+Herkömmliche Entwicklungsumgebungen basieren auf manuell konfigurierten Workstations, was zu Konfigurationsabweichungen und dem berüchtigten Problem „Auf meinem Rechner funktioniert es“ führt.
+Neue Teammitglieder müssen unter Umständen tagelang ihre Umgebung konfigurieren, bevor sie produktiv arbeiten können, während virtuelle Maschinen einen erheblichen Ressourcenaufwand verursachen.
 
-Anmerkung:  
+Diese Arbeit untersucht die Anwendung der Containerisierung auf die Entwicklung von Legacy-Software und untersucht, wie Docker-basierte Containertechnologien die Entwicklungsabläufe für langjährige native Softwareprojekte modernisieren können.
+Angewandt auf ein industrielles C++-Softwaresystem mit jahrzehntelang gewachsener Komplexität liefert diese Forschung empirische Belege für den Vergleich von containerisierten Entwicklungsumgebungen mit traditionellen nativen und virtualisierten Ansätzen hinsichtlich Build-Zeiten, Ressourcenauslastung und Entwicklerproduktivitätsmetriken.
 
-Der Leser der Kurzfassung soll verstehen, welche Problemstellung / Fragestellung durch die vorliegende Arbeit bearbeitet wird und welche Erkenntnisse und Ergebnisse vorliegen. 
+\begin{sloppypar}
+Die Ergebnisse zeigen, dass sich Container durch automatisierte Bereitstellung mithilfe von Infrastructure-as-Code, nahtlose IDE-Integration über DevContainers und standardisierte CMake-basierte plattformübergreifende Build-Konfigurationen in Legacy-Workflows integrieren lassen.
+Die Umstellungszeit für Toolchains wurde um 95\,\% reduziert---von 12,9 Minuten auf 37,5 Sekunden---, was direkte Produktivitätssteigerungen für Entwickler-Onboarding und Multi-Version-Entwicklungsszenarien bestätigt.
+\end{sloppypar}
 
-Bitte beachten Sie auch die Richtlinie des Studiengangs zur Erstellung von wissenschaftlichen Arbeiten, vor allem die formalen Anforderungen wie z.B. Zitierweise nach APA-Styleguide in der Form (Autor, Jahr, Seite).  
+\begin{sloppypar}
+Die Leistungsbewertung ergab, dass Linux-basierte Container bei dateisystemintensiven Vorgängen um 35 bis 72\,\% besser abschnitten als Windows-native Ansätze, während bei CPU-gebundener Kompilierung in allen Umgebungen nur geringe Unterschiede von maximal 15\,\% zu verzeichnen waren.
+Native Linux-Container verursachten im Vergleich zur Bare-Metal-Ausführung nur einen vernachlässigbaren Overhead.
+Das Compiler-Caching verstärkte die Leistungsunterschiede erheblich, wobei optimierte containerisierte Workflows im Vergleich zu herkömmlichen, nicht optimierten Ansätzen eine Reduzierung der Gesamt-Workflow-Zeit um bis zu 89\,\% erzielten.
+Die Analyse der Ressourcennutzung zeigte, dass die CPU-Auslastungsmuster eher die Art der Operation als die Art der Umgebung widerspiegelten, während der Speicherverbrauch in Hypervisor-basierten Lösungen im Vergleich zur nativen Containerisierung 5 bis 10 GB zusätzliche Ressourcen erforderte.
+\end{sloppypar}
 
-Hinweis: Die Arbeit ist doppelseitig auszudrucken. Folgende Seiten beginnen IMMER auf einer rechten, ungeraden Seite: 
-
-Deckblatt 
-
-Vorwort 
-
-Inhaltsverzeichnis 
-
-Kurzfassung 
-
-Abstract 
-
-Neues Kapitel auf Kapitelebene 1. Bitte fügen Sie mit Kapitel 2 (Grundlagen) beginnend jeweils entsprechende Leerseiten ein. Alle vorhergehenden Abschnitte sind mittels eigenen Word-Abschnitten bereits festgelegt. 
-
-\lipsum[2-3]
+Die Resultate belegen, dass sich die Prinzipien der Containerisierung erfolgreich von der Bereitstellung von Microservices auf monolithische Legacy-Systeme übertragen lassen.
+Dadurch werden Reproduzierbarkeit, Produktivität und Performance deutlich verbessert.
+Containerisierung stellt somit eine praktikable Modernisierungsstrategie dar, um bestehende Software-Investitionen zu erhalten und gleichzeitig wettbewerbsfähige Entwicklungspraktiken sicherzustellen.

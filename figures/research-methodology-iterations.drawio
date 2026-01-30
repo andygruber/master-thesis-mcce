@@ -1,0 +1,66 @@
+<mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36" version="29.3.4">
+  <diagram name="Research Methodology Iterations" id="research-methodology">
+    <mxGraphModel dx="2066" dy="1103" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="it1-design" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fontSize=11;fillColor=#f5f5f5;strokeColor=#333333;fontColor=#000000;" value="Design" vertex="1">
+          <mxGeometry height="40" width="120" x="40" y="40" as="geometry" />
+        </mxCell>
+        <mxCell id="it1-arrow1" edge="1" parent="1" source="it1-design" style="endArrow=classic;html=1;exitX=1;exitY=0.5;entryX=0;entryY=0.5;strokeColor=#000000;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" target="it1-box" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="it1-box" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fontSize=10;fillColor=#e0e0e0;strokeColor=#333333;fontColor=#000000;" value="&lt;b&gt;Iteration 1 (IT1)&lt;/b&gt;&lt;br&gt;Prototype Development&lt;br&gt;&amp;amp; Initial Evaluation" vertex="1">
+          <mxGeometry height="60" width="160" x="190" y="30" as="geometry" />
+        </mxCell>
+        <mxCell id="it1-arrow2" edge="1" parent="1" source="it1-box" style="endArrow=classic;html=1;exitX=1;exitY=0.5;entryX=0;entryY=0.5;strokeColor=#000000;entryDx=0;entryDy=0;exitDx=0;exitDy=0;" target="it1-demo" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="it1-demo" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fontSize=11;fillColor=#f5f5f5;strokeColor=#333333;fontColor=#000000;" value="Demonstration" vertex="1">
+          <mxGeometry height="40" width="120" x="380" y="40" as="geometry" />
+        </mxCell>
+        <mxCell id="it1-arrow3" edge="1" parent="1" source="it1-demo" style="endArrow=classic;html=1;exitX=1;exitY=0.5;entryX=0;entryY=0.5;strokeColor=#000000;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" target="it1-eval" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="it1-eval" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fontSize=11;fillColor=#f5f5f5;strokeColor=#333333;fontColor=#000000;" value="Evaluation" vertex="1">
+          <mxGeometry height="40" width="120" x="530" y="40" as="geometry" />
+        </mxCell>
+        <mxCell id="it-arrow" edge="1" parent="1" source="it1-design" style="endArrow=classic;html=1;exitX=0.5;exitY=1;entryX=0.5;entryY=0;strokeColor=#000000;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" target="it2-design" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="it2-design" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fontSize=11;fillColor=#f5f5f5;strokeColor=#333333;fontColor=#000000;" value="Design" vertex="1">
+          <mxGeometry height="40" width="120" x="40" y="140" as="geometry" />
+        </mxCell>
+        <mxCell id="it2-arrow1" edge="1" parent="1" source="it2-design" style="endArrow=classic;html=1;exitX=1;exitY=0.5;entryX=0;entryY=0.5;strokeColor=#000000;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" target="it2-box" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="it2-box" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fontSize=10;fillColor=#e0e0e0;strokeColor=#333333;fontColor=#000000;" value="&lt;b&gt;Iteration 2 (IT2)&lt;/b&gt;&lt;br&gt;Refinement &amp;amp;&lt;br&gt;Comprehensive Evaluation" vertex="1">
+          <mxGeometry height="60" width="160" x="190" y="130" as="geometry" />
+        </mxCell>
+        <mxCell id="it2-arrow2" edge="1" parent="1" source="it2-box" style="endArrow=classic;html=1;exitX=1;exitY=0.5;entryX=0;entryY=0.5;strokeColor=#000000;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" target="it2-demo" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="it2-demo" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fontSize=11;fillColor=#f5f5f5;strokeColor=#333333;fontColor=#000000;" value="Demonstration" vertex="1">
+          <mxGeometry height="40" width="120" x="380" y="140" as="geometry" />
+        </mxCell>
+        <mxCell id="it2-arrow3" edge="1" parent="1" style="endArrow=classic;html=1;entryX=0;entryY=0.5;strokeColor=#000000;entryDx=0;entryDy=0;" target="it2-eval" value="">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="500" y="160" as="sourcePoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="it2-eval" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fontSize=11;fillColor=#f5f5f5;strokeColor=#333333;fontColor=#000000;" value="Evaluation" vertex="1">
+          <mxGeometry height="40" width="120" x="530" y="140" as="geometry" />
+        </mxCell>
+        <mxCell id="feedback-arrow" edge="1" parent="1" source="it1-eval" style="endArrow=classic;html=1;dashed=1;exitX=0.5;exitY=1;entryX=1;entryY=0;curved=1;strokeColor=#000000;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" target="it2-design" value="">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="500" y="120" />
+              <mxPoint x="370" y="100" />
+              <mxPoint x="200" y="100" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

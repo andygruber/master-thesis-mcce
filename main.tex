@@ -43,8 +43,8 @@
 \clearpage
 \frontmatter{} % turns off chapter numbering and uses roman numerals for page numbers
 \input{A_FrontMatter/acknowledgements} % adds the acknowledgements
-\input{A_FrontMatter/kurzfassung} % adds the "Kurzfassung" in german.
 \input{A_FrontMatter/abstracts} % adds the abstract
+\input{A_FrontMatter/kurzfassung} % adds the "Kurzfassung" in german.
 %\pagebreak
 
 \microtypesetup{protrusion=false}
@@ -54,10 +54,11 @@
 \input{B_Chapters/01_Introduction}
 \input{B_Chapters/02_Related_work}
 \input{B_Chapters/03_Fundamentals}
-\input{B_Chapters/04_Prototype}
-% \input{B_Chapters/05_Empirical_work}
-% \input{B_Chapters/06_Discussion}
-% \input{B_Chapters/07_Conclusion}
+\input{B_Chapters/04_Methodology}
+\input{B_Chapters/05_Prototype}
+\input{B_Chapters/06_Evaluation_interpretation}
+\input{B_Chapters/07_Discussion}
+\input{B_Chapters/08_Conclusion}
 
 \nocite{*} % includes complete bibliography, including entries that remain uncited, RMF
 \printbibliography % bibliography
@@ -90,4 +91,7 @@
 %\input{C_BackMatter/glossary}
 \input{C_BackMatter/acronyms}
 \input{C_BackMatter/appendix}
+\clearpage
+\input{C_BackMatter/declarationOfHonesty}
+
 \end{document}

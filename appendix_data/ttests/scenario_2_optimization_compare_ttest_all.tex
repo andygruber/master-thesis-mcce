@@ -1,0 +1,68 @@
+% Auto-generated master file for t-test tables
+% This file includes all benchmark t-test tables with configurable captions
+%
+% Usage: Include this file in your LaTeX document
+% To customize captions, redefine the caption commands before including:
+%   \renewcommand{\ttestCaptionBenchmarkName}{Your Custom Caption}
+% To set the path to the table files (if not in same directory):
+%   \renewcommand{\ttestBasePath}{path/to/tables/}
+%
+% Requires: booktabs, float, graphicx, currfile packages
+%   \usepackage{booktabs}
+%   \usepackage{float}
+%   \usepackage{graphicx}
+%   \usepackage{currfile}
+
+% Base path for table files (empty = same directory)
+\providecommand{\ttestBasePath}{\currfiledir}
+
+\subsection{T-test Results for scenario 2: Cumulative optimization impact}
+
+% Legend explaining column abbreviations and environment names
+{\footnotesize
+\noindent\textbf{Metrics:} w = wall\_time\_seconds, c = system\_cpu\_delta\_from\_baseline, m = system\_memory\_delta\_mb\_max, hm = host\_peak\_vm\_memory\_mb.
+Bold values indicate statistical significance (p < 0.05).
+
+\noindent\textbf{Environments:} Windows 11 native
+u... = Windows 11 native
+unoptimized; Windows 11 native
+o... = Windows 11 native
+optimized; Docker Desktop Win1... = Docker Desktop Win11
+optimized.
+}
+
+% Default caption definitions
+\providecommand{\ttestCaptionScenarioOptimizationCompareCmakeBuildFull}{T-test p-values for cmake\_build\_full}
+\providecommand{\ttestCaptionScenarioOptimizationCompareCmakeBuildInstall}{T-test p-values for cmake\_build\_install}
+\providecommand{\ttestCaptionScenarioOptimizationCompareCmakeConfigure}{T-test p-values for cmake\_configure}
+\providecommand{\ttestCaptionScenarioOptimizationCompareUnitTests}{T-test p-values for unit\_tests}
+
+% Tables
+
+\begin{table}[H]
+\centering
+\input{\ttestBasePath scenario_2_optimization_compare_ttest_cmake_build_full.tex}
+\caption{\ttestCaptionScenarioOptimizationCompareCmakeBuildFull}
+\label{tab:ttest_scenario_2_optimization_compare_cmake_build_full}
+\end{table}
+
+\begin{table}[H]
+\centering
+\input{\ttestBasePath scenario_2_optimization_compare_ttest_cmake_build_install.tex}
+\caption{\ttestCaptionScenarioOptimizationCompareCmakeBuildInstall}
+\label{tab:ttest_scenario_2_optimization_compare_cmake_build_install}
+\end{table}
+
+\begin{table}[H]
+\centering
+\input{\ttestBasePath scenario_2_optimization_compare_ttest_cmake_configure.tex}
+\caption{\ttestCaptionScenarioOptimizationCompareCmakeConfigure}
+\label{tab:ttest_scenario_2_optimization_compare_cmake_configure}
+\end{table}
+
+\begin{table}[H]
+\centering
+\input{\ttestBasePath scenario_2_optimization_compare_ttest_unit_tests.tex}
+\caption{\ttestCaptionScenarioOptimizationCompareUnitTests}
+\label{tab:ttest_scenario_2_optimization_compare_unit_tests}
+\end{table}

@@ -1,0 +1,73 @@
+% Auto-generated master file for run data tables
+% This file includes all benchmark run tables with configurable captions
+%
+% Usage: Include this file in your LaTeX document
+% To customize captions, redefine the caption commands before including:
+%   \renewcommand{\runsCaptionEnvBenchmark}{Your Custom Caption}
+% To set the path to the table files (if not in same directory):
+%   \renewcommand{\runsBasePath}{path/to/tables/}
+%
+% Requires: booktabs, float, graphicx, currfile, adjustbox packages
+%   \usepackage{booktabs}
+%   \usepackage{float}
+%   \usepackage{graphicx}
+%   \usepackage{currfile}
+%   \usepackage{adjustbox}
+
+% Base path for table files (empty = same directory)
+\providecommand{\runsBasePath}{\currfiledir}
+
+\subsection{Run Data for scenario 2: Docker Desktop with non-native bind mounts}
+
+% Legend explaining metrics
+{\footnotesize
+\noindent\textbf{Metrics:} 
+Process = benchmark process metrics (time in seconds, memory in MB, CPU in \%); 
+System CPU/Memory = system-wide resource usage during benchmark; 
+Baseline = idle system state before benchmark; 
+Delta = difference between during and baseline; 
+Host = hypervisor process metrics (for VM environments only).
+}
+
+% Default caption definitions
+\providecommand{\runsCaptionScenarioDockerdesktopBindMountDockerDesktopWinDebianContainerVolumeMountedCmakeBuildFull}{Run data for cmake\_build\_full in Docker Desktop Win11
+Debian 12 container
+volume-mounted}
+\providecommand{\runsCaptionScenarioDockerdesktopBindMountDockerDesktopWinDebianContainerVolumeMountedCmakeBuildInstall}{Run data for cmake\_build\_install in Docker Desktop Win11
+Debian 12 container
+volume-mounted}
+\providecommand{\runsCaptionScenarioDockerdesktopBindMountDockerDesktopWinDebianContainerVolumeMountedCmakeConfigure}{Run data for cmake\_configure in Docker Desktop Win11
+Debian 12 container
+volume-mounted}
+\providecommand{\runsCaptionScenarioDockerdesktopBindMountDockerDesktopWinDebianContainerBindMountedCmakeConfigure}{Run data for cmake\_configure in Docker Desktop Win11
+Debian 12 container
+bind-mounted}
+\providecommand{\runsCaptionScenarioDockerdesktopBindMountDockerDesktopWinDebianContainerBindMountedCmakeBuildFull}{Run data for cmake\_build\_full in Docker Desktop Win11
+Debian 12 container
+bind-mounted}
+\providecommand{\runsCaptionScenarioDockerdesktopBindMountDockerDesktopWinDebianContainerBindMountedCmakeBuildInstall}{Run data for cmake\_build\_install in Docker Desktop Win11
+Debian 12 container
+bind-mounted}
+
+% Tables
+
+\begin{table}[H]
+\centering
+\adjustbox{max height=0.29\textheight, max width=\linewidth}{\input{\runsBasePath scenario_2_dockerdesktop_bind_mount_runs_Docker_Desktop_Win11_Debian_12_container_bind-mounted_cmake_build_full.tex}}
+\caption{\runsCaptionScenarioDockerdesktopBindMountDockerDesktopWinDebianContainerBindMountedCmakeBuildFull}
+\label{tab:runs_scenario_2_dockerdesktop_bind_mount_docker_desktop_win11_debian_12_container_bind_mounted_cmake_build_full}
+\end{table}
+
+\begin{table}[H]
+\centering
+\adjustbox{max height=0.29\textheight, max width=\linewidth}{\input{\runsBasePath scenario_2_dockerdesktop_bind_mount_runs_Docker_Desktop_Win11_Debian_12_container_bind-mounted_cmake_build_install.tex}}
+\caption{\runsCaptionScenarioDockerdesktopBindMountDockerDesktopWinDebianContainerBindMountedCmakeBuildInstall}
+\label{tab:runs_scenario_2_dockerdesktop_bind_mount_docker_desktop_win11_debian_12_container_bind_mounted_cmake_build_install}
+\end{table}
+
+\begin{table}[H]
+\centering
+\adjustbox{max height=0.29\textheight, max width=\linewidth}{\input{\runsBasePath scenario_2_dockerdesktop_bind_mount_runs_Docker_Desktop_Win11_Debian_12_container_bind-mounted_cmake_configure.tex}}
+\caption{\runsCaptionScenarioDockerdesktopBindMountDockerDesktopWinDebianContainerBindMountedCmakeConfigure}
+\label{tab:runs_scenario_2_dockerdesktop_bind_mount_docker_desktop_win11_debian_12_container_bind_mounted_cmake_configure}
+\end{table}

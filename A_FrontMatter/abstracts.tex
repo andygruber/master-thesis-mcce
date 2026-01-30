@@ -1,15 +1,21 @@
-	%Please consider the following section of the "Formvorschriften für die gedruckte Version"
-	%Im Anhang ist eine Zusammenfassung (Abstract) mitzubinden. 
-	%Ist die Arbeit in einer Fremdsprache verfasst, ist im Anhang jedenfalls eine deutsche Zusammenfassung mitzubinden.
 \chapter{Abstract}
-		This \LaTeX{} template provides example on how to format and display text, 
-		mathematical formulas, and insert tables or images. There is a lot more you 
-		can do with \LaTeX{}, for more information check out https://en.wikibooks.org/wiki/LaTeX.
 
-Komprimierter Inhalt der Arbeit (Kurzfassung) in Englisch. 
+Legacy software development environments present substantial challenges that impede developer productivity and compromise build reproducibility.
+Traditional development setups rely on manually configured workstations, leading to configuration drift and the infamous ``works on my machine'' problem.
+New team members may spend days configuring their environments before becoming productive, while virtual machines introduce considerable resource overhead.
 
-Länge maximal 1 Seite. 
+This thesis investigates the application of containerization to legacy software development, examining how Docker-based container technologies can modernize development workflows for long-standing native software projects.
+Applied to an industrial C++ software system with decades of accumulated complexity, this research provides empirical evidence comparing containerized development environments against traditional native and virtualized approaches across build times, resource utilization, and developer productivity metrics.
 
-% Important to mention keywords here, like performance, build times, CPU utilization, memory consumption, container, docker, c++, Software Development, Legacy Software Development Projects, Reproducibility, Software Engineering, Virtual Machines, DevContainers, IDE Integration, Containers, Performance Measurement, General Definitions, Scripted Rollout of Native Developer Machines, Virtual Machines, Containers, Containerization in Software Development, DevContainers, IDE Integration, Performance Measurement, General Definitions, Summary
+The findings demonstrate that containers integrate into legacy workflows through automated provisioning using infrastructure-as-code, seamless IDE integration via DevContainers, and standardized CMake-based cross-platform build configurations.
+Toolchain switching time reduced by 95\%---from 12.9 minutes to 37.5 seconds---validating direct productivity improvements for developer onboarding and multi-version development scenarios.
 
-\lipsum[2-4]
+\begin{sloppypar}
+Performance evaluation revealed that Linux-based containers outperformed Windows-native approaches by 35--72\% for filesystem-intensive operations, while CPU-bound compilation showed modest differences within 15\% across all environments.
+Native Linux containers imposed negligible overhead compared to bare-metal execution.
+Compiler caching amplified performance differences substantially, with optimized containerized workflows achieving up to 89\% total workflow time reduction compared to traditional unoptimized approaches.
+Resource utilization analysis showed that CPU utilization patterns reflected operation types rather than environment types, while memory consumption in hypervisor-based solutions required 5--10 GB additional resources compared to native containerization.
+\end{sloppypar}
+
+The results show that containerization principles successfully transfer from microservice deployment to monolithic legacy systems without requiring fundamental codebase changes, delivering reproducibility, productivity, and performance benefits that make it a viable modernization strategy for preserving established software investments while maintaining competitive development practices.
+
