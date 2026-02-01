@@ -23,7 +23,7 @@ Before examining the detailed breakdown of each environment, Figure~\ref{fig:sce
     \label{fig:scenario1_wall_time_overview}
 \end{figure}
 
-The figure shows a clear performance hierarchy: native Windows toolchain switching via Visual Studio de- and reinstallation requires approximately 12.9 minutes, while containerized approaches complete in under 2 minutes---native containers on Linux at 37.5 seconds and Docker Desktop on Windows at 1.75 minutes.
+The figure, based on mean values, shows a clear performance hierarchy: native Windows toolchain switching via Visual Studio de- and reinstallation requires approximately 12.9 minutes, while containerized approaches complete in under 2 minutes---native containers on Linux at 37.5 seconds and Docker Desktop on Windows at approximately 1.7 minutes.
 The Hyper-V virtualized approach falls between these at approximately 3.6 minutes.
 Following subsections examine each environment's performance characteristics in detail, with a comprehensive statistical comparison presented in Section \ref{subsec:toolchain_switching_comparison}.
 
@@ -108,12 +108,12 @@ Two container runtime configurations were evaluated: Docker Desktop on Windows (
     \label{fig:container_start}
 \end{figure}
 
-Native Linux containers complete the image pull in 36.5 seconds with high consistency (standard deviation of 0.04 seconds), while Docker Desktop requires 102.7 seconds.
+Native Linux containers complete the image pull in 36.5 seconds with high consistency (standard deviation of 0.04 seconds), while Docker Desktop requires 98.9 seconds.
 
 Container startup contributes minimally to total switching time (2--3\% across both environments).
 Docker Desktop's median start time of 0.55 seconds indicates most runs complete quickly, but occasional outliers (maximum 12.21 seconds) reflect WSL2 VM initialization overhead when resuming from idle state.
 
-Total containerized toolchain switching achieves 37.5 seconds on native Linux and 105.0 seconds (1.75 minutes) on Docker Desktop, representing 95.1\% and 86.4\% improvements over the native Windows baseline respectively.
+Total containerized toolchain switching achieves 37.5 seconds on native Linux and 100.8 seconds (1.68 minutes) on Docker Desktop, representing 95.1\% and 87.0\% improvements over the native Windows baseline respectively.
 
 \subsection{Virtualized: Hyper-V VM template switching}
 
@@ -150,10 +150,10 @@ This test measures the time required to switch to a Hyper-V virtual machine temp
     \label{fig:vm_boot}
 \end{figure}
 
-The total virtualized toolchain switching time of 218.2 seconds (3.6 minutes) is dominated by the template download operation (87\%), with VM boot contributing 13\% and registration being negligible.
-VM template download requires approximately 3.2 minutes on average, with moderate variance reflecting network bandwidth fluctuations during transfer of large VHDX files over a 1GbE connection.
+The total virtualized toolchain switching time of 217.5 seconds (3.6 minutes) is dominated by the template download operation (87\%), with VM boot contributing 13\% and registration being negligible.
+VM template download requires approximately 3.1 minutes, with moderate variance reflecting network bandwidth fluctuations during transfer of large VHDX files over a 1GbE connection.
 These measurements used a Linux VM template of 20.5 GB; VM template size significantly impacts the total switching time.
-VM registration is nearly instantaneous at 0.51 seconds, as Hyper-V efficiently handles configuration metadata operations.
+VM registration is nearly instantaneous at 0.52 seconds, as Hyper-V efficiently handles configuration metadata operations.
 VM boot requires approximately 28 seconds for full operating system initialization with consistent performance across runs.
 
 This represents a 71.7\% improvement over the native Windows baseline, positioning virtualization between native installation and containerization in terms of switching efficiency.
@@ -186,9 +186,9 @@ For completeness, the benchmark also measured the time to install development to
     \label{fig:native_linux_devtools}
 \end{figure}
 
-Native Linux development tools installation averages 114.5 seconds with notably higher variance (standard deviation of 22.99 seconds) compared to other operations.
+Native Linux development tools installation completes in a median of 109 seconds with notably higher variance (standard deviation of 22.99 seconds) compared to other operations.
 This variance stems from package manager behavior, including dependency resolution, mirror selection, and download speeds.
-The skewed distribution (median of 109s vs.\ mean of 114.5s) indicates occasional slow runs that pull the average upward.
+The skewed distribution (median of 109s vs.\ mean of 114s) indicates occasional slow runs that pull the average upward.
 
 \subsection{Comparative analysis: Toolchain switching}
 \label{subsec:toolchain_switching_comparison}
@@ -209,9 +209,9 @@ Figure~\ref{fig:scenario1_total_runtime} visualizes the total runtime distributi
         \textbf{Environment} & \textbf{Mean (s)} & \textbf{Median (s)} & \textbf{Std Dev} & \textbf{Min (s)} & \textbf{Max (s)} & \textbf{Reduction} \\
         \hline
         Native Windows (VS2022) & 771.75 & 772.25 & 8.77 & 758.69 & 789.92 & baseline \\
-        Native Linux (devtools) & 114.47 & 109.00 & 22.99 & 90.00 & 174.00 & $-$85.2\% \\
-        Hyper-V VM & 218.18 & 217.48 & 9.99 & 200.53 & 242.73 & $-$71.7\% \\
-        Docker Desktop (WSL2) & 105.00 & 100.78 & 10.02 & 93.02 & 126.50 & $-$86.4\% \\
+        Native Linux (devtools) & 114.47 & 109.00 & 22.99 & 90.00 & 174.00 & $-$85.9\% \\
+        Hyper-V VM & 218.18 & 217.48 & 9.99 & 200.53 & 242.73 & $-$71.8\% \\
+        Docker Desktop (WSL2) & 105.00 & 100.78 & 10.02 & 93.02 & 126.50 & $-$87.0\% \\
         Native Container (Linux) & 37.48 & 37.48 & 0.05 & 37.34 & 37.60 & $-$95.1\% \\
         \hline
     \end{tabular}
@@ -219,7 +219,7 @@ Figure~\ref{fig:scenario1_total_runtime} visualizes the total runtime distributi
     \label{tab:toolchain_switching_comparison}
 \end{table}
 
-The results establish a clear performance hierarchy: native containers on Linux complete switching in 37.5 seconds (95.1\% faster than baseline), followed by Docker Desktop on Windows at 1.75 minutes (86.4\% faster), native Linux package installation at 1.9 minutes (85.2\% faster), Hyper-V VM switching at 3.6 minutes (71.7\% faster), and native Windows Visual Studio switching at 12.9 minutes (baseline).
+The results establish a clear performance hierarchy: native containers on Linux complete switching in 37.5 seconds (95.1\% faster than baseline), followed by Docker Desktop on Windows at 1.68 minutes (87.0\% faster), native Linux package installation at 1.8 minutes (85.9\% faster), Hyper-V VM switching at 3.6 minutes (71.8\% faster), and native Windows Visual Studio switching at 12.9 minutes (baseline).
 Native containers show exceptional consistency (standard deviation 0.05s), while native Linux package installation exhibits the highest variance (22.99s) due to package manager behavior.
 
 \section{Scenario 2: Comprehensive performance benchmarking}
@@ -852,8 +852,8 @@ All measurements were conducted using the implemented prototype described in Cha
 
 The first scenario examined toolchain switching performance, measuring the time required to change development environments.
 Native Windows toolchain switching via Visual Studio reinstallation required approximately 12.9 minutes, establishing the baseline.
-Containerized approaches reduced this considerably: native Linux containers completed switching in 37.5 seconds (95.1\% improvement), while Docker Desktop on Windows achieved 1.75 minutes (86.4\% improvement).
-Hyper-V virtualization fell between these at 3.6 minutes (71.7\% improvement).
+Containerized approaches reduced this considerably: native Linux containers completed switching in 37.5 seconds (95.1\% improvement), while Docker Desktop on Windows achieved 1.68 minutes (87.0\% improvement).
+Hyper-V virtualization fell between these at 3.6 minutes (71.8\% improvement).
 The results indicate that container-based toolchain management provides substantial time savings compared to traditional installation-based approaches, with native Linux containers offering the fastest switching times and highest consistency.
 
 The second scenario evaluated comprehensive build workflow performance across six environments.
