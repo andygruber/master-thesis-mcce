@@ -78,10 +78,11 @@ To maintain focus and feasibility, this research explicitly excludes the followi
 To address the research questions formulated above, this thesis employs the Design Science Research Methodology (DSRM) as introduced by \citet{peffersDesignScienceResearch2007}.
 Design science research differs from theory-building research by creating and evaluating artifacts that solve identified organizational problems rather than merely understanding or explaining reality.
 This approach is particularly suitable for this thesis, which develops and evaluates a containerized development environment system to modernize legacy software development workflows.
-DSRM ensures both rigor through systematic evaluation and relevance through solving practical problems, while its iterative nature allows ongoing adaptation and refinement of the artifact to address the research questions \citet{peffersDesignScienceResearch2007}.
+DSRM ensures both rigor through systematic evaluation and relevance through solving practical problems, while its iterative nature allows ongoing adaptation and refinement of the artifact to address the research questions \citep{peffersDesignScienceResearch2007}.
 
 The evaluation specifically addresses build performance and resource utilization across native, containerized, and virtualized environments.
-The research unfolds through two iterative phases, each with distinct goals as illustrated in Figure~\ref{fig:research_methodology_iterations}.
+As illustrated in Figure~\ref{fig:research_methodology_iterations}, the research unfolds through two iterative phases: the first focuses on prototype development and initial validation, while the second executes comprehensive benchmarking to gather empirical evidence for the research questions.
+Chapter~\ref{ch:methodology} provides detailed descriptions of each DSRM phase and how they were applied in this research.
 
 \begin{figure}[ht]
 	\centering
@@ -89,17 +90,6 @@ The research unfolds through two iterative phases, each with distinct goals as i
 	\caption{The iterations of this thesis (adapted from \cite{peffersDesignScienceResearch2007})}
 	\label{fig:research_methodology_iterations}
 \end{figure}
-
-In the first iteration, the emphasis lies on designing and developing the initial version of the containerized development environment prototype.
-This phase prioritizes the core infrastructure: Docker container configurations, virtual machine setups for comparison, and the benchmark monitoring system.
-Initial demonstrations validate that the prototype can successfully build the legacy software project across native, containerized, and virtualized environments.
-Preliminary evaluation identifies refinement opportunities and validates the measurement approach.
-
-Moving to the second iteration, the focus shifts to comprehensive benchmarking and systematic evaluation.
-Based on insights from the initial iteration, the prototype is refined to address identified limitations.
-This stage executes the full evaluation scenarios: toolchain switching measurements and comprehensive performance benchmarking across all environment configurations.
-The collected data enables quantitative comparison of build times (RQ1.1) and resource utilization including CPU and RAM (RQ1.2), providing empirical evidence to address the research questions.
-Results are analyzed statistically, and conclusions are drawn regarding the practical implications of containerization for legacy software development workflows.
 
 \section{Thesis structure}
 \label{sec:thesis_structure}
@@ -127,5 +117,4 @@ Chapter~\ref{ch:empirical_results_evaluation} presents the empirical results, in
 
 The \textbf{Synthesis} part integrates and concludes the research.
 Chapter~\ref{ch:discussion} revisits the research questions in light of the empirical findings, discusses the implications for practitioners and researchers, and acknowledges limitations while identifying opportunities for future work.
-Finally, Chapter~\ref{ch:conclusion} summarizes the key findings and articulates the contributions of this thesis to the field of legacy software development modernization.
-
+Finally, Chapter~\ref{ch:conclusion} summarizes the key findings and articulates the contributions to legacy software modernization.

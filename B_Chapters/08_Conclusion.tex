@@ -10,8 +10,8 @@ Toolchain switching time reduced by 95\%---from 12.9 minutes to 37.5 seconds---v
 
 Performance evaluation across six environments revealed nuanced characteristics.
 Linux-based containers outperformed Windows-native approaches by 35--72\% for filesystem-intensive operations, regardless of native or WSL2 execution.
-For CPU-bound compilation, all configurations performed within 15\% of each other, with native Linux containers imposing negligible overhead.
-Compiler caching amplified differences: Linux containers achieved 24--28$\times$ speedup versus 4--5$\times$ on Windows.
+For CPU-bound compilation, all configurations performed within 15\% of each other, with native Linux containers imposing minimal overhead.
+Compiler caching amplified differences: Linux containers achieved 24--27$\times$ speedup versus 4--5$\times$ on Windows.
 Combined optimization techniques (caching and parallel testing) reduced total workflow time by up to 89\% compared to unoptimized Windows workflows.
 
 Resource utilization distinguished virtualization from containerization overhead.

@@ -10,7 +10,6 @@ Two-tailed independent samples t-tests validated the statistical significance of
 
 This scenario evaluates the time required to switch between different development toolchains, addressing the practical challenge of developers needing to work with multiple compiler versions or validate cross-distribution compatibility.
 The scenario measures the overhead associated with changing the development environment configuration across the three deployment approaches.
-All measurements were repeated 30 times to ensure statistical robustness.
 Where direct comparisons were possible (Docker Desktop vs native Linux containers), statistical testing confirmed significant performance differences for image pull operations ($p < 0.001$) and container start times ($p = 0.031$); detailed results are available in Appendix~\nameref{appendix:statistical_tests}.
 
 \subsection{Overview of toolchain switching results}
@@ -227,7 +226,7 @@ Native containers show exceptional consistency (standard deviation 0.05s), while
 
 This scenario evaluates build, installation, and test execution performance across six environments with infrastructure already provisioned.
 The analysis examines real-world development workflows including CMake configuration, full builds, incremental builds with varying scopes, installation procedures, and test execution.
-All benchmarks were executed 30 times per environment to ensure statistical robustness, with measurements focusing on wall-clock time, CPU utilization, and memory consumption.
+Measurements focus on wall-clock time, CPU utilization, and memory consumption.
 
 Statistical significance of performance differences was evaluated using two-tailed independent samples t-tests as specified in Section~\ref{sec:methodology_evaluation}.
 Pairwise comparisons between environments showed that the vast majority of observed wall-clock time differences were statistically significant at the $\alpha = 0.05$ level, with most yielding $p < 0.001$.
@@ -250,7 +249,7 @@ Each subsection presents a specific benchmark's characteristics, statistical ove
 \textbf{Note on host memory measurements:} For hypervisor-based environments (Hyper-V Windows Guest, Hyper-V Debian Guest, Docker Desktop with WSL2), ``Host Peak Mem'' columns in result tables represent the total memory allocated to the VM infrastructure by the host system, including the guest operating system.
 These values substantially exceed the ``Mem $\Delta$ Peak'' measurements observed within guest environments and are not directly comparable to their native environment memory delta counterparts.
 Memory allocation strategies differ by configuration: Hyper-V Debian Guest uses static 20 GB host memory allocation; Hyper-V Windows Guest and Docker Desktop with WSL2 use dynamic memory allocation to maximum 20 GB.
-Docker on Linux uses native containers without a hypervisor and therefor shows no host memory overhead in a similar manner.
+Docker on Linux uses native containers without a hypervisor and therefore shows no host memory overhead similarly.
 
 \subsection{Standard build workflow benchmarks}
 \label{subsec:standard_build_workflow}
@@ -519,7 +518,7 @@ It represents the total time investment for a complete development workflow cycl
 \end{figure}
 
 Linux-based environments consistently outperform the Windows native baseline.
-Debian native and Docker on Linux achieve nearly identical results (10.9\% and 10.7\% faster respectively), demonstrating that containerization imposes negligible overhead when host and container share the same kernel.
+Debian native and Docker on Linux achieve nearly identical results (10.9\% and 10.7\% faster respectively), demonstrating that containerization imposes minimal overhead when host and container share the same kernel.
 Even Hyper-V Debian Guest completes the workflow 3.4\% faster than Windows native despite virtualization overhead, indicating that Linux toolchains handle filesystem-intensive build operations more efficiently.
 
 Windows-based environments show longer total runtimes, with hypervisor-based configurations incurring additional overhead.
@@ -542,7 +541,8 @@ On Windows, however, bind mounts require cross-filesystem translation between NT
 The benchmarks for Docker Desktop presented in preceding sections used volume-mounted source code; this section documents why bind mounts were excluded from the Windows-based Docker Desktop evaluation.
 
 Initial testing revealed that Docker Desktop with bind mounts exhibits severe performance degradation compared to volume mounts, confirming findings reported by \citet{dockerDockerDesktopWSL2020,cncfDockerMacOSSlow2023}.
-A single exploratory benchmark run quantified this penalty, with results presented in Table~\ref{tab:bind_mount_comparison} and Figure~\ref{fig:bind_mount_build_comparison}.
+Due to the extreme performance penalty observed, only a single exploratory benchmark run was conducted to quantify this penalty; these results should be interpreted as indicative rather than statistically robust.
+Table~\ref{tab:bind_mount_comparison} and Figure~\ref{fig:bind_mount_build_comparison} present the comparison.
 
 \begin{table}[ht]
     \centering
@@ -695,8 +695,9 @@ While sequential Linux execution was nearly twice as slow as Windows, parallel L
 This reversal suggests that the sequential slowdown on Linux may stem from test ordering or synchronization issues that parallel execution circumvents.
 
 Resource consumption increases with parallelization.
-CPU delta rises from near-idle levels (below 1.5\%) to approximately 5.4--5.5\% on both platforms.
-Peak memory delta increases substantially: Windows parallel execution requires 3.8 GB additional memory compared to negligible overhead for sequential runs, while Debian parallel execution shows a median increase of 845 MB with outliers reaching several gigabytes.
+CPU delta rises from near-idle or slightly negative baseline levels to approximately 5.4--5.5\% on both platforms.
+The negative delta values for Windows sequential execution ($-$0.96\% CPU, $-$102.83 MB memory) indicate that system resource usage decreased slightly during test execution compared to the pre-benchmark baseline, likely due to background processes completing or system services releasing resources during the measurement period.
+Peak memory delta increases substantially with parallelization: Windows parallel execution requires 3.8 GB additional memory, while Debian parallel execution shows a median increase of 845 MB with outliers reaching several gigabytes.
 
 \subsection{Optimized workflow with compiler caching}
 \label{subsec:optimized_workflow}
@@ -765,7 +766,7 @@ Table~\ref{tab:cmake_build_full_cached_comparison} compares uncached and cache-w
     \label{tab:cmake_build_full_cached_comparison}
 \end{table}
 
-Linux-based environments achieve 24--28$\times$ speedup factors, reducing build times from approximately 15--19 minutes to under 45 seconds.
+Linux-based environments achieve 24--27$\times$ speedup factors, reducing build times from approximately 15--19 minutes to under 45 seconds.
 Windows environments show 4--5$\times$ improvements, reducing builds from 17--18 minutes to approximately 3.7--4.4 minutes.
 Compared to uncached Windows native builds, Linux-based environments with caching achieve approximately 96\% reduction.
 
@@ -859,15 +860,15 @@ The second scenario evaluated comprehensive build workflow performance across si
 For CPU-bound operations such as clean builds, performance differences between environments remained modest (within 15\% of baseline), with Debian native and Docker on Linux showing slight advantages (7\% faster than Windows native).
 I/O-bound operations revealed more substantial differences: CMake configuration ran 35--43\% faster on Linux-based environments, and incremental builds showed 47--72\% improvements.
 Docker Desktop on Windows presented a trade-off, with slower total workflow times (10.8\% overhead) but faster individual I/O-bound operations.
-Compiler caching amplified these differences, with Linux environments achieving 24--28$\times$ speedups compared to 4--5$\times$ on Windows.
+Compiler caching amplified these differences, with Linux environments achieving 24--27$\times$ speedups compared to 4--5$\times$ on Windows.
 Unit test execution showed an inverted pattern where Windows environments outperformed Linux, likely due to platform-specific test suite behavior rather than fundamental environment characteristics.
 
 The measurements reveal several patterns relevant to development workflow optimization.
 Linux-based environments consistently outperform Windows for filesystem-intensive operations, regardless of whether they run natively, virtualized, or containerized.
-Containerization on native Linux imposes negligible overhead for both CPU-bound and I/O-bound workloads.
+Containerization on native Linux imposes minimal overhead for both CPU-bound and I/O-bound workloads.
 Docker Desktop on Windows introduces overhead for CPU-bound operations but can improve I/O-bound tasks compared to native Windows, provided volume mounts rather than bind mounts are used.
 Virtualization adds moderate overhead (10--16\%) but remains viable for environments requiring full operating system isolation.
-The combination of containerized Linux environments with compiler caching offers the largest performance gains, reducing build times by over 96\% compared to uncached Windows native builds.
+The combination of containerized Linux environments with compiler caching offers the largest performance gains, reducing build times by approximately 96\% compared to uncached Windows native builds.
 When considering optimized workflows with both compiler caching and parallel test execution, containerized Linux environments demonstrate substantial advantages over native Windows deployment regardless of host operating system: Docker on a native Linux host achieved 88.9\% reduction in total workflow time, while Docker Desktop on a Windows host still achieved 77.3\% reduction compared to unoptimized native Windows execution.
 
 Resource consumption analysis reveals that hypervisor-based virtualization imposes substantial host memory overhead.
@@ -876,4 +877,3 @@ This contrasts with native Linux containerization which shows no comparable hype
 This memory footprint represents a key trade-off when selecting deployment approaches, particularly in resource-constrained environments.
 
 These results emphasize that adopting Linux containers provides significant performance benefits for legacy software development workflows, even when the host platform remains Windows.
-

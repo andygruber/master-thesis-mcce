@@ -38,17 +38,17 @@ Native Linux containers completed clean builds 7.2--7.3\% faster than Windows na
 Hyper-V Linux Guest performance essentially matched Windows native, demonstrating that virtualization overhead minimally impacts CPU-bound operations.
 
 Compiler caching amplified performance differences substantially.
-Cache-warm builds on Linux containers achieved 24--28$\times$ speedup factors compared to 4--5$\times$ improvements on Windows, with Linux containers reaching approximately 96\% reduction compared to uncached Windows native builds.
+Cache-warm builds on Linux containers achieved 24--27$\times$ speedup factors compared to 4--5$\times$ improvements on Windows, with Linux containers reaching approximately 96\% reduction compared to uncached Windows native builds.
 
 The cumulative impact of optimization techniques (compiler caching and parallel test execution) demonstrated the full potential of containerized workflows.
 Optimized workflows combining cache-warm builds and parallel tests reduced total runtime from 24.6 minutes (unoptimized Windows native baseline) to 7.6 minutes on optimized Windows native (69.1\% reduction), 5.6 minutes on Docker Desktop (77.3\% reduction), and 2.7 minutes on Docker Linux (88.9\% reduction).
 This indicates that containerized Linux environments achieve nearly 90\% time savings compared to traditional unoptimized Windows workflows when leveraging modern development practices.
 
-Total unoptimized workflow runtime (configuration, clean build, incremental builds, installation) showed native Linux containers 10.7\% faster than Windows native, demonstrating negligible containerization overhead when host and container share the same kernel.
+Total unoptimized workflow runtime (configuration, clean build, incremental builds, installation) showed native Linux containers 10.7\% faster than Windows native, demonstrating minimal containerization overhead when host and container share the same kernel.
 Docker Desktop on Windows exhibited 10.8\% slower total workflow time, though individual filesystem-intensive operations completed substantially faster.
 
 Containerized Linux environments consistently outperform Windows-based approaches for filesystem-intensive operations by 35--72\%, while CPU-bound compilation shows modest differences within 15\%.
-Native Linux containers impose negligible overhead compared to bare-metal execution, whereas Docker Desktop on Windows introduces moderate overhead for CPU-intensive workloads but substantially accelerates filesystem-intensive incremental development cycles.
+Native Linux containers impose minimal overhead compared to bare-metal execution, whereas Docker Desktop on Windows introduces moderate overhead for CPU-intensive workloads but substantially accelerates filesystem-intensive incremental development cycles.
 When optimization techniques are applied, containerized Linux environments deliver 77--89\% total workflow time reductions compared to unoptimized Windows native workflows.
 
 \subsection{RQ1.2: Resource utilization comparison}
@@ -79,7 +79,7 @@ VS Code's DevContainer integration further minimizes the learning curve by abstr
 The performance characteristics observed across operation types inform infrastructure investment decisions.
 For I/O-bound operations such as incremental builds and installation workflows, Linux-based environments provide consistent 35--72\% improvements regardless of whether they run natively, virtualized, or containerized.
 For CPU-bound operations like clean builds, environment choice matters less, with all configurations performing within 15\% of each other.
-However, compiler caching amplifies these differences dramatically: Linux environments achieve 24--28$\times$ speedup factors compared to 4--5$\times$ on Windows, making caching infrastructure a high-return investment particularly for Linux-based workflows.
+However, compiler caching amplifies these differences dramatically: Linux environments achieve 24--27$\times$ speedup factors compared to 4--5$\times$ on Windows, making caching infrastructure a high-return investment particularly for Linux-based workflows.
 Organizations should also consider memory requirements when planning workstation configurations, as hypervisor-based solutions (Docker Desktop with WSL2, Hyper-V virtual machines) require 13--20 GB host memory allocation, 5--10 GB more than when using native solutions.
 
 The findings extend naturally to continuous integration and deployment pipelines.
