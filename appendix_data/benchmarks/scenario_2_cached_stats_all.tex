@@ -1,0 +1,70 @@
+% Auto-generated master file for statistical summary tables
+% This file includes all benchmark statistics tables with configurable captions
+%
+% Usage: Include this file in your LaTeX document
+% To customize captions, redefine the caption commands before including:
+%   \renewcommand{\statsCaptionBenchmarkName}{Your Custom Caption}
+% To set the path to the table files (if not in same directory):
+%   \renewcommand{\statsBasePath}{path/to/tables/}
+%
+% Requires: booktabs, float, graphicx, currfile, adjustbox, enumitem packages
+%   \usepackage{booktabs}
+%   \usepackage{float}
+%   \usepackage{graphicx}
+%   \usepackage{currfile}
+%   \usepackage{adjustbox}
+%   \usepackage{enumitem}  % for itemize options in environment legend
+
+% Base path for table files (empty = same directory)
+\providecommand{\statsBasePath}{\currfiledir}
+
+\subsection{Statistical Summary for scenario 2: Optimized workflow with compiler caching}
+
+% Legend explaining metrics
+{\footnotesize
+\noindent\textbf{Metrics:} 
+Wall Time = benchmark execution time (seconds); 
+Sys CPU $\Delta$ = system CPU increase from baseline (\%); 
+Sys Mem $\Delta$ Peak = peak system memory increase from baseline (MB); 
+Baseline = idle system state before benchmark; 
+Host Mem Peak = hypervisor process peak memory (for VM environments only).
+}
+
+% Legend for shortened environment names
+{\footnotesize
+\noindent\textbf{Environment Names:}
+\begin{itemize}[nosep,leftmargin=*]
+\item Hyper-V Windows 11 Guest = Hyper-V / Windows 11 Guest
+\item Hyper-V Debian 12 Guest = Hyper-V / Debian 12 Guest
+\item Docker Desktop Win11 Debian... = Docker Desktop Win11 / Debian 12 container / volume-mounted
+\item Docker Linux Debian 12 (both) = Docker Linux / Debian 12 (both)
+\end{itemize}
+}
+
+% Default caption definitions
+\providecommand{\statsCaptionScenarioCachedCmakeConfigure}{Statistical summary for cmake\_configure}
+\providecommand{\statsCaptionScenarioCachedCmakeBuildFull}{Statistical summary for cmake\_build\_full}
+\providecommand{\statsCaptionScenarioCachedCmakeBuildInstall}{Statistical summary for cmake\_build\_install}
+
+% Tables
+
+\begin{table}[H]
+\centering
+\adjustbox{max height=0.29\textheight, max width=\linewidth}{\input{\statsBasePath scenario_2_cached_stats_cmake_configure.tex}}
+\caption{\statsCaptionScenarioCachedCmakeConfigure}
+\label{tab:stats_scenario_2_cached_cmake_configure}
+\end{table}
+
+\begin{table}[H]
+\centering
+\adjustbox{max height=0.29\textheight, max width=\linewidth}{\input{\statsBasePath scenario_2_cached_stats_cmake_build_full.tex}}
+\caption{\statsCaptionScenarioCachedCmakeBuildFull}
+\label{tab:stats_scenario_2_cached_cmake_build_full}
+\end{table}
+
+\begin{table}[H]
+\centering
+\adjustbox{max height=0.29\textheight, max width=\linewidth}{\input{\statsBasePath scenario_2_cached_stats_cmake_build_install.tex}}
+\caption{\statsCaptionScenarioCachedCmakeBuildInstall}
+\label{tab:stats_scenario_2_cached_cmake_build_install}
+\end{table}

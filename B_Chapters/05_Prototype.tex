@@ -1,30 +1,3 @@
-% \section{Approach}
-
-% \section{Research methods}
-% \section{DSRM}
-
-% \begin{figure}[ht]
-% 	\centering
-% 	\includegraphics[width=0.95\linewidth]{figures/DSRM_Process_Model.png}
-% 	\caption{DSRM Process Model \citep{peffersDesignScienceResearch2007}}
-% 	\label{fig:DSRM_Process_Model}
-% \end{figure}
-
-% Problem centered initiation: Reproducibility in legacy software development projects is hard to achieve without containerization.
-% So how can it be achieved with containerization?
-
-
-% \begin{itemize}
-% 	\item \textbf{Problem Identification:} Recognizing the need for modernization in legacy software development.
-% 	\item \textbf{Objectives of a Solution:} Defining the goals for a containerized development environment.
-% 	\item \textbf{Design and Development:} Developing a prototype that integrates VS Code and Docker.
-% 	\item \textbf{Demonstration:} Applying the prototype in real-world scenarios.
-% 	\item \textbf{Evaluation:} Assessing the effectiveness and efficiency of the solution.
-% 	\item \textbf{Communication:} Presenting the findings and their implications for the field.
-% \end{itemize}
-
-% \section{Experimental design}
-
 \chapter{Prototype Architecture}
 \label{ch:prototype_architecture}
 
@@ -62,7 +35,9 @@ The prototype application fulfills four fundamental requirements that address cr
 The primary requirement involves \textbf{automated environment provisioning} across heterogeneous platforms \citep{boettigerIntroductionDockerReproducible2015}.
 The system must provide consistent development environments for both Windows and Linux platforms, eliminating manual configuration steps that introduce variability and human error \citep{hungGUIdockUsingDocker2016}.
 For Windows environments, this involves utilizing pre-existing virtual machine templates with pre-configured development tools, compilers, and dependencies that developers can clone and deploy locally.
-Automated VM template creation using tools such as HashiCorp Packer, while conceptually similar to container image building, introduces significantly higher complexity due to longer build times, larger artifact sizes, and platform-specific hypervisor requirements; therefore, automated VM template generation is considered out of scope for this prototype, with the assumption that suitable templates are maintained and distributed through organizational processes.
+Automated VM template creation using tools such as HashiCorp Packer, while conceptually similar to container image building, introduces significantly higher complexity.
+This complexity stems from longer build times, larger artifact sizes, and platform-specific hypervisor requirements.
+Consequently, automated VM template generation is considered out of scope for this prototype, with the assumption that suitable templates are maintained and distributed through organizational processes.
 For Linux environments, this encompasses building optimized container images that encapsulate complete development toolchains while maintaining minimal resource footprints using Docker multi-stage builds \citep{merkelDockerLightweightLinux2014}.
 
 The second major requirement addresses \textbf{cross-platform build system standardization} \citep{gygiCppBuildLargeScaleAutomatic2021}.
@@ -91,7 +66,6 @@ Figure \ref{fig:logical-components} illustrates the component organization and t
 	\caption{Component Architecture - Logical View}
 	\label{fig:logical-components}
 \end{figure}
-% [FIGURE: Diagram showing 7 component boxes with labeled associations between them. Components: Development Platform Layer (foundation), Build System Integration, Infrastructure Provisioning, Distribution & Registry Services, IDE Integration Layer, Performance Monitoring, Configuration Management. Show key relationships: Configuration Management provides specifications to Infrastructure Provisioning; Infrastructure Provisioning produces artifacts consumed by Distribution & Registry Services; Build System Integration executes on Development Platform Layer; IDE Integration Layer coordinates with Development Platform Layer; Performance Monitoring observes all categories; all operational components build upon Development Platform Layer as foundation.]
 
 \subsubsection{Development Platform Layer Component}
 
@@ -193,7 +167,7 @@ This layered architecture enables independent development and maintenance of dif
 
 The foundation layer contains infrastructure-as-code artifacts that automate development environment deployment.
 
-\textbf{VM Template Repository:} Pre-existing VM templates for Hyper-V as target platform, covering Windows Server and Debian Linux as target operating systems with semantic versioning enabling parallel maintenance of multiple toolchain generations.
+\textbf{VM Template Repository:} Pre-existing VM templates for Hyper-V as target platform, covering Windows Server and Debian 12 as target operating systems with semantic versioning enabling parallel maintenance of multiple toolchain generations.
 
 \textbf{Deployment Automation Scripts:} Platform-specific VM instantiation scripts using PowerShell cmdlets and Hyper-V Manager that clone templates from local storage or network shares, apply configurations, and initialize VMs for development use.
 
@@ -201,7 +175,7 @@ The foundation layer contains infrastructure-as-code artifacts that automate dev
 
 The second layer contains declarative environment specifications that define development environment requirements independent of specific infrastructure implementations.
 
-\textbf{Dockerfile Definitions:} Multi-stage Dockerfile definitions organized by Linux distribution (Debian Linux, AlmaLinux) and version.
+\textbf{Dockerfile Definitions:} Multi-stage Dockerfile definitions organized by Linux distribution (Debian 12, AlmaLinux 10) and version.
 Dockerfiles follow consistent structure: base image selection, system package installation, development tool installation, environment configuration, and user setup.
 Layer ordering optimizes build cache utilization, placing infrequently-changing dependencies in early stages.
 
@@ -225,8 +199,10 @@ The fourth layer provides integration between development environments and Visua
 \textbf{VS Code Task Definitions:} JSON-format task configurations (.vscode/tasks.json) defining test, and deployment operations.
 Tasks integrate with CMake presets through variable substitution, enabling GUI-based workflow invocation.
 
+\begin{sloppypar}
 \textbf{VS Code Launch Configurations:} Debugger attachment configurations (.vscode/launch.json) supporting both native and remote debugging scenarios.
 Launch configurations adapt to environment type (native, container, VM), automatically adjusting debugger paths and symbol resolution.
+\end{sloppypar}
 
 \textbf{VS Code Extension Configurations:} Settings files (.vscode/settings.json, .vscode/extensions.json) defining required extensions and workspace-specific configurations.
 
@@ -240,7 +216,6 @@ Documentation artifacts version alongside code, ensuring consistency between imp
 \subsubsection{Dependency Management and Build Order}
 
 The layered organization enforces clear compilation dependencies and enables independent development:
-% TODO : Add diagram showing layers and dependencies? or delete this section
 \begin{itemize}
 \item \textbf{Layer 1 independence:} Infrastructure scripts have no dependencies on higher layers, enabling infrastructure changes without affecting build configurations or IDE integration
 \item \textbf{Layer 2 to Layer 1:} Environment definitions depend on infrastructure scripts only for template-based VM configurations; container definitions are fully independent
@@ -336,7 +311,7 @@ Ninja serves as the build backend, providing faster build execution than traditi
 Visual Studio Code provides the integrated development environment with C++ development support \citep{microsoftDevelopingContainer2025}.
 The C/C++ extension (ms-vscode.cpptools) provides IntelliSense, debugging, and code navigation capabilities.
 The CMake Tools extension (ms-vscode.cmake-tools) integrates CMake configuration, building, and testing within the IDE.
-The Remote - Containers extension (ms-vscode-remote.remote-containers) enables development within Docker containers with full IDE feature support.
+The Dev Containers extension (ms-vscode-remote.remote-containers) enables development within Docker containers with full IDE feature support.
 
 \subsubsection{Version Control and CI/CD Integration}
 
@@ -354,7 +329,6 @@ The prototype implements automated build and deployment processes, figure \ref{f
 	\caption{Build and Deployment Processes}
 	\label{fig:build-deployment-pipeline}
 \end{figure}
-% [FIGURE: Flow diagram showing three parallel environment provisioning paths converging at developer access: 1) VM Path: LAN File Server (VM Templates) → VBoxManage Import → VM Boot → Developer Access, 2) Container Path: LAN Docker Registry → Image Pull → DevContainer Start → Developer Access, 3) Native Path: LAN Installer Storage → Visual Studio Installation → Developer Access. Emphasizes that all artifact sources are pre-built and centrally distributed, with deployment to developer workstation as the measured scope.]
 
 \newpage
 \subsubsection{Environment Provisioning and Deployment}
@@ -363,21 +337,21 @@ VM template generation and container image generation occur centrally within org
 The evaluation focuses on activation/deployment time and day-to-day development operations, measuring only the time to activate a development environment from pre-existing artifacts.
 
 \textbf{Hyper-V VM Deployment:} PowerShell scripts and Hyper-V Manager automate deployment by importing VHDX template files from local or network storage, applying VM-specific parameters (hostname, memory allocation, CPU core count), configuring network attachment to virtual switches, and initiating VM startup.
-All virtualization testing was conducted using Hyper-V on Windows 11 hosts after initial tests revealed VirtualBox compatibility issues with hardware acceleration on Windows 11 and stability problems on Debian 12 hosts.
-Measurements capture: local template instantiation duration (VM creation and initial boot); LAN template download duration (20GB, dependent on network bandwidth); VM configuration time; first boot and initialization duration; total time from deployment initiation to functional development environment.
+Measurements capture: local template instantiation duration (VM creation and initial boot); LAN template download duration (20-70GB depending on installed tools, dependent on network bandwidth); VM configuration time; first boot and initialization duration; total time from deployment initiation to functional development environment.
 
 \textbf{Docker Container Deployment:} DevContainer activation workflow automates environment setup by pulling container image layers from registry (with local cache reuse when image exists locally), creating containers from pulled images with configured volume mounts and network settings, installing VS Code server and extensions within the container, and executing post-creation initialization scripts.
-Measurements capture: image pull duration from LAN registry (2GB compressed layers, dependent on network bandwidth); container creation and startup time; VS Code server and extension installation duration; post-creation script execution time; total time from activation initiation to functional development environment.
+Measurements capture: image pull duration from LAN registry (2-5GB compressed layers, dependent on network bandwidth); container creation and startup time; VS Code server and extension installation duration; post-creation script execution time; total time from activation initiation to functional development environment.
 
 \textbf{Native Environment Setup:} Native deployment downloads Visual Studio installer from LAN infrastructure (approximately 10GB) followed by manual installation and configuration procedures.
 Measurements capture: Visual Studio installer download (via LAN) and installation duration.
 Task switching scenarios requiring different Visual Studio versions may necessitate complete uninstallation and reinstallation, as discussed in the scenario evaluation section.
 
-\textbf{Comparative Characteristics:} All three approaches require comparable initial network bandwidth for artifact distribution (VMs: 20GB templates; containers: 2GB compressed images; native: 10GB VS installer).
+\textbf{Comparative Characteristics:} All three approaches require comparable initial network bandwidth for artifact distribution (VMs: 20-70GB templates; containers: 2-5GB compressed images; native: 10GB VS installer).
 VM deployment requires a full additional OS to boot and to manage and provides persistent long-lived environments with continuous resource consumption even when idle.
 Container deployment completes startup in seconds and enables flexible resource management by stopping containers when not in use and restarting rapidly when needed.
 Native deployment requires manual configuration introducing human error risk and configuration drift over time, with potential reinstallation overhead during environment switching.
 
+\newpage
 \section{Process Architecture}
 
 The Process View addresses the runtime and concurrency aspects of the prototype system, describing the processes and resource contention that occur during development operations across native, virtualized, and containerized environments \citep{kruchten4+1ViewModel1995}.
@@ -454,6 +428,7 @@ The monitor operates as a lightweight background process consuming minimal resou
 Metrics are logged to structured JSON files enabling post-processing, statistical analysis, and visualization of performance characteristics across development environments.
 
 \section{Physical Architecture}
+\label{sec:physical_architecture}
 
 The Physical View describes the deployment topology and hardware infrastructure supporting the prototype evaluation environment.
 This view provides essential context for understanding performance measurement conditions and ensures reproducible experimental results \citep{kruchten4+1ViewModel1995}.
@@ -465,18 +440,17 @@ Figure \ref{fig:physical-architecture} illustrates the physical infrastructure t
 
 \begin{figure}[ht!]
 	\centering
-	\includegraphics[width=0.90\linewidth]{figures/physical-architecture.png}
+	\includegraphics[width=\linewidth]{figures/physical-architecture.png}
 	\caption{Physical Architecture - Test Environment Topology}
 	\label{fig:physical-architecture}
 \end{figure}
-% [FIGURE: Physical infrastructure topology showing: HP Z2 Tower G9 workstations supporting three deployment configurations (native, VM, container) on identical hardware. Windows workstations (Windows 11, Docker Desktop/WSL2) and Linux workstations (Debian 12, Docker Engine, VirtualBox) connected via 1GbE to optional centralized infrastructure: LAN file server (VM templates via SMB/NFS) and Docker registry (container images). Side-by-side comparison layout emphasizing controlled test environment with standardized hardware.]
 
 \newpage
 \subsubsection{Development Workstation Infrastructure}
 
 The evaluation environment centers on standardized HP Z2 Tower G9 workstations that support native development, local virtualization, and containerization approaches on identical hardware.
 
-All evaluation workstations use identical hardware: Intel Core i7-12700 processor (12 cores, 20 threads), 32GB DDR5-4800 RAM, 2TB PCIe 4.0 NVMe SSD, and 1GbE network connectivity.
+All evaluation workstations use identical hardware: Intel Core i7-12700 processor (12 cores, 20 threads), 32GB DDR5-4800 RAM, 2TB PCIe 4.0 NVMe SSD, and 1\ac{gbe} network connectivity.
 
 Windows workstations run Windows 11 Enterprise LTSC 24H2 with Hyper-V enabled for both virtualization testing and Docker Desktop (with WSL2 backend) for containerization, as well as native development toolchains (Visual Studio 2022, CMake, Git).
 This configuration enables evaluation of native Windows, Hyper-V virtual machines, and Docker containers on a single platform.
@@ -493,7 +467,7 @@ A LAN-accessible file server provides network share storage for VM templates: Hy
 
 A Docker registry provides centralized container image distribution: standard Docker Registry v2 protocol support; image storage on NVMe SSD for fast image layer serving; and LAN-local deployment eliminating internet bandwidth as a variable during image pulls.
 
-All development workstations install identical VS Code versions (1.108+) with identical extension sets (C/C++ Extension, CMake Tools, Remote - Containers) ensuring consistent IDE behavior across test scenarios, whether developers work in native environments, VMs, or containers.
+All development workstations install identical VS Code versions (1.108+) with identical extension sets (C/C++ Extension, CMake Tools, Dev Containers) ensuring consistent IDE behavior across test scenarios, whether developers work in native environments, VMs, or containers.
 
 \subsection{Deployment Configurations and Process Mapping}
 
@@ -577,6 +551,7 @@ Containerized development leverages Docker infrastructure on the developer works
 
 \textbf{Network Dependencies:} Optional LAN connectivity for container image pull from registry (compressed layers, typically 2-5GB); Docker daemon API communication via Unix socket or named pipe; source repository access from within container.
 
+\newpage
 \subsubsection{Comparative Physical Characteristics}
 
 The three configurations exhibit distinct physical characteristics affecting performance:
@@ -622,16 +597,14 @@ These scenarios bridge theoretical architecture concepts with real-world develop
 All test scenarios share common environment configurations to ensure fair and reproducible measurements.
 
 \textbf{Filesystem Configuration:}
-For Windows systems use NTFS as the filesystem.
-For Linux systems use Ext4 as the filesystem.
+Windows systems use NTFS and Linux systems use Ext4 as their respective filesystems.
 
 \textbf{Security Software:}
 On Windows, Windows Defender Realtime Protection is disabled during benchmarking to eliminate variable scan overhead that would affect measurements.
 On Linux, no antivirus software affecting runtime performance is installed.
 
 \textbf{Energy Settings:}
-On Windows the Power mode is set to Best Performance and automatic sleep/suspend is disabled.
-On Debian the Power mode is set to Performance and automatic suspend is disabled.
+Power mode is set to Best Performance (Windows) or Performance (Debian) with automatic sleep/suspend disabled on both platforms.
 
 \textbf{Source Code Availability:}
 All tests assume the source code repository (approximately 11GB) is already available and ready for use.
@@ -639,6 +612,10 @@ Native machines retain source code across tests without reinstallation.
 Virtual machines access source code through mounted partitions.
 Docker containers access source code through bind-mounted directories or mounted volumes.
 This eliminates repository cloning (approximately 7 minutes) as a variable in measurements.
+
+\textbf{Test Artifact Sizes:}
+While VM templates can range from 20-70GB and container images from 2-5GB depending on installed tools (as described in Section \ref{sec:physical_architecture}), the concrete evaluation uses standardized artifact sizes: Hyper-V VM templates of approximately 20GB and Docker container images of approximately 2GB (compressed).
+These sizes represent minimal development environments with essential toolchains installed.
 
 \subsection{Scenario 1: Toolchain Switching}
 
@@ -678,20 +655,18 @@ The developer pulls a new container image from the LAN registry and starts it as
 Task switch workflow: pull new container image from LAN registry; start new container with appropriate volume mounts for source code access.
 The environment is considered ready when a shell session inside the container successfully executes a CMake version check command (\texttt{docker exec <container> cmake --version}).
 
-Measurements capture image pull and container start separately.
-It is assumed that no image layers can be reused, triggering full image download each time.
-Note that VS Code DevContainer initialization time is explicitly excluded from these measurements; the focus is on command-line readiness for development tasks.
+Measurements capture image pull and container start separately, assuming no image layers can be reused (triggering full image download each time).
+VS Code DevContainer initialization time is excluded; the focus is on command-line readiness.
 
 \subsubsection{Virtualized Path}
 
 VM toolchain switching tests switching between different pre-configured VM templates: Debian 12 VM with GCC toolchain and AlmaLinux 10 VM with GCC toolchain.
 The developer downloads a new VM template from the LAN file share and starts it using Hyper-V on Windows 11.
 
-Task switch workflow: download new VM template from LAN file share; import VM template into Hyper-V using PowerShell or Hyper-V Manager; configure VM resources (all logical cores, 20GB memory with dynamic allocation to maximum 20GB for Windows guests; static 20GB allocation for Debian guests); start new VM; wait for boot completion.
+Task switch workflow: download new VM template from LAN file share; import VM template into Hyper-V using PowerShell or Hyper-V Manager; configure VM resources (all logical cores, 20GB memory allocation as detailed in Section \ref{sec:physical_architecture}); start new VM; wait for boot completion.
 The environment is considered ready when a terminal session inside the VM (via SSH or direct console access) successfully executes a CMake version check command (\texttt{cmake --version}).
 
-Measurements capture setup time (template download, import, and boot sequence).
-Note that IDE startup time is explicitly excluded from these measurements; the focus is on command-line readiness for development tasks.
+Measurements capture setup time (template download, import, and boot sequence); IDE startup time is excluded as the focus is on command-line readiness.
 
 \subsubsection{Measurement Objectives}
 
@@ -743,8 +718,7 @@ A separate measurement evaluates parallel test execution with thread count match
 
 Due to occasional test instability outside the CI environment, execution timeouts prevent indefinitely hanging tests from blocking measurements: 1200 seconds for single-threaded execution and 240 seconds for parallel execution.
 
-The total test suite duration for both sequential and parallel configurations is measured.
-These measurements determine whether test execution overhead differs meaningfully across environment types and whether virtualization or containerization impacts test performance.
+The total test suite duration for both configurations is measured to determine whether virtualization or containerization impacts test performance.
 
 \subsubsection{Incremental Feature Addition Measurements}
 
@@ -766,76 +740,17 @@ The second scenario evaluates pure incremental compilation performance without C
 This measurement scenario evaluates the impact of compiler caching on clean build performance using sccache integrated directly into CMake.
 Compiler caches store compiled object files and reuse them when the same source code is compiled again with identical compiler flags, significantly reducing rebuild times.
 
-The clean build measurements from Build Performance Measurements serve as the baseline (no cache) for comparison.
-A cache population build executes first with sccache enabled but empty cache, storing compiled objects for subsequent reuse.
+The clean build measurements from Build Performance Measurements serve as the baseline (no cache), while a cache population build executes first with sccache enabled but empty cache.
 
-The measured phase executes a clean build with sccache enabled and populated cache.
-This phase quantifies the performance improvement from cache hits, where previously compiled objects are retrieved from cache instead of recompiling.
-
-Measurements capture elapsed time, CPU utilization, and memory consumption.
-Comparisons between the cached clean build and the baseline quantify the cache benefit across different environment types.
+The measured phase executes a clean build with sccache enabled and populated cache, quantifying performance improvement from cache hits.
+Measurements capture elapsed time, CPU utilization, and memory consumption; comparisons against the baseline quantify the cache benefit across environment types.
 
 \subsubsection{Resource Utilization Measurements}
 
-Resource utilization measurements capture system-wide CPU utilization and memory consumption during build, installation, and test operations, with peaks in the recorded data providing insights into resource requirements for parallel build operations.
+Resource utilization measurements capture CPU and memory consumption during build, installation, and test operations.
+Peaks in recorded data provide insights into resource requirements for parallel build operations.
 
 \subsubsection{Evaluation Objectives}
 
-The comprehensive benchmarking determines: absolute performance of each environment type for specific operation categories; relative performance differences (percentage overhead or advantage compared to baselines); resource consumption characteristics across environments; whether filesystem characteristics (Linux vs. Windows, native vs. virtualized vs. containerized) measurably impact \mbox{build-intensive} workloads.
-
-% \section{DSRM Integration and Evaluation Framework}
-
-% The prototype architecture integrates directly with the Design Science Research Methodology framework established in the research approach, providing concrete artifacts for each DSRM phase while enabling systematic evaluation of containerization impact on legacy software development.
-
-% \subsection{Problem Identification Integration}
-
-% The prototype directly addresses the identified problem of reproducibility challenges in legacy software development through automated environment provisioning and standardized development workflows.
-% Architecture components map to specific problem areas: infrastructure drift (Packer/Terraform), configuration inconsistency (DevContainer/CMake presets), and developer productivity barriers (VS Code integration).
-
-% \subsection{Solution Objectives Realization}
-
-% Each prototype component realizes specific solution objectives established during the DSRM objective definition phase.
-% Automated environment provisioning achieves consistency objectives while performance monitoring enables quantitative evaluation of efficiency improvements.
-% Developer experience optimization addresses productivity objectives through seamless IDE integration and simplified workflows.
-
-% \subsection{Demonstration and Evaluation Framework}
-
-% The prototype provides concrete demonstration capabilities through the scenario implementations while the performance monitoring infrastructure enables systematic evaluation against established objectives.
-% Measurement frameworks capture both quantitative metrics (setup times, build performance, resource utilization) and qualitative assessments (developer satisfaction, adoption barriers, maintenance overhead).
-
-% \section{Research methods}
-% \subsection{DSRM}
-
-% \begin{figure}[ht]
-% 	\centering
-% 	\includegraphics[width=0.95\linewidth]{figures/DSRM_Process_Model.png}
-% 	\caption{DSRM Process Model \citep{peffersDesignScienceResearch2007}}
-% 	\label{fig:DSRM_Process_Model}
-% \end{figure}
-
-% Problem centered initiation: Reproducibility in legacy software development projects is hard to achieve without containerization.
-% So how can it be achieved with containerization?
-
-
-% \begin{itemize}
-% 	\item \textbf{Problem Identification:} Recognizing the need for modernization in legacy software development.
-% 	\item \textbf{Objectives of a Solution:} Defining the goals for a containerized development environment.
-% 	\item \textbf{Design and Development:} Developing a prototype that integrates VS Code and Docker.
-% 	\item \textbf{Demonstration:} Applying the prototype in real-world scenarios.
-% 	\item \textbf{Evaluation:} Assessing the effectiveness and efficiency of the solution.
-% 	\item \textbf{Communication:} Presenting the findings and their implications for the field.
-% \end{itemize}
-
-% \section{Testobject}
-
-% \section{Benchmarking Procedure}
-% The evaluation will follow a defined procedure to ensure fair and consistent benchmarking:
-% \begin{enumerate}
-%     \item Specification of test hardware and tools to eliminate variability in performance measurements.
-%     \item Development of a benchmarking suite that simulates common development tasks across various environments.
-%     \item Analysis of results to identify performance trends, advantages, and limitations of each environment.
-%     \item Comparison of the results to answer research questions RQ1.1 and RQ1.2.
-% \end{enumerate}
-
-% \section{Summary}
-%Find reference for benchmarking
+The comprehensive benchmarking determines: absolute performance of each environment for operation categories; relative differences (overhead compared to baselines); resource consumption across environments.
+Results reveal whether filesystem characteristics (Linux vs. Windows, native vs. virtualized vs. containerized) impact \mbox{build-intensive} workloads.

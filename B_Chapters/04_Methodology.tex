@@ -119,7 +119,7 @@ This scenario captures:
 \end{itemize}
 
 The demonstration occurs on common workstations with controlled configurations to ensure reproducible measurements.
-Windows 11 hosts with Hyper-V (for virtualization testing), Docker Desktop with WSL2 (for containerization with dynamic memory allocation to maximum 20GB RAM and all logical cores), and native development toolchains are evaluated.
+Windows 11 hosts with Hyper-V (for virtualization testing), Docker Desktop with WSL2 (for containerization with dynamic memory allocation to maximum 20GB RAM and 20 logical cores), and native development toolchains are evaluated.
 Linux Debian 12 hosts with Docker Engine (unrestricted resources) and native development toolchains are also evaluated.
 All virtual machines are allocated all logical cores (20 vCPUs) and 20GB memory (dynamic allocation to maximum 20GB for Windows guests; static 20GB allocation for Debian guests) to ensure comparable CPU utilization to native machines and eliminate artificial resource constraints.
 
@@ -148,7 +148,7 @@ The quantitative evaluation employs the following metrics:
 \begin{itemize}
 	\item System CPU and memory utilization during build operations
 	\item Baseline measurements to isolate operation overhead from background activity
-	\item Memory consumption in host system in VM (only Windows guest) and container (only Docker Desktop on Windows host) environments
+	\item Host system memory consumption when running Windows guests in VMs and when running containers via Docker Desktop on Windows hosts
 \end{itemize}
 
 \textbf{Environment Setup Metrics:}

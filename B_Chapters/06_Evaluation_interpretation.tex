@@ -10,7 +10,6 @@ Two-tailed independent samples t-tests validated the statistical significance of
 
 This scenario evaluates the time required to switch between different development toolchains, addressing the practical challenge of developers needing to work with multiple compiler versions or validate cross-distribution compatibility.
 The scenario measures the overhead associated with changing the development environment configuration across the three deployment approaches.
-All measurements were repeated 30 times to ensure statistical robustness.
 Where direct comparisons were possible (Docker Desktop vs native Linux containers), statistical testing confirmed significant performance differences for image pull operations ($p < 0.001$) and container start times ($p = 0.031$); detailed results are available in Appendix~\nameref{appendix:statistical_tests}.
 
 \subsection{Overview of toolchain switching results}
@@ -24,7 +23,7 @@ Before examining the detailed breakdown of each environment, Figure~\ref{fig:sce
     \label{fig:scenario1_wall_time_overview}
 \end{figure}
 
-The figure shows a clear performance hierarchy: native Windows toolchain switching via Visual Studio de- and reinstallation requires approximately 12.9 minutes, while containerized approaches complete in under 2 minutes---native containers on Linux at 37.5 seconds and Docker Desktop on Windows at 1.75 minutes.
+The figure, based on mean values, shows a clear performance hierarchy: native Windows toolchain switching via Visual Studio de- and reinstallation requires approximately 12.9 minutes, while containerized approaches complete in under 2 minutes---native containers on Linux at 37.5 seconds and Docker Desktop on Windows at approximately 1.7 minutes.
 The Hyper-V virtualized approach falls between these at approximately 3.6 minutes.
 Following subsections examine each environment's performance characteristics in detail, with a comprehensive statistical comparison presented in Section \ref{subsec:toolchain_switching_comparison}.
 
@@ -109,12 +108,12 @@ Two container runtime configurations were evaluated: Docker Desktop on Windows (
     \label{fig:container_start}
 \end{figure}
 
-Native Linux containers complete the image pull in 36.5 seconds with high consistency (standard deviation of 0.04 seconds), while Docker Desktop requires 102.7 seconds.
+Native Linux containers complete the image pull in 36.5 seconds with high consistency (standard deviation of 0.04 seconds), while Docker Desktop requires 98.9 seconds.
 
 Container startup contributes minimally to total switching time (2--3\% across both environments).
 Docker Desktop's median start time of 0.55 seconds indicates most runs complete quickly, but occasional outliers (maximum 12.21 seconds) reflect WSL2 VM initialization overhead when resuming from idle state.
 
-Total containerized toolchain switching achieves 37.5 seconds on native Linux and 105.0 seconds (1.75 minutes) on Docker Desktop, representing 95.1\% and 86.4\% improvements over the native Windows baseline respectively.
+Total containerized toolchain switching achieves 37.5 seconds on native Linux and 100.8 seconds (1.68 minutes) on Docker Desktop, representing 95.1\% and 87.0\% improvements over the native Windows baseline respectively.
 
 \subsection{Virtualized: Hyper-V VM template switching}
 
@@ -144,21 +143,15 @@ This test measures the time required to switch to a Hyper-V virtual machine temp
     \label{fig:vm_template_download}
 \end{figure}
 
-\begin{figure}[htbp]
-    \centering
-    \includegraphics[width=0.8\linewidth]{figures/scenario_1_boxplot_boot_to_desktop_wall_time.png}
-    \caption{VM boot time distribution (n=30)}
-    \label{fig:vm_boot}
-\end{figure}
-
-The total virtualized toolchain switching time of 218.2 seconds (3.6 minutes) is dominated by the template download operation (87\%), with VM boot contributing 13\% and registration being negligible.
-VM template download requires approximately 3.2 minutes on average, with moderate variance reflecting network bandwidth fluctuations during transfer of large VHDX files over a 1GbE connection.
+The total virtualized toolchain switching time of 217.5 seconds (3.6 minutes) is dominated by the template download operation (87\%), with VM boot contributing 13\% and registration being negligible.
+VM template download requires approximately 3.1 minutes, with moderate variance reflecting network bandwidth fluctuations during transfer of large VHDX files over a 1GbE connection.
 These measurements used a Linux VM template of 20.5 GB; VM template size significantly impacts the total switching time.
-VM registration is nearly instantaneous at 0.51 seconds, as Hyper-V efficiently handles configuration metadata operations.
+VM registration is nearly instantaneous at 0.52 seconds, as Hyper-V efficiently handles configuration metadata operations.
 VM boot requires approximately 28 seconds for full operating system initialization with consistent performance across runs.
 
 This represents a 71.7\% improvement over the native Windows baseline, positioning virtualization between native installation and containerization in terms of switching efficiency.
 
+\newpage
 \subsection{Native Linux: Development tools installation}
 
 For completeness, the benchmark also measured the time to install development tools on a native Debian Linux system, representing the traditional Linux development environment setup approach.
@@ -187,10 +180,11 @@ For completeness, the benchmark also measured the time to install development to
     \label{fig:native_linux_devtools}
 \end{figure}
 
-Native Linux development tools installation averages 114.5 seconds with notably higher variance (standard deviation of 22.99 seconds) compared to other operations.
+Native Linux development tools installation completes in a median of 109 seconds with notably higher variance (standard deviation of 22.99 seconds) compared to other operations.
 This variance stems from package manager behavior, including dependency resolution, mirror selection, and download speeds.
-The skewed distribution (median of 109s vs.\ mean of 114.5s) indicates occasional slow runs that pull the average upward.
+The skewed distribution (median of 109s vs.\ mean of 114s) indicates occasional slow runs that pull the average upward.
 
+\newpage
 \subsection{Comparative analysis: Toolchain switching}
 \label{subsec:toolchain_switching_comparison}
 
@@ -210,9 +204,9 @@ Figure~\ref{fig:scenario1_total_runtime} visualizes the total runtime distributi
         \textbf{Environment} & \textbf{Mean (s)} & \textbf{Median (s)} & \textbf{Std Dev} & \textbf{Min (s)} & \textbf{Max (s)} & \textbf{Reduction} \\
         \hline
         Native Windows (VS2022) & 771.75 & 772.25 & 8.77 & 758.69 & 789.92 & baseline \\
-        Native Linux (devtools) & 114.47 & 109.00 & 22.99 & 90.00 & 174.00 & $-$85.2\% \\
-        Hyper-V VM & 218.18 & 217.48 & 9.99 & 200.53 & 242.73 & $-$71.7\% \\
-        Docker Desktop (WSL2) & 105.00 & 100.78 & 10.02 & 93.02 & 126.50 & $-$86.4\% \\
+        Native Linux (devtools) & 114.47 & 109.00 & 22.99 & 90.00 & 174.00 & $-$85.9\% \\
+        Hyper-V VM & 218.18 & 217.48 & 9.99 & 200.53 & 242.73 & $-$71.8\% \\
+        Docker Desktop (WSL2) & 105.00 & 100.78 & 10.02 & 93.02 & 126.50 & $-$87.0\% \\
         Native Container (Linux) & 37.48 & 37.48 & 0.05 & 37.34 & 37.60 & $-$95.1\% \\
         \hline
     \end{tabular}
@@ -220,14 +214,14 @@ Figure~\ref{fig:scenario1_total_runtime} visualizes the total runtime distributi
     \label{tab:toolchain_switching_comparison}
 \end{table}
 
-The results establish a clear performance hierarchy: native containers on Linux complete switching in 37.5 seconds (95.1\% faster than baseline), followed by Docker Desktop on Windows at 1.75 minutes (86.4\% faster), native Linux package installation at 1.9 minutes (85.2\% faster), Hyper-V VM switching at 3.6 minutes (71.7\% faster), and native Windows Visual Studio switching at 12.9 minutes (baseline).
+The results establish a clear performance hierarchy: native containers on Linux complete switching in 37.5 seconds (95.1\% faster than baseline), followed by Docker Desktop on Windows at 1.68 minutes (87.0\% faster), native Linux package installation at 1.8 minutes (85.9\% faster), Hyper-V VM switching at 3.6 minutes (71.8\% faster), and native Windows Visual Studio switching at 12.9 minutes (baseline).
 Native containers show exceptional consistency (standard deviation 0.05s), while native Linux package installation exhibits the highest variance (22.99s) due to package manager behavior.
 
 \section{Scenario 2: Comprehensive performance benchmarking}
 
 This scenario evaluates build, installation, and test execution performance across six environments with infrastructure already provisioned.
 The analysis examines real-world development workflows including CMake configuration, full builds, incremental builds with varying scopes, installation procedures, and test execution.
-All benchmarks were executed 30 times per environment to ensure statistical robustness, with measurements focusing on wall-clock time, CPU utilization, and memory consumption.
+Measurements focus on wall-clock time, CPU utilization, and memory consumption.
 
 Statistical significance of performance differences was evaluated using two-tailed independent samples t-tests as specified in Section~\ref{sec:methodology_evaluation}.
 Pairwise comparisons between environments showed that the vast majority of observed wall-clock time differences were statistically significant at the $\alpha = 0.05$ level, with most yielding $p < 0.001$.
@@ -250,7 +244,7 @@ Each subsection presents a specific benchmark's characteristics, statistical ove
 \textbf{Note on host memory measurements:} For hypervisor-based environments (Hyper-V Windows Guest, Hyper-V Debian Guest, Docker Desktop with WSL2), ``Host Peak Mem'' columns in result tables represent the total memory allocated to the VM infrastructure by the host system, including the guest operating system.
 These values substantially exceed the ``Mem $\Delta$ Peak'' measurements observed within guest environments and are not directly comparable to their native environment memory delta counterparts.
 Memory allocation strategies differ by configuration: Hyper-V Debian Guest uses static 20 GB host memory allocation; Hyper-V Windows Guest and Docker Desktop with WSL2 use dynamic memory allocation to maximum 20 GB.
-Docker on Linux uses native containers without a hypervisor and therefor shows no host memory overhead in a similar manner.
+Docker on Linux uses native containers without a hypervisor and therefore shows no host memory overhead similarly.
 
 \subsection{Standard build workflow benchmarks}
 \label{subsec:standard_build_workflow}
@@ -404,7 +398,7 @@ This benchmark evaluates incremental build performance when adding a new CMake t
 The operation requires CMake reconfiguration to process the new target definition, followed by compilation and linking of the new component.
 This represents a common development workflow when extending a project with new modules or executables.
 
-\begin{table}[htbp]
+\begin{table}[ht]
     \centering
     \footnotesize
     \begin{tabular}{|l|r|r|r|r|r|}
@@ -424,7 +418,7 @@ This represents a common development workflow when extending a project with new 
     \label{tab:cmake_build_incremental_feature_s2}
 \end{table}
 
-\begin{figure}[htbp]
+\begin{figure}[ht]
     \centering
     \includegraphics[width=\linewidth]{figures/scenario_2_boxplot_cmake_build_incremental_feature_wall_time.png}
     \caption{Incremental build (new target) wall time distribution across environments (n=30)}
@@ -519,7 +513,7 @@ It represents the total time investment for a complete development workflow cycl
 \end{figure}
 
 Linux-based environments consistently outperform the Windows native baseline.
-Debian native and Docker on Linux achieve nearly identical results (10.9\% and 10.7\% faster respectively), demonstrating that containerization imposes negligible overhead when host and container share the same kernel.
+Debian native and Docker on Linux achieve nearly identical results (10.9\% and 10.7\% faster respectively), demonstrating that containerization imposes minimal overhead when host and container share the same kernel.
 Even Hyper-V Debian Guest completes the workflow 3.4\% faster than Windows native despite virtualization overhead, indicating that Linux toolchains handle filesystem-intensive build operations more efficiently.
 
 Windows-based environments show longer total runtimes, with hypervisor-based configurations incurring additional overhead.
@@ -535,14 +529,15 @@ Docker Desktop shows 1.87-second variability, while Windows native exhibits 20.0
 \subsubsection{Excluded configuration: Docker Desktop with non-native bind mounts}
 \label{subsec:excluded_bind_mounts}
 
-Docker Desktop on Windows supports two primary methods for providing source code access to containers: bind mounts and named volumes.
-Bind mounts directly expose host filesystem paths to containers, while named volumes store data within Docker's managed storage layer.
-On native Linux, bind mounts perform efficiently since the container and host share the same filesystem layer.
+Docker Desktop on Windows supports two methods for container source code access: bind mounts and named volumes.
+Bind mounts expose host filesystem paths directly, while named volumes store data within Docker's managed storage layer.
+On native Linux, bind mounts perform efficiently as container and host share the same filesystem layer.
 On Windows, however, bind mounts require cross-filesystem translation between NTFS and the Linux container environment.
-The benchmarks for Docker Desktop presented in preceding sections used volume-mounted source code; this section documents why bind mounts were excluded from the Windows-based Docker Desktop evaluation.
+The preceding Docker Desktop benchmarks used volume-mounted source code; this section documents why bind mounts were excluded.
 
-Initial testing revealed that Docker Desktop with bind mounts exhibits severe performance degradation compared to volume mounts, confirming findings reported by \citet{dockerDockerDesktopWSL2020,cncfDockerMacOSSlow2023}.
-A single exploratory benchmark run quantified this penalty, with results presented in Table~\ref{tab:bind_mount_comparison} and Figure~\ref{fig:bind_mount_build_comparison}.
+Initial testing revealed severe bind mount performance degradation compared to volume mounts, confirming findings by \citet{dockerDockerDesktopWSL2020,cncfDockerMacOSSlow2023}.
+Due to the extreme penalty, only a single exploratory benchmark run was conducted; results should be interpreted as indicative rather than statistically robust.
+Table~\ref{tab:bind_mount_comparison} and Figure~\ref{fig:bind_mount_build_comparison} present the comparison.
 
 \begin{table}[ht]
     \centering
@@ -568,6 +563,7 @@ A single exploratory benchmark run quantified this penalty, with results present
     \label{fig:bind_mount_build_comparison}
 \end{figure}
 
+\newpage
 The bind mount configuration shows substantial performance degradation across all operations, with total workflow time increasing from approximately 20 minutes to over 3.2 hours (+879.5\% overhead).
 The I/O-intensive installation workflow exhibits the most severe penalty at +5449.2\% overhead, while CPU-bound clean builds show +815.6\% overhead.
 
@@ -643,7 +639,7 @@ The root cause of this cross-platform performance disparity was not investigated
 Parallel test execution leverages CTest's ability to run multiple test cases concurrently, reducing total test suite execution time on multi-core systems.
 Given Docker Desktop's inability to complete sequential test execution within the timeout, parallel benchmarks were conducted only on Windows native and Debian native environments, with a parallelization factor of 20 concurrent tests and a reduced timeout of 240 seconds.
 
-\begin{table}[htbp]
+\begin{table}[ht]
     \centering
     \footnotesize
     \begin{tabular}{|l|l|r|r|r|r|}
@@ -661,7 +657,7 @@ Given Docker Desktop's inability to complete sequential test execution within th
     \label{tab:unit_tests_parallel_s2}
 \end{table}
 
-\begin{table}[htbp]
+\begin{table}[ht]
     \centering
     \footnotesize
     \begin{tabular}{|l|l|r|r|}
@@ -680,7 +676,7 @@ Given Docker Desktop's inability to complete sequential test execution within th
     \label{tab:unit_tests_parallel_resources_s2}
 \end{table}
 
-\begin{figure}[htbp]
+\begin{figure}[ht]
     \centering
     \includegraphics[width=\linewidth]{figures/scenario_2_unittests_parallel_boxplot_unit_tests_wall_time.png}
     \caption{Parallel vs sequential unit test execution wall time distribution (n=30)}
@@ -695,8 +691,9 @@ While sequential Linux execution was nearly twice as slow as Windows, parallel L
 This reversal suggests that the sequential slowdown on Linux may stem from test ordering or synchronization issues that parallel execution circumvents.
 
 Resource consumption increases with parallelization.
-CPU delta rises from near-idle levels (below 1.5\%) to approximately 5.4--5.5\% on both platforms.
-Peak memory delta increases substantially: Windows parallel execution requires 3.8 GB additional memory compared to negligible overhead for sequential runs, while Debian parallel execution shows a median increase of 845 MB with outliers reaching several gigabytes.
+CPU delta rises from near-idle or slightly negative baselines to approximately 5.4--5.5\% on both platforms.
+The negative delta values for Windows sequential execution ($-$0.96\% CPU, $-$102.83 MB memory) indicate system resource usage decreased during test execution compared to the pre-benchmark baseline, likely due to background processes completing or system services releasing resources.
+Peak memory delta increases substantially with parallelization: Windows parallel execution requires 3.8 GB additional memory, while Debian parallel execution shows a median increase of 845 MB with outliers reaching several gigabytes.
 
 \subsection{Optimized workflow with compiler caching}
 \label{subsec:optimized_workflow}
@@ -765,7 +762,7 @@ Table~\ref{tab:cmake_build_full_cached_comparison} compares uncached and cache-w
     \label{tab:cmake_build_full_cached_comparison}
 \end{table}
 
-Linux-based environments achieve 24--28$\times$ speedup factors, reducing build times from approximately 15--19 minutes to under 45 seconds.
+Linux-based environments achieve 24--27$\times$ speedup factors, reducing build times from approximately 15--19 minutes to under 45 seconds.
 Windows environments show 4--5$\times$ improvements, reducing builds from 17--18 minutes to approximately 3.7--4.4 minutes.
 Compared to uncached Windows native builds, Linux-based environments with caching achieve approximately 96\% reduction.
 
@@ -781,14 +778,15 @@ Debian native shows a standard deviation of 8.96 seconds, with occasional outlie
 This subsection compares unoptimized Windows native execution (sequential tests, no compiler caching) against optimized configurations with sccache and parallel test execution (20 concurrent tests) across Windows native, Docker Desktop, and Docker Linux environments.
 Figure~\ref{fig:optimization_compare_total_runtime} and Table~\ref{tab:optimization_compare_total_runtime} present the total runtime comparison.
 
-\begin{figure}[htbp]
+\newpage
+\begin{figure}[ht]
     \centering
     \includegraphics[width=\linewidth]{figures/scenario_2_optimization_compare_wall_time.png}
     \caption{Total runtime comparison: unoptimized vs optimized workflows (n=30)}
     \label{fig:optimization_compare_total_runtime}
 \end{figure}
 
-\begin{table}[htbp]
+\begin{table}[ht]
     \centering
     \footnotesize
     \begin{tabular}{|l|r|r|r|}
@@ -809,7 +807,7 @@ Figure~\ref{fig:optimization_compare_total_runtime} and Table~\ref{tab:optimizat
 Optimization techniques reduce the Windows native workflow from 1478.80 seconds (24.6 minutes) to 457.12 seconds (7.6 minutes), a 69.1\% reduction.
 Docker Desktop achieves 335.09 seconds (5.6 minutes, 77.3\% reduction), while Docker Linux reaches 164.44 seconds (2.7 minutes, 88.9\% reduction).
 
-\begin{table}[htbp]
+\begin{table}[ht]
     \centering
     \footnotesize
     \begin{tabular}{|l|r|r|r|r|}
@@ -851,23 +849,23 @@ All measurements were conducted using the implemented prototype described in Cha
 
 The first scenario examined toolchain switching performance, measuring the time required to change development environments.
 Native Windows toolchain switching via Visual Studio reinstallation required approximately 12.9 minutes, establishing the baseline.
-Containerized approaches reduced this considerably: native Linux containers completed switching in 37.5 seconds (95.1\% improvement), while Docker Desktop on Windows achieved 1.75 minutes (86.4\% improvement).
-Hyper-V virtualization fell between these at 3.6 minutes (71.7\% improvement).
+Containerized approaches reduced this considerably: native Linux containers completed switching in 37.5 seconds (95.1\% improvement), while Docker Desktop on Windows achieved 1.68 minutes (87.0\% improvement).
+Hyper-V virtualization fell between these at 3.6 minutes (71.8\% improvement).
 The results indicate that container-based toolchain management provides substantial time savings compared to traditional installation-based approaches, with native Linux containers offering the fastest switching times and highest consistency.
 
 The second scenario evaluated comprehensive build workflow performance across six environments.
 For CPU-bound operations such as clean builds, performance differences between environments remained modest (within 15\% of baseline), with Debian native and Docker on Linux showing slight advantages (7\% faster than Windows native).
 I/O-bound operations revealed more substantial differences: CMake configuration ran 35--43\% faster on Linux-based environments, and incremental builds showed 47--72\% improvements.
 Docker Desktop on Windows presented a trade-off, with slower total workflow times (10.8\% overhead) but faster individual I/O-bound operations.
-Compiler caching amplified these differences, with Linux environments achieving 24--28$\times$ speedups compared to 4--5$\times$ on Windows.
+Compiler caching amplified these differences, with Linux environments achieving 24--27$\times$ speedups compared to 4--5$\times$ on Windows.
 Unit test execution showed an inverted pattern where Windows environments outperformed Linux, likely due to platform-specific test suite behavior rather than fundamental environment characteristics.
 
 The measurements reveal several patterns relevant to development workflow optimization.
 Linux-based environments consistently outperform Windows for filesystem-intensive operations, regardless of whether they run natively, virtualized, or containerized.
-Containerization on native Linux imposes negligible overhead for both CPU-bound and I/O-bound workloads.
+Containerization on native Linux imposes minimal overhead for both CPU-bound and I/O-bound workloads.
 Docker Desktop on Windows introduces overhead for CPU-bound operations but can improve I/O-bound tasks compared to native Windows, provided volume mounts rather than bind mounts are used.
 Virtualization adds moderate overhead (10--16\%) but remains viable for environments requiring full operating system isolation.
-The combination of containerized Linux environments with compiler caching offers the largest performance gains, reducing build times by over 96\% compared to uncached Windows native builds.
+The combination of containerized Linux environments with compiler caching offers the largest performance gains, reducing build times by approximately 96\% compared to uncached Windows native builds.
 When considering optimized workflows with both compiler caching and parallel test execution, containerized Linux environments demonstrate substantial advantages over native Windows deployment regardless of host operating system: Docker on a native Linux host achieved 88.9\% reduction in total workflow time, while Docker Desktop on a Windows host still achieved 77.3\% reduction compared to unoptimized native Windows execution.
 
 Resource consumption analysis reveals that hypervisor-based virtualization imposes substantial host memory overhead.
@@ -876,4 +874,3 @@ This contrasts with native Linux containerization which shows no comparable hype
 This memory footprint represents a key trade-off when selecting deployment approaches, particularly in resource-constrained environments.
 
 These results emphasize that adopting Linux containers provides significant performance benefits for legacy software development workflows, even when the host platform remains Windows.
-

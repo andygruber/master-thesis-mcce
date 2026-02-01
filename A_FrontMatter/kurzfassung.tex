@@ -1,25 +1,23 @@
 % LTeX: language=de-DE
 \chapter{Kurzfassung}
 
-Legacy-Softwareentwicklungsumgebungen stellen erhebliche Herausforderungen dar, die die Produktivität der Entwickler beeinträchtigen und die Reproduzierbarkeit der Builds gefährden.
-Herkömmliche Entwicklungsumgebungen basieren auf manuell konfigurierten Workstations, was zu Konfigurationsabweichungen und dem berüchtigten Problem „Auf meinem Rechner funktioniert es“ führt.
-Neue Teammitglieder müssen unter Umständen tagelang ihre Umgebung konfigurieren, bevor sie produktiv arbeiten können, während virtuelle Maschinen einen erheblichen Ressourcenaufwand verursachen.
+Legacy-Softwareentwicklungsumgebungen stellen erhebliche Herausforderungen dar, da sie die Entwicklerproduktivität einschränken und die Reproduzierbarkeit von Build-Prozessen beeinträchtigen.
+Klassische Entwicklungsumgebungen basieren auf manuell konfigurierten Workstations, was zu Konfigurationsabweichungen (Configuration Drift) und dem bekannten ``works on my machine''-Problem führt.
+Dadurch ist insbesondere das Onboarding neuer Entwickler zeitaufwendig, während virtuelle Maschinen einen hohen Ressourcen-Overhead verursachen.
 
-Diese Arbeit untersucht die Anwendung der Containerisierung auf die Entwicklung von Legacy-Software und untersucht, wie Docker-basierte Containertechnologien die Entwicklungsabläufe für langjährige native Softwareprojekte modernisieren können.
-Angewandt auf ein industrielles C++-Softwaresystem mit jahrzehntelang gewachsener Komplexität liefert diese Forschung empirische Belege für den Vergleich von containerisierten Entwicklungsumgebungen mit traditionellen nativen und virtualisierten Ansätzen hinsichtlich Build-Zeiten, Ressourcenauslastung und Entwicklerproduktivitätsmetriken.
-
-\begin{sloppypar}
-Die Ergebnisse zeigen, dass sich Container durch automatisierte Bereitstellung mithilfe von Infrastructure-as-Code, nahtlose IDE-Integration über DevContainers und standardisierte CMake-basierte plattformübergreifende Build-Konfigurationen in Legacy-Workflows integrieren lassen.
-Die Umstellungszeit für Toolchains wurde um 95\,\% reduziert---von 12,9 Minuten auf 37,5 Sekunden---, was direkte Produktivitätssteigerungen für Entwickler-Onboarding und Multi-Version-Entwicklungsszenarien bestätigt.
-\end{sloppypar}
+Diese Arbeit untersucht, ob Containerisierung Entwicklungsworkflows für langfristig gewachsene native Softwareprojekte modernisieren kann, ohne grundlegende Änderungen am bestehenden Codebestand zu erfordern.
+Anhand kontrollierter Experimente mit einem industriellen C++-Softwaresystem mit jahrzehntelanger historischer Komplexität werden containerisierte Umgebungen mit nativen und virtualisierten Ansätzen verglichen.
+Die Evaluation umfasst Build-Performance, Ressourcenauslastung sowie Effizienz und Reproduzierbarkeit der Umgebungsbereitstellung.
 
 \begin{sloppypar}
-Die Leistungsbewertung ergab, dass Linux-basierte Container bei dateisystemintensiven Vorgängen um 35 bis 72\,\% besser abschnitten als Windows-native Ansätze, während bei CPU-gebundener Kompilierung in allen Umgebungen nur geringe Unterschiede von maximal 15\,\% zu verzeichnen waren.
-Native Linux-Container verursachten im Vergleich zur Bare-Metal-Ausführung nur einen vernachlässigbaren Overhead.
-Das Compiler-Caching verstärkte die Leistungsunterschiede erheblich, wobei optimierte containerisierte Workflows im Vergleich zu herkömmlichen, nicht optimierten Ansätzen eine Reduzierung der Gesamt-Workflow-Zeit um bis zu 89\,\% erzielten.
-Die Analyse der Ressourcennutzung zeigte, dass die CPU-Auslastungsmuster eher die Art der Operation als die Art der Umgebung widerspiegelten, während der Speicherverbrauch in Hypervisor-basierten Lösungen im Vergleich zur nativen Containerisierung 5 bis 10 GB zusätzliche Ressourcen erforderte.
+Die Ergebnisse zeigen, dass sich Container nahtlos in bestehende Legacy-Workflows integrieren lassen.
+Automatisierte Bereitstellung mittels Infrastructure-as-Code, IDE-Integration über DevContainers sowie standardisierte, plattformübergreifende CMake-Build-Konfigurationen reduzieren manuelle Konfigurationsaufwände erheblich.
+Die Toolchain-Wechselzeit konnte um 95\,\% reduziert werden---von 12,9 Minuten auf 37,5 Sekunden.
 \end{sloppypar}
 
-Die Resultate belegen, dass sich die Prinzipien der Containerisierung erfolgreich von der Bereitstellung von Microservices auf monolithische Legacy-Systeme übertragen lassen.
-Dadurch werden Reproduzierbarkeit, Produktivität und Performance deutlich verbessert.
-Containerisierung stellt somit eine praktikable Modernisierungsstrategie dar, um bestehende Software-Investitionen zu erhalten und gleichzeitig wettbewerbsfähige Entwicklungspraktiken sicherzustellen.
+Die Performance-Analyse zeigt umgebungsabhängige Trade-offs.
+Linux-basierte Container übertrafen Windows-native Umgebungen bei dateisystemintensiven Workloads um 35--72\,\%, während CPU-gebundene Kompilierungsvorgänge nur Abweichungen von unter 15\,\% aufwiesen.
+Native Linux-Container verursachten nahezu keinen Overhead gegenüber Bare-Metal-Ausführung, wohingegen hypervisorbasierte Lösungen einen zusätzlichen Speicherbedarf von 5--10~GB erforderten.
+Durch Compiler-Caching konnte die gesamte Build-Durchlaufzeit um bis zu 89\,\% reduziert werden.
+
+Insgesamt belegen die Ergebnisse, dass Containerisierung eine praktikable Modernisierungsstrategie für build-zentrierte C++-Legacy-Systeme darstellt und Reproduzierbarkeit, Produktivität und Performance signifikant verbessert.
