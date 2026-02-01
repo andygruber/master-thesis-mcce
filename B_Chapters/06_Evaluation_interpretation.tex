@@ -143,13 +143,6 @@ This test measures the time required to switch to a Hyper-V virtual machine temp
     \label{fig:vm_template_download}
 \end{figure}
 
-\begin{figure}[htbp]
-    \centering
-    \includegraphics[width=0.8\linewidth]{figures/scenario_1_boxplot_boot_to_desktop_wall_time.png}
-    \caption{VM boot time distribution (n=30)}
-    \label{fig:vm_boot}
-\end{figure}
-
 The total virtualized toolchain switching time of 217.5 seconds (3.6 minutes) is dominated by the template download operation (87\%), with VM boot contributing 13\% and registration being negligible.
 VM template download requires approximately 3.1 minutes, with moderate variance reflecting network bandwidth fluctuations during transfer of large VHDX files over a 1GbE connection.
 These measurements used a Linux VM template of 20.5 GB; VM template size significantly impacts the total switching time.
@@ -158,6 +151,7 @@ VM boot requires approximately 28 seconds for full operating system initializati
 
 This represents a 71.7\% improvement over the native Windows baseline, positioning virtualization between native installation and containerization in terms of switching efficiency.
 
+\newpage
 \subsection{Native Linux: Development tools installation}
 
 For completeness, the benchmark also measured the time to install development tools on a native Debian Linux system, representing the traditional Linux development environment setup approach.
@@ -190,6 +184,7 @@ Native Linux development tools installation completes in a median of 109 seconds
 This variance stems from package manager behavior, including dependency resolution, mirror selection, and download speeds.
 The skewed distribution (median of 109s vs.\ mean of 114s) indicates occasional slow runs that pull the average upward.
 
+\newpage
 \subsection{Comparative analysis: Toolchain switching}
 \label{subsec:toolchain_switching_comparison}
 
@@ -403,7 +398,7 @@ This benchmark evaluates incremental build performance when adding a new CMake t
 The operation requires CMake reconfiguration to process the new target definition, followed by compilation and linking of the new component.
 This represents a common development workflow when extending a project with new modules or executables.
 
-\begin{table}[htbp]
+\begin{table}[ht]
     \centering
     \footnotesize
     \begin{tabular}{|l|r|r|r|r|r|}
@@ -423,7 +418,7 @@ This represents a common development workflow when extending a project with new 
     \label{tab:cmake_build_incremental_feature_s2}
 \end{table}
 
-\begin{figure}[htbp]
+\begin{figure}[ht]
     \centering
     \includegraphics[width=\linewidth]{figures/scenario_2_boxplot_cmake_build_incremental_feature_wall_time.png}
     \caption{Incremental build (new target) wall time distribution across environments (n=30)}
@@ -568,6 +563,7 @@ Table~\ref{tab:bind_mount_comparison} and Figure~\ref{fig:bind_mount_build_compa
     \label{fig:bind_mount_build_comparison}
 \end{figure}
 
+\newpage
 The bind mount configuration shows substantial performance degradation across all operations, with total workflow time increasing from approximately 20 minutes to over 3.2 hours (+879.5\% overhead).
 The I/O-intensive installation workflow exhibits the most severe penalty at +5449.2\% overhead, while CPU-bound clean builds show +815.6\% overhead.
 
@@ -643,7 +639,7 @@ The root cause of this cross-platform performance disparity was not investigated
 Parallel test execution leverages CTest's ability to run multiple test cases concurrently, reducing total test suite execution time on multi-core systems.
 Given Docker Desktop's inability to complete sequential test execution within the timeout, parallel benchmarks were conducted only on Windows native and Debian native environments, with a parallelization factor of 20 concurrent tests and a reduced timeout of 240 seconds.
 
-\begin{table}[htbp]
+\begin{table}[ht]
     \centering
     \footnotesize
     \begin{tabular}{|l|l|r|r|r|r|}
@@ -661,7 +657,7 @@ Given Docker Desktop's inability to complete sequential test execution within th
     \label{tab:unit_tests_parallel_s2}
 \end{table}
 
-\begin{table}[htbp]
+\begin{table}[ht]
     \centering
     \footnotesize
     \begin{tabular}{|l|l|r|r|}
@@ -680,7 +676,7 @@ Given Docker Desktop's inability to complete sequential test execution within th
     \label{tab:unit_tests_parallel_resources_s2}
 \end{table}
 
-\begin{figure}[htbp]
+\begin{figure}[ht]
     \centering
     \includegraphics[width=\linewidth]{figures/scenario_2_unittests_parallel_boxplot_unit_tests_wall_time.png}
     \caption{Parallel vs sequential unit test execution wall time distribution (n=30)}
@@ -695,8 +691,8 @@ While sequential Linux execution was nearly twice as slow as Windows, parallel L
 This reversal suggests that the sequential slowdown on Linux may stem from test ordering or synchronization issues that parallel execution circumvents.
 
 Resource consumption increases with parallelization.
-CPU delta rises from near-idle or slightly negative baseline levels to approximately 5.4--5.5\% on both platforms.
-The negative delta values for Windows sequential execution ($-$0.96\% CPU, $-$102.83 MB memory) indicate that system resource usage decreased slightly during test execution compared to the pre-benchmark baseline, likely due to background processes completing or system services releasing resources during the measurement period.
+CPU delta rises from near-idle or slightly negative baselines to approximately 5.4--5.5\% on both platforms.
+The negative delta values for Windows sequential execution ($-$0.96\% CPU, $-$102.83 MB memory) indicate system resource usage decreased during test execution compared to the pre-benchmark baseline, likely due to background processes completing or system services releasing resources.
 Peak memory delta increases substantially with parallelization: Windows parallel execution requires 3.8 GB additional memory, while Debian parallel execution shows a median increase of 845 MB with outliers reaching several gigabytes.
 
 \subsection{Optimized workflow with compiler caching}
@@ -782,14 +778,15 @@ Debian native shows a standard deviation of 8.96 seconds, with occasional outlie
 This subsection compares unoptimized Windows native execution (sequential tests, no compiler caching) against optimized configurations with sccache and parallel test execution (20 concurrent tests) across Windows native, Docker Desktop, and Docker Linux environments.
 Figure~\ref{fig:optimization_compare_total_runtime} and Table~\ref{tab:optimization_compare_total_runtime} present the total runtime comparison.
 
-\begin{figure}[htbp]
+\newpage
+\begin{figure}[ht]
     \centering
     \includegraphics[width=\linewidth]{figures/scenario_2_optimization_compare_wall_time.png}
     \caption{Total runtime comparison: unoptimized vs optimized workflows (n=30)}
     \label{fig:optimization_compare_total_runtime}
 \end{figure}
 
-\begin{table}[htbp]
+\begin{table}[ht]
     \centering
     \footnotesize
     \begin{tabular}{|l|r|r|r|}
@@ -810,7 +807,7 @@ Figure~\ref{fig:optimization_compare_total_runtime} and Table~\ref{tab:optimizat
 Optimization techniques reduce the Windows native workflow from 1478.80 seconds (24.6 minutes) to 457.12 seconds (7.6 minutes), a 69.1\% reduction.
 Docker Desktop achieves 335.09 seconds (5.6 minutes, 77.3\% reduction), while Docker Linux reaches 164.44 seconds (2.7 minutes, 88.9\% reduction).
 
-\begin{table}[htbp]
+\begin{table}[ht]
     \centering
     \footnotesize
     \begin{tabular}{|l|r|r|r|r|}
