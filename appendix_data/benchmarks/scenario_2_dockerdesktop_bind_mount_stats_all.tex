@@ -1,0 +1,43 @@
+% Auto-generated master file for statistical summary tables
+% This file includes all benchmark statistics tables with configurable captions
+%
+% Usage: Include this file in your LaTeX document
+% To customize captions, redefine the caption commands before including:
+%   \renewcommand{\statsCaptionBenchmarkName}{Your Custom Caption}
+% To set the path to the table files (if not in same directory):
+%   \renewcommand{\statsBasePath}{path/to/tables/}
+%
+% Requires: booktabs, float, graphicx, currfile, adjustbox, enumitem packages
+%   \usepackage{booktabs}
+%   \usepackage{float}
+%   \usepackage{graphicx}
+%   \usepackage{currfile}
+%   \usepackage{adjustbox}
+%   \usepackage{enumitem}  % for itemize options in environment legend
+
+% Base path for table files (empty = same directory)
+\providecommand{\statsBasePath}{\currfiledir}
+
+\subsection{Statistical Summary for scenario 2: Docker Desktop with non-native bind mounts}
+
+% Legend explaining metrics
+{\footnotesize
+\noindent\textbf{Metrics:} 
+Wall Time = benchmark execution time (seconds); 
+Sys CPU $\Delta$ = system CPU increase from baseline (\%); 
+Sys Mem $\Delta$ Peak = peak system memory increase from baseline (MB); 
+Baseline = idle system state before benchmark; 
+Host Mem Peak = hypervisor process peak memory (for VM environments only).
+}
+
+% Default caption definitions
+\providecommand{\statsCaptionScenarioDockerdesktopBindMountCmakeBuildFull}{Statistical summary for Docker Desktop Win11 / Debian 12 container / bind-mounted}
+
+% Tables
+
+\begin{table}[H]
+\centering
+\adjustbox{max height=0.29\textheight, max width=\linewidth}{\input{\statsBasePath scenario_2_dockerdesktop_bind_mount_stats_cmake_build_combined.tex}}
+\caption{\statsCaptionScenarioDockerdesktopBindMountCmakeBuildFull}
+\label{tab:stats_scenario_2_dockerdesktop_bind_mount_cmake_build_full}
+\end{table}
