@@ -534,14 +534,14 @@ Docker Desktop shows 1.87-second variability, while Windows native exhibits 20.0
 \subsubsection{Excluded configuration: Docker Desktop with non-native bind mounts}
 \label{subsec:excluded_bind_mounts}
 
-Docker Desktop on Windows supports two primary methods for providing source code access to containers: bind mounts and named volumes.
-Bind mounts directly expose host filesystem paths to containers, while named volumes store data within Docker's managed storage layer.
-On native Linux, bind mounts perform efficiently since the container and host share the same filesystem layer.
+Docker Desktop on Windows supports two methods for container source code access: bind mounts and named volumes.
+Bind mounts expose host filesystem paths directly, while named volumes store data within Docker's managed storage layer.
+On native Linux, bind mounts perform efficiently as container and host share the same filesystem layer.
 On Windows, however, bind mounts require cross-filesystem translation between NTFS and the Linux container environment.
-The benchmarks for Docker Desktop presented in preceding sections used volume-mounted source code; this section documents why bind mounts were excluded from the Windows-based Docker Desktop evaluation.
+The preceding Docker Desktop benchmarks used volume-mounted source code; this section documents why bind mounts were excluded.
 
-Initial testing revealed that Docker Desktop with bind mounts exhibits severe performance degradation compared to volume mounts, confirming findings reported by \citet{dockerDockerDesktopWSL2020,cncfDockerMacOSSlow2023}.
-Due to the extreme performance penalty observed, only a single exploratory benchmark run was conducted to quantify this penalty; these results should be interpreted as indicative rather than statistically robust.
+Initial testing revealed severe bind mount performance degradation compared to volume mounts, confirming findings by \citet{dockerDockerDesktopWSL2020,cncfDockerMacOSSlow2023}.
+Due to the extreme penalty, only a single exploratory benchmark run was conducted; results should be interpreted as indicative rather than statistically robust.
 Table~\ref{tab:bind_mount_comparison} and Figure~\ref{fig:bind_mount_build_comparison} present the comparison.
 
 \begin{table}[ht]
