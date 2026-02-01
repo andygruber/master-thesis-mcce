@@ -66,7 +66,6 @@ Figure \ref{fig:logical-components} illustrates the component organization and t
 	\caption{Component Architecture - Logical View}
 	\label{fig:logical-components}
 \end{figure}
-% [FIGURE: Diagram showing 7 component boxes with labeled associations between them. Components: Development Platform Layer (foundation), Build System Integration, Infrastructure Provisioning, Distribution & Registry Services, IDE Integration Layer, Performance Monitoring, Configuration Management. Show key relationships: Configuration Management provides specifications to Infrastructure Provisioning; Infrastructure Provisioning produces artifacts consumed by Distribution & Registry Services; Build System Integration executes on Development Platform Layer; IDE Integration Layer coordinates with Development Platform Layer; Performance Monitoring observes all categories; all operational components build upon Development Platform Layer as foundation.]
 
 \subsubsection{Development Platform Layer Component}
 
@@ -330,7 +329,6 @@ The prototype implements automated build and deployment processes, figure \ref{f
 	\caption{Build and Deployment Processes}
 	\label{fig:build-deployment-pipeline}
 \end{figure}
-% [FIGURE: Flow diagram showing three parallel environment provisioning paths converging at developer access: 1) VM Path: LAN File Server (VM Templates) → Hyper-V Import → VM Boot → Developer Access, 2) Container Path: LAN Docker Registry → Image Pull → DevContainer Start → Developer Access, 3) Native Path: LAN Installer Storage → Visual Studio Installation → Developer Access. Emphasizes that all artifact sources are pre-built and centrally distributed, with deployment to developer workstation as the measured scope.]
 
 \newpage
 \subsubsection{Environment Provisioning and Deployment}
@@ -446,7 +444,6 @@ Figure \ref{fig:physical-architecture} illustrates the physical infrastructure t
 	\caption{Physical Architecture - Test Environment Topology}
 	\label{fig:physical-architecture}
 \end{figure}
-% [FIGURE: Physical infrastructure topology showing: HP Z2 Tower G9 workstations supporting three deployment configurations (native, VM, container) on identical hardware. Windows workstations (Windows 11, Docker Desktop/WSL2, Hyper-V) and Linux workstations (Debian 12, Docker Engine) connected via 1GbE to optional centralized infrastructure: LAN file server (VM templates via SMB/NFS) and Docker registry (container images). Side-by-side comparison layout emphasizing controlled test environment with standardized hardware.]
 
 \newpage
 \subsubsection{Development Workstation Infrastructure}
