@@ -1,82 +1,82 @@
-<mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36" version="29.3.4">
+<mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/146.0.0.0 Safari/537.36" version="29.3.6">
   <diagram name="Thesis Structure" id="thesis-structure">
     <mxGraphModel dx="1425" dy="761" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
         <mxCell id="legend-bg" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=none;strokeColor=#666666;dashed=1" value="" vertex="1">
-          <mxGeometry height="40" width="460" x="220" y="20" as="geometry" />
+          <mxGeometry height="40" width="550" x="170" y="20" as="geometry" />
         </mxCell>
         <mxCell id="legend1" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f0f0f0;strokeColor=#000000;" value="" vertex="1">
-          <mxGeometry height="15" width="15" x="230" y="32" as="geometry" />
+          <mxGeometry height="15" width="15" x="195" y="32" as="geometry" />
         </mxCell>
-        <mxCell id="legend1-text" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=11;" value="Foundation" vertex="1">
-          <mxGeometry height="20" width="60" x="248" y="29" as="geometry" />
+        <mxCell id="legend1-text" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=14;" value="Foundation" vertex="1">
+          <mxGeometry height="20" width="60" x="213" y="29" as="geometry" />
         </mxCell>
         <mxCell id="legend2" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d9d9d9;strokeColor=#000000;" value="" vertex="1">
-          <mxGeometry height="15" width="15" x="333" y="32" as="geometry" />
+          <mxGeometry height="15" width="15" x="321" y="32" as="geometry" />
         </mxCell>
-        <mxCell id="legend2-text" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=11;" value="Theory &amp;amp; Method" vertex="1">
-          <mxGeometry height="20" width="102" x="351" y="29" as="geometry" />
+        <mxCell id="legend2-text" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=14;" value="Theory &amp;amp; Method" vertex="1">
+          <mxGeometry height="20" width="111" x="339" y="29" as="geometry" />
         </mxCell>
         <mxCell id="legend3" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#bfbfbf;strokeColor=#000000;" value="" vertex="1">
-          <mxGeometry height="15" width="15" x="467" y="32" as="geometry" />
+          <mxGeometry height="15" width="15" x="478" y="32" as="geometry" />
         </mxCell>
-        <mxCell id="legend3-text" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=11;" value="Implementation" vertex="1">
-          <mxGeometry height="20" width="70" x="485" y="29" as="geometry" />
+        <mxCell id="legend3-text" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=14;" value="Implementation" vertex="1">
+          <mxGeometry height="20" width="70" x="496" y="29" as="geometry" />
         </mxCell>
         <mxCell id="legend4" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#a6a6a6;strokeColor=#000000;" value="" vertex="1">
-          <mxGeometry height="15" width="15" x="590" y="32" as="geometry" />
+          <mxGeometry height="15" width="15" x="620" y="33" as="geometry" />
         </mxCell>
-        <mxCell id="legend4-text" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=11;" value="Synthesis" vertex="1">
-          <mxGeometry height="20" width="50" x="608" y="29" as="geometry" />
+        <mxCell id="legend4-text" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=14;" value="Synthesis" vertex="1">
+          <mxGeometry height="20" width="50" x="638" y="30" as="geometry" />
         </mxCell>
         <mxCell id="part1-bg" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f0f0f0;strokeColor=#666666;" value="" vertex="1">
           <mxGeometry height="270" width="260" x="40" y="70" as="geometry" />
         </mxCell>
-        <mxCell id="part1-title" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=14;fontStyle=1;fontColor=#333333" value="FOUNDATION" vertex="1">
+        <mxCell id="part1-title" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=16;fontStyle=1;fontColor=#333333" value="FOUNDATION" vertex="1">
           <mxGeometry height="20" width="260" x="40" y="75" as="geometry" />
         </mxCell>
-        <mxCell id="ch1" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;align=left;verticalAlign=top;spacingLeft=10;spacingTop=5;fontSize=13;" value="1. Introduction&#xa;&#xa;• Problem Statement&#xa;• Research Questions&#xa;• Methodology (DSRM)" vertex="1">
+        <mxCell id="ch1" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;align=left;verticalAlign=top;spacingLeft=10;spacingTop=2;fontSize=14;" value="1. Introduction&#xa;&#xa;• Problem Statement&#xa;• Research Questions&#xa;• Methodology (DSRM)" vertex="1">
           <mxGeometry height="100" width="230" x="55" y="100" as="geometry" />
         </mxCell>
-        <mxCell id="ch2" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;align=left;verticalAlign=top;spacingLeft=10;spacingTop=5;fontSize=13;" value="2. Related Work&#xa;&#xa;• VMs vs Containers Studies&#xa;• Containerization in Development&#xa;• Legacy Applications" vertex="1">
+        <mxCell id="ch2" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;align=left;verticalAlign=top;spacingLeft=10;spacingTop=2;fontSize=14;" value="2. Related Work&#xa;&#xa;• VMs vs Containers Studies&#xa;• Containerization in Development&#xa;• Legacy Applications" vertex="1">
           <mxGeometry height="100" width="230" x="55" y="220" as="geometry" />
         </mxCell>
         <mxCell id="part2-bg" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d9d9d9;strokeColor=#666666;" value="" vertex="1">
           <mxGeometry height="270" width="260" x="320" y="70" as="geometry" />
         </mxCell>
-        <mxCell id="part2-title" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=14;fontStyle=1;fontColor=#333333" value="THEORY &amp;amp; METHOD" vertex="1">
+        <mxCell id="part2-title" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=16;fontStyle=1;fontColor=#333333" value="THEORY &amp;amp; METHOD" vertex="1">
           <mxGeometry height="20" width="260" x="320" y="75" as="geometry" />
         </mxCell>
-        <mxCell id="ch3" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;align=left;verticalAlign=top;spacingLeft=10;spacingTop=5;fontSize=13;" value="3. Fundamentals&#xa;&#xa;• Legacy Software Development&#xa;• Containerization Technologies&#xa;• Build System Reproducibility" vertex="1">
+        <mxCell id="ch3" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;align=left;verticalAlign=top;spacingLeft=10;spacingTop=2;fontSize=14;" value="3. Fundamentals&#xa;&#xa;• Legacy Software Development&#xa;• Containerization Technologies&#xa;• Build System Reproducibility" vertex="1">
           <mxGeometry height="100" width="230" x="335" y="100" as="geometry" />
         </mxCell>
-        <mxCell id="ch4" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;align=left;verticalAlign=top;spacingLeft=10;spacingTop=5;fontSize=13;" value="4. Methodology&#xa;&#xa;• Design Science Research&#xa;• Evaluation Framework&#xa;• Iterative Development" vertex="1">
+        <mxCell id="ch4" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;align=left;verticalAlign=top;spacingLeft=10;spacingTop=2;fontSize=14;" value="4. Methodology&#xa;&#xa;• Design Science Research&#xa;• Evaluation Framework&#xa;• Iterative Development" vertex="1">
           <mxGeometry height="100" width="230" x="335" y="220" as="geometry" />
         </mxCell>
         <mxCell id="part3-bg" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#bfbfbf;strokeColor=#666666;" value="" vertex="1">
           <mxGeometry height="270" width="260" x="600" y="70" as="geometry" />
         </mxCell>
-        <mxCell id="part3-title" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=14;fontStyle=1;fontColor=#333333" value="IMPLEMENTATION" vertex="1">
+        <mxCell id="part3-title" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=16;fontStyle=1;fontColor=#333333" value="IMPLEMENTATION" vertex="1">
           <mxGeometry height="20" width="260" x="600" y="75" as="geometry" />
         </mxCell>
-        <mxCell id="ch5" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;align=left;verticalAlign=top;spacingLeft=10;spacingTop=5;fontSize=13;" value="5. Prototype Architecture&#xa;&#xa;• 4+1 Architectural Views&#xa;• Component Design&#xa;• Evaluation Scenarios" vertex="1">
+        <mxCell id="ch5" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;align=left;verticalAlign=top;spacingLeft=10;spacingTop=2;fontSize=14;" value="5. Prototype Architecture&#xa;&#xa;• 4+1 Architectural Views&#xa;• Component Design&#xa;• Evaluation Scenarios" vertex="1">
           <mxGeometry height="100" width="230" x="615" y="100" as="geometry" />
         </mxCell>
-        <mxCell id="ch6" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;align=left;verticalAlign=top;spacingLeft=10;spacingTop=5;fontSize=13;" value="6. Empirical Results&#xa;&#xa;• Toolchain Switching&#xa;• Build Performance&#xa;• Resource Utilization" vertex="1">
+        <mxCell id="ch6" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;align=left;verticalAlign=top;spacingLeft=10;spacingTop=2;fontSize=14;" value="6. Empirical Results&#xa;&#xa;• Toolchain Switching&#xa;• Build Performance&#xa;• Resource Utilization" vertex="1">
           <mxGeometry height="100" width="230" x="615" y="220" as="geometry" />
         </mxCell>
         <mxCell id="part4-bg" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#a6a6a6;strokeColor=#666666;" value="" vertex="1">
           <mxGeometry height="140" width="540" x="180" y="380" as="geometry" />
         </mxCell>
-        <mxCell id="part4-title" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=14;fontStyle=1;fontColor=#333333" value="SYNTHESIS" vertex="1">
+        <mxCell id="part4-title" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=16;fontStyle=1;fontColor=#333333" value="SYNTHESIS" vertex="1">
           <mxGeometry height="20" width="540" x="180" y="385" as="geometry" />
         </mxCell>
-        <mxCell id="ch7" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;align=left;verticalAlign=top;spacingLeft=10;spacingTop=5;fontSize=13;" value="7. Discussion&lt;br&gt;&lt;br&gt;• Research Questions Revisited&lt;br&gt;• Implications&lt;br&gt;• Limitations, Future Work" vertex="1">
+        <mxCell id="ch7" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;align=left;verticalAlign=top;spacingLeft=10;spacingTop=2;fontSize=14;" value="7. Discussion&lt;br&gt;&lt;br&gt;• Research Questions Revisited&lt;br&gt;• Implications&lt;br&gt;• Limitations, Future Work" vertex="1">
           <mxGeometry height="100" width="240" x="195" y="410" as="geometry" />
         </mxCell>
-        <mxCell id="ch8" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;align=left;verticalAlign=top;spacingLeft=10;spacingTop=5;fontSize=13;" value="8. Conclusion&lt;br&gt;&lt;br&gt;• Key Findings&lt;br&gt;• Contributions" vertex="1">
+        <mxCell id="ch8" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;align=left;verticalAlign=top;spacingLeft=10;spacingTop=2;fontSize=14;" value="8. Conclusion&lt;br&gt;&lt;br&gt;• Key Findings&lt;br&gt;• Contributions" vertex="1">
           <mxGeometry height="100" width="240" x="465" y="410" as="geometry" />
         </mxCell>
         <mxCell id="arrow1" edge="1" parent="1" source="ch1" style="endArrow=classic;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;strokeColor=#000000" target="ch2" value="">
