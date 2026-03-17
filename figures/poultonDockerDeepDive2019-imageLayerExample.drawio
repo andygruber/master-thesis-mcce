@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36" version="29.3.4">
+<mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/146.0.0.0 Safari/537.36" version="29.3.6">
   <diagram id="image-layers" name="Page-1">
     <mxGraphModel dx="2066" dy="1103" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1100" pageHeight="850" math="0" shadow="0">
       <root>
@@ -7,11 +7,11 @@
         <mxCell id="image-container" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=none;strokeColor=#000000;strokeWidth=2;dashed=1;dashPattern=8 8;" value="" vertex="1">
           <mxGeometry height="460" width="800" x="179" y="100" as="geometry" />
         </mxCell>
-        <mxCell id="image-label" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#000000;fontColor=#000000;fontSize=24;fontStyle=1;verticalAlign=middle;strokeWidth=2;" value="Image" vertex="1">
+        <mxCell id="image-label" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#000000;fontColor=#000000;fontSize=28;fontStyle=1;verticalAlign=middle;strokeWidth=2;" value="Image" vertex="1">
           <mxGeometry height="60" width="200" x="459" y="70" as="geometry" />
         </mxCell>
-        <mxCell id="layer-3-pointer" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=right;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontColor=#000000;fontSize=20;" value="Layer 3" vertex="1">
-          <mxGeometry height="40" width="80" x="80" y="197" as="geometry" />
+        <mxCell id="layer-3-pointer" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=right;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontColor=#000000;fontSize=28;" value="Layer 3" vertex="1">
+          <mxGeometry height="40" width="120" x="40" y="197" as="geometry" />
         </mxCell>
         <mxCell id="arrow-3" edge="1" parent="1" style="endArrow=classic;html=1;rounded=0;strokeColor=#000000;strokeWidth=2;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="layer-3" value="">
           <mxGeometry height="50" relative="1" width="50" as="geometry">
@@ -19,8 +19,8 @@
             <mxPoint x="200" y="217" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="layer-2-pointer" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=right;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontColor=#000000;fontSize=20;" value="Layer 2" vertex="1">
-          <mxGeometry height="40" width="80" x="80" y="297" as="geometry" />
+        <mxCell id="layer-2-pointer" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=right;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontColor=#000000;fontSize=28;" value="Layer 2" vertex="1">
+          <mxGeometry height="40" width="110" x="50" y="297" as="geometry" />
         </mxCell>
         <mxCell id="arrow-2" edge="1" parent="1" style="endArrow=classic;html=1;rounded=0;strokeColor=#000000;strokeWidth=2;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="layer-2" value="">
           <mxGeometry height="50" relative="1" width="50" as="geometry">
@@ -31,11 +31,11 @@
         <mxCell id="layer-1" parent="1" style="shape=trapezoid;perimeter=trapezoidPerimeter;whiteSpace=wrap;html=1;fixedSize=1;fillColor=#D0D0D0;strokeColor=#000000;strokeWidth=2;size=40;" value="" vertex="1">
           <mxGeometry height="160" width="700" x="229" y="357" as="geometry" />
         </mxCell>
-        <mxCell id="layer-1-label" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontColor=#000000;fontSize=20;fontStyle=1;" value="Debian 12" vertex="1">
+        <mxCell id="layer-1-label" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontColor=#000000;fontSize=28;fontStyle=1;" value="Debian 12" vertex="1">
           <mxGeometry height="50" width="200" x="479" y="412" as="geometry" />
         </mxCell>
-        <mxCell id="layer-1-pointer" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=right;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontColor=#000000;fontSize=20;" value="Layer 1" vertex="1">
-          <mxGeometry height="40" width="80" x="80" y="417" as="geometry" />
+        <mxCell id="layer-1-pointer" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=right;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontColor=#000000;fontSize=28;" value="Layer 1" vertex="1">
+          <mxGeometry height="40" width="110" x="50" y="417" as="geometry" />
         </mxCell>
         <mxCell id="arrow-1" edge="1" parent="1" style="endArrow=classic;html=1;rounded=0;strokeColor=#000000;strokeWidth=2;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="layer-1" value="">
           <mxGeometry height="50" relative="1" width="50" as="geometry">
@@ -49,13 +49,13 @@
         <mxCell id="layer-2" parent="1" style="shape=trapezoid;perimeter=trapezoidPerimeter;whiteSpace=wrap;html=1;fixedSize=1;fillColor=#B0B0B0;strokeColor=#000000;strokeWidth=2;size=40;" value="" vertex="1">
           <mxGeometry height="140" width="700" x="229" y="247" as="geometry" />
         </mxCell>
-        <mxCell id="layer-2-label" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontColor=#000000;fontSize=20;fontStyle=1;" value="Python" vertex="1">
+        <mxCell id="layer-2-label" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontColor=#000000;fontSize=28;fontStyle=1;" value="Python" vertex="1">
           <mxGeometry height="50" width="200" x="479" y="292" as="geometry" />
         </mxCell>
         <mxCell id="layer-3" parent="1" style="shape=trapezoid;perimeter=trapezoidPerimeter;whiteSpace=wrap;html=1;fixedSize=1;fillColor=#909090;strokeColor=#000000;strokeWidth=2;size=40;" value="" vertex="1">
           <mxGeometry height="100" width="700" x="229" y="167" as="geometry" />
         </mxCell>
-        <mxCell id="layer-3-label" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontColor=#000000;fontSize=20;fontStyle=1;" value="Security patch" vertex="1">
+        <mxCell id="layer-3-label" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontColor=#000000;fontSize=28;fontStyle=1;" value="Security patch" vertex="1">
           <mxGeometry height="50" width="200" x="479" y="192" as="geometry" />
         </mxCell>
       </root>
