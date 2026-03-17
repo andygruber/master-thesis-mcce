@@ -41,12 +41,12 @@ for bar, hatch in zip(bars, hatches):
     bar.set_hatch(hatch)
 
 # Customize axes
-ax.set_ylabel('% of students', fontsize=14, fontweight='bold')
-ax.set_xlabel('Response', fontsize=14, fontweight='bold')
+ax.set_ylabel('% of students', fontsize=18, fontweight='bold')
+ax.set_xlabel('Response', fontsize=18, fontweight='bold')
 ax.set_title('How difficult/easy was it to set up the DevContainer?',
-             fontsize=15, fontweight='bold', pad=20)
+             fontsize=20, fontweight='bold', pad=20)
 ax.set_xticks(x_pos)
-ax.set_xticklabels(categories, fontsize=11)
+ax.set_xticklabels(categories, fontsize=14)
 ax.set_ylim(0, 40)
 
 # Add horizontal grid for better readability
@@ -54,23 +54,23 @@ ax.yaxis.grid(True, linestyle='-', alpha=0.3, color='grey', linewidth=0.5)
 ax.set_axisbelow(True)
 
 # Customize tick parameters
-ax.tick_params(axis='both', which='major', labelsize=11)
+ax.tick_params(axis='both', which='major', labelsize=14)
 
 # Add value labels on top of bars
 for i, pct in enumerate(percentages):
     ax.text(i, pct + 0.5, f'{pct}',
-            ha='center', va='bottom', fontsize=10, fontweight='bold')
+            ha='center', va='bottom', fontsize=14, fontweight='bold')
 
 # Add reference lines and annotations for key insights
 # Difficult/Very difficult (18%)
 ax.axhline(y=18, xmin=0, xmax=0.21, color='black', linestyle='--',
            linewidth=1, alpha=0.5)
-ax.text(-0.5, 19, '18% difficult', fontsize=9, style='italic')
+ax.text(-0.5, 19, '18% difficult', fontsize=13, style='italic')
 
 # Easy/Very easy (35%)
 ax.axhline(y=35, xmin=0.48, xmax=0.69, color='black', linestyle='--',
            linewidth=1, alpha=0.5)
-ax.text(3.5, 36, '35% easy', fontsize=9, style='italic')
+ax.text(3.5, 36, '35% easy', fontsize=13, style='italic')
 
 # Adjust layout to prevent label cutoff
 plt.tight_layout()

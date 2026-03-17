@@ -35,10 +35,10 @@ for bar, hatch in zip(bars, hatches):
     bar.set_hatch(hatch)
 
 # Customize axes
-ax.set_ylabel('Linpack GFLOPS', fontsize=14, fontweight='bold')
-ax.set_xlabel('Environment type', fontsize=14, fontweight='bold')
+ax.set_ylabel('Linpack GFLOPS', fontsize=15, fontweight='bold')
+ax.set_xlabel('Environment type', fontsize=15, fontweight='bold')
 ax.set_xticks(x_pos)
-ax.set_xticklabels(configurations, fontsize=12)
+ax.set_xticklabels(configurations, fontsize=13)
 ax.set_ylim(0, 350)
 
 # Add grid for better readability
@@ -46,12 +46,12 @@ ax.yaxis.grid(True, linestyle='-', alpha=0.3, color='grey', linewidth=0.5)
 ax.set_axisbelow(True)
 
 # Customize tick parameters
-ax.tick_params(axis='both', which='major', labelsize=11)
+ax.tick_params(axis='both', which='major', labelsize=13)
 
 # Add value labels on top of bars (rounded for display)
 for i, (perf, std) in enumerate(zip(performance, std_dev)):
     ax.text(i, perf + std + 10, f'{perf:.1f}',
-            ha='center', va='bottom', fontsize=11, fontweight='bold')
+            ha='center', va='bottom', fontsize=13, fontweight='bold')
 
 # Adjust layout to prevent label cutoff
 plt.tight_layout()
